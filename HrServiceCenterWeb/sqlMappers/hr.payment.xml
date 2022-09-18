@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.payment">
+  <!-- 查询默认模板  -->
+  <select id="findDefaultTemplate" >
+    select
+    t.TEMPLATE_ID TemplateId,
+    t.TEMPLATE_NAME TemplateName
+    from HR_SALARY_TEMPLATE t where t.IS_GLOBAL=1
+  </select>
+  <!-- 查询待发放项目 -->
+  <select id="findTemplateItems" >
+    select t1.ITEM_EIDTABLE Editable,t.ITEM_ID ItemId,t.Parent_ID ParentId, t.ITEM_TITLE ItemCaption,t.ISLEAF
+    from HR_SALARY_TEMPLATE_ITEM t1
+    inner join HR_SALARY_ITEM t on t.ITEM_ID=t1.ITEM_ID
+    where t1.TEMPLATE_ID=#{value}
+    order by t.ITEM_CODE
+  </select>
+  <!-- 查询公司人员 -->
+  <select id="findCompanyPersons" >
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.Service_Fee ServiceFee
+    from HR_EMPLOYEE t
+    where t.COMPANY_ID=#{value} and ISNULL(t.State, 0)=0 and t.UseType=0
+  </select>
+  <!-- 查询发放对象保险值 -->
+  <select id="findCompanyPersonsValue" >
+    select t1.PERSON_ID PersonId,t1.ITEM_ID ItemId,sum(t1.ITEM_VALUE) PayValue
+    from HR_EMPLOYEE t
+    INNER JOIN HR_SALARY_IMPORTOR_DATA t1 on t1.PERSON_ID=t.PERSON_ID
+    where t.COMPANY_ID=${CompanyId} and t1.PAY_MONTH='${PayMonth}' and t.State=0 
+    GROUP BY t1.PERSON_ID,t1.ITEM_ID
+    union
+    select t1.PERSON_ID PersonId,4 ItemId,sum(t1.ITEM_CMP_VALUE) PayValue
+    from HR_EMPLOYEE t
+    INNER JOIN HR_SALARY_IMPORTOR_DATA t1 on t1.PERSON_ID=t.PERSON_ID
+    where t.COMPANY_ID=${CompanyId} and t1.PAY_MONTH='${PayMonth}' and t1.ITEM_ID in (201,202,203,204,205) and t.State=0
+    GROUP BY t1.PERSON_ID
+    union
+    select t1.PERSON_ID PersonId,5 ItemId,sum(t1.ITEM_CMP_VALUE) PayValue
+    from HR_EMPLOYEE t
+    INNER JOIN HR_SALARY_IMPORTOR_DATA t1 on t1.PERSON_ID=t.PERSON_ID
+    where t.COMPANY_ID=${CompanyId} and t1.PAY_MONTH='${PayMonth}' and t1.ITEM_ID in (206) and t.State=0
+    GROUP BY t1.PERSON_ID
+  </select>
+
+
+  <!--发放表主表详情-->
+  <select id="findPayment" >
+    select t.PAY_ID PayId,t.PAY_TITLE PayTitle,t.COMPANY_ID CompanyId,t.PAY_MONTH PayMonth, t.STATUS Status,t.CREATE_TIME CreateTime
+    from HR_SALARY_PAY t
+    where t.PAY_ID=#{value}
+  </select>
+  <!-- 查询发放表项目-->
+  <select id="findPaymentItems" >
+    select t1.ITEM_EIDTABLE Editable,t.ITEM_ID ItemId,t.Parent_ID ParentId, t.ITEM_TITLE ItemCaption,t.ISLEAF
+    from HR_SALARY_PAY_ITEM t1
+    inner join HR_SALARY_ITEM t on t.ITEM_ID=t1.ITEM_ID
+    where t1.PAY_ID=#{value}
+    order by t.ITEM_CODE
+  </select>
+  <!-- 查询发放表对象-->
+  <select id="findPaymentPersons" >
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName
+    from HR_EMPLOYEE t
+    inner join HR_SALARY_PAY_OBJECT t1 on t1.PERSON_ID=t.PERSON_ID
+    where t1.PAY_ID=#{value}
+    order by t.PERSON_ID
+  </select>
+  <!-- 查询发放表发放值-->
+  <select id="findPaymentValue" >
+    select t.PERSON_ID PersonId,t.ITEM_ID ItemId,t.PAY_VALUE PayValue
+    from HR_SALARY_PAY_VALUE t
+    where t.PAY_ID=#{value}
+  </select>
+  
+  <!-- save/update payment -->
+  <insert id="insertPayment" parameterType="Payment">
+    <selectKey keyProperty="PayId" order="INSERTING" >
+      select @PayId=@@IDENTITY
+    </selectKey>
+    insert into HR_SALARY_PAY
+    (TEMPLATE_ID,COMPANY_ID,PAY_TITLE,PAY_MONTH,CREATOR,CREATE_TIME,STATUS)
+    values(#{TemplateId},#{CompanyId},#{PayTitle},#{PayMonth},#{CreatorId},#{CreateTime},#{Status})
+  </insert>
+  <delete id="insertPayment.delete">
+    delete from HR_SALARY_PAY_VALUE where PAY_ID=#{PayId} and ITEM_ID=#{ItemId};
+  </delete>
+  <insert id="insertPayment.detail" parameterType="PayValueInfo">
+    insert into HR_SALARY_PAY_VALUE(PAY_ID,ITEM_ID,PERSON_ID,PAY_VALUE)
+    values(#{PayId},#{ItemId},#{PersonId},#{PayValue})
+  </insert>
+  <insert id="insertPayment.items" parameterType="PayItemDO">
+    insert into HR_SALARY_PAY_ITEM(PAY_ID,ITEM_ID,ITEM_EIDTABLE) values(#{PaymentId},#{ItemId},#{Editable})
+  </insert>
+  <insert id="insertPayment.object" parameterType="PayObjectDO">
+    insert into HR_SALARY_PAY_OBJECT(PAY_ID,PERSON_ID) values(#{PaymentId},#{ObjectId})
+  </insert>
+  <!--删除发放表-->
+  <delete id="deletePay">
+    delete from HR_SALARY_PAY_VALUE where PAY_ID=${value};
+    delete from HR_SALARY_PAY_ITEM where PAY_ID=${value};
+    delete from HR_SALARY_PAY_OBJECT where PAY_ID=${value};
+    delete from HR_SALARY_PAY where PAY_ID=${value};
+  </delete>
+  <!-- 保存发放表基本信息 -->
+  <update id="savePayment">
+    update HR_SALARY_PAY set PAY_TITLE=#{PayTitle} where PAY_ID=#{PayId};
+  </update>
+  <update id="submitPayment">
+    update HR_SALARY_PAY set STATUS=#{Status} where PAY_ID=#{PayId};
+  </update>
+
+  <!-- 查询导入明细-->
+  <select id="queryImportorDetail" >
+    select e.PERSON_NAME,e.CARD_ID,e.BANK_CARD,
+    sum(f101) f101,sum(f102) f102,sum(f103) f103,sum(f104) f104,sum(f105) f105,sum(f106) f106,
+    sum(f107) f107,sum(f108) f108,sum(f109) f109,sum(f110) f110,sum(f111) f111
+    from (
+    select t.PERSON_ID,
+    case t.ITEM_ID when 101 then t.item_value else 0 END f101,
+    case t.ITEM_ID when 102 then t.item_value else 0 END f102,
+    case t.ITEM_ID when 103 then t.item_value else 0 END f103,
+    case t.ITEM_ID when 104 then t.item_value else 0 END f104,
+    case t.ITEM_ID when 105 then t.item_value else 0 END f105,
+    case t.ITEM_ID when 106 then t.item_value else 0 END f106,
+    case t.ITEM_ID when 107 then t.item_value else 0 END f107,
+    case t.ITEM_ID when 108 then t.item_value else 0 END f108,
+    case t.ITEM_ID when 109 then t.item_value else 0 END f109,
+    case t.ITEM_ID when 110 then t.item_value else 0 END f110,
+    case t.ITEM_ID when 111 then t.item_value else 0 END f111
+    from HR_SALARY_IMPORTOR_DATA t
+    where t.IMPORT_ID=#{value}
+    ) v
+    INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+    group by e.PERSON_NAME,v.PERSON_ID,e.CARD_ID,e.BANK_CARD
+    order by e.PERSON_NAME
+  </select>
+</mapper>

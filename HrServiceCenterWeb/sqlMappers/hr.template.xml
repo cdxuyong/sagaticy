@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.template">
+  <!-- 返回排序后所有的基础编码数据  -->
+
+  <select id="findTempList" >
+    select
+    t.TEMPLATE_ID TemplateId,
+    t.TEMPLATE_NAME TemplateName,
+    c.CODE CompanyCode,
+    c.NAME CompanyName,
+    --t.CREATE_TIME CreatTime,
+    CONVERT(varchar,t.CREATE_TIME,120) CreatTime,
+    c.REPRESENTATIVE
+    from HR_SALARY_TEMPLATE t
+    left join HR_COMPANY c on t.COMPANY_ID=c.COMPANY_ID
+    where t.IS_GLOBAL !=1
+  </select>
+
+  <select id="findSalaryItem" >
+    select
+    t.item_id ItemId,
+    t.parent_id ParentId,
+    t.item_title Name
+    from HR_SALARY_ITEM t
+  </select>
+
+  <select id="findTemplateById" >
+    select
+    t.TEMPLATE_NAME TemplateName
+    from HR_SALARY_TEMPLATE t
+    where t.TEMPLATE_ID=#{value}
+  </select>
+
+  <select id="findTemplateIdByCompanyId" >
+    select
+    t.TEMPLATE_ID TemplateId
+    from HR_SALARY_TEMPLATE t
+    where t.COMPANY_ID=#{value}
+  </select>
+
+  <delete id="deleteTemp" >
+    delete from HR_SALARY_TEMPLATE where TEMPLATE_ID=#{value}
+  </delete>
+
+  <insert id="insertTemplate" parameterType="TemplateInfo">
+    <selectKey keyProperty="TemplateId" order="INSERTING" >
+      select @TemplateId=@@IDENTITY
+    </selectKey>
+    insert into HR_SALARY_TEMPLATE(COMPANY_ID,TEMPLATE_NAME,CREATOR,CREATE_TIME,STATE,IS_GLOBAL) values(#{CompanyId},#{TemplateName},#{Creator},#{CreatTime},1,0)
+  </insert>
+
+  <insert id="insertTemplateDetail" parameterType="TemplateDetailInfo">
+    insert into HR_SALARY_TEMPLATE_ITEM(TEMPLATE_ID,ITEM_ID) values(#{TemplateId},#{ItemId})
+  </insert>
+
+  <select id="getTemplateByTable" >
+    select TEMPLATE_ID TemplateId,ITEM_ID ItemId FROM HR_SALARY_TEMPLATE_ITEM where template_id=#{value}
+  </select>
+
+  <delete id="deleteTempDetial" >
+    delete from HR_SALARY_TEMPLATE_ITEM where TEMPLATE_ID =#{value}
+  </delete>
+
+  <update id="updateTemplate" parameterType="TemplateInfo">
+    update HR_SALARY_TEMPLATE set
+    UPDATE_TIME=#{UpdateTime}
+    where TEMPLATE_ID=#{TemplateId}
+  </update>
+  
+  <select id="findSalaryItemTitle" >
+    select t.ITEM_TITLE Name,ITEM_ID ItemId from HR_SALARY_ITEM t where t.ISLEAF=1
+  </select>
+
+  <select id="findTemplateDetailByCompanyId">
+    select t.TEMPLATE_ID TemplateId,t.ITEM_ID ItemId from HR_SALARY_TEMPLATE_ITEM t
+    inner join HR_SALARY_TEMPLATE l on t.TEMPLATE_ID=l.TEMPLATE_ID and l.COMPANY_ID=${value}
+  </select>
+
+  <select id="findTemplateByCompanyId">
+    select t.TEMPLATE_ID TemplateId from HR_SALARY_TEMPLATE t
+    where t.COMPANY_ID=${value}
+  </select>
+</mapper>

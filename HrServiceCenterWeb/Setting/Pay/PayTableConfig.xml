@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <FirstColumn title="人员ID" code="-1" fieldName="PersonId" isShow="false" isDynamic="false" isEdit="false" isLastStage="true"></FirstColumn>
+  
+  <FirstColumn title="姓名" code="-1" fieldName="PersonName" isShow="true" isDynamic="false" isEdit="false" isLastStage="true"></FirstColumn>
+
+  <FirstColumn title="应发工资" code="1" fieldName="ShouldWage" isShow="true" isDynamic="true" isEdit="false" isLastStage="false">
+    <SecondColumn title="基本工资" code="8" fieldName="BasicWage" isShow="true" isDynamic="true" isEdit="true" isLastStage="true"></SecondColumn>
+    <SecondColumn title="辅助工资1" code="9" fieldName="AidWageOne" isShow="true" isDynamic="true" isEdit="true" isLastStage="true"></SecondColumn>
+    <SecondColumn title="辅助工资2" code="10" fieldName="AidWageTwo" isShow="true" isDynamic="true" isEdit="true" isLastStage="true"></SecondColumn>
+    <SecondColumn title="辅助工资3" code="11" fieldName="AidWageThree" isShow="true" isDynamic="true" isEdit="true" isLastStage="true"></SecondColumn>
+    <SecondColumn title="小计" code="12" fieldName="WageCount" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></SecondColumn>
+  </FirstColumn>
+
+  <FirstColumn title="个人应扣" code="2" fieldName="ShouldBuckle" isShow="true" isDynamic="true" isEdit="false" isLastStage="false">
+    <SecondColumn title="养老" code="13" fieldName="Pension" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></SecondColumn>
+    <SecondColumn title="失业" code="14" fieldName="Unemployment" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></SecondColumn>
+    <SecondColumn title="医疗" code="15" fieldName="Health" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></SecondColumn>
+    <SecondColumn title="小计" code="16" fieldName="BuckleCount" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></SecondColumn>
+  </FirstColumn>
+  
+  <FirstColumn title="实发工资" code="3" fieldName="TrueWage" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></FirstColumn>
+  
+  <FirstColumn title="保险单位部分" code="4" fieldName="Insurance" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></FirstColumn>
+
+  <FirstColumn title="公积金单位部分" code="5" fieldName="Fund" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></FirstColumn>
+
+  <FirstColumn title="派遣服务费" code="6" fieldName="ServiceWage" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></FirstColumn>
+
+  <FirstColumn title="费用总计" code="7" fieldName="Count" isShow="true" isDynamic="true" isEdit="false" isLastStage="true"></FirstColumn>
+
+</Root>

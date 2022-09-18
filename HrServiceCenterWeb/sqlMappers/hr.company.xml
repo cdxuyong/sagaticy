@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.company">
+  <!-- 查询公司列表  -->
+  <select id="findCompanys" >
+    select t.COMPANY_ID CompanyId,t.NAME,t.CompanyType, t.CODE,t.REMARK,t.REPRESENTATIVE ,isnull(a.ACCOUNT_BALANCE,0) AccountBalance,isnull(a.ACCOUNT_ID,0) AccountId
+    from HR_COMPANY t
+    LEFT JOIN HR_CO_ACCOUNT a on a.COMPANY_ID=t.COMPANY_ID 
+    where t.NAME like '%${value}%'
+  </select>
+  <select id="getPayCompanys" >
+    select t.COMPANY_ID CompanyId,t.NAME,t.CompanyType, t.CODE,t.REMARK,t.REPRESENTATIVE ,isnull(a.ACCOUNT_BALANCE,0) AccountBalance,isnull(a.ACCOUNT_ID,0) AccountId
+    from HR_COMPANY t
+    LEFT JOIN HR_CO_ACCOUNT a on a.COMPANY_ID=t.COMPANY_ID
+    where t.State=0
+  </select>
+  <select id="findCompanyById" >
+    select t.COMPANY_ID CompanyId,t.NAME,t.CompanyType, t.CODE,t.REMARK,t.REPRESENTATIVE ,isnull(t.State,0) State,
+    isnull(a.ACCOUNT_BALANCE,0) AccountBalance,isnull(a.ACCOUNT_ID,0) AccountId
+    from HR_COMPANY t
+    LEFT JOIN HR_CO_ACCOUNT a on a.COMPANY_ID=t.COMPANY_ID
+    where t.COMPANY_ID=#{value}
+  </select>
+  <select id="findPositions" >
+    SELECT t.POSITION_ID PositionId,POSITION_NAME PositionName,
+    s.USE_TYPE UseType,s.REMARK ,s.PLAN_COUNT PlanCount,ISNULL(v.RealCount , 0) RealCount,ISNULL(v.LeaveCount , 0) LeaveCount
+    FROM [HR_POSITION] t
+    inner JOIN HR_CO_SETTING s on s.POSITION_ID=t.POSITION_ID
+    left join (
+    select e.POSITION_ID,sum( case e.State when 1 then 0 else 1 END) RealCount,sum( case e.State when 1 then 1 else 0 END) LeaveCount from HR_EMPLOYEE e where e.COMPANY_ID=#{value} group by e.POSITION_ID
+    ) v on v.POSITION_ID=s.POSITION_ID
+    where s.COMPANY_ID=#{value}
+    order by t.POSITION_ID
+  </select>
+  
+  <insert id="insertCompany">
+    <selectKey keyProperty="CompanyId" order="INSERTING" >
+      <!-- 将插入数据的主键返回，返回到对象中，下列为sqlserver自增主键 -->
+      select @CompanyId=@@IDENTITY
+    </selectKey>
+    insert into HR_COMPANY(NAME,CompanyType,CODE,REMARK,REPRESENTATIVE,STATE) values(#{Name},#{CompanyType},#{Code},#{Representative},#{Remark},#{State})
+  </insert>
+  <insert id="insertAccount">
+    <selectKey keyProperty="AccountId" order="INSERTING" >
+      <!-- 将插入数据的主键返回，返回到对象中，下列为sqlserver自增主键 -->
+      select @AccountId=@@IDENTITY
+    </selectKey>
+    insert into HR_CO_ACCOUNT(COMPANY_ID,ACCOUNT_BALANCE) values(#{CompanyId},0)
+  </insert>
+  <update id="updateCompany">
+    update [HR_COMPANY] set  NAME=#{Name},CompanyType=#{CompanyType},Code=#{Code},Representative=#{Representative},Remark=#{Remark},State=#{State} where COMPANY_ID=#{CompanyId}
+  </update>
+  
+  <!-- 删除公司事务 -->
+  <delete id="deleteCompanyAccount">
+    delete from [HR_CO_ACCOUNT] where COMPANY_ID=#{value}
+  </delete>
+  <delete id="deleteCompany">
+    delete from [HR_COMPANY] where COMPANY_ID=#{value}
+  </delete>
+  <!-- 充值事务 -->
+  <update id="updateCompanyAccount">
+    update [HR_CO_ACCOUNT] set  ACCOUNT_BALANCE=#{AccountBalance} where COMPANY_ID=#{CompanyId}
+  </update>
+  <insert id="insertCompanyAccountDetail">
+    insert into HR_CO_ACCOUNT_RECORD(ACCOUNT_ID,ACCOUNT_BALANCE,CREATE_TIME,CREATOR,MONEY,REMARK) values(#{AccountId},#{AccountBalance},#{CreateTime},#{Creator},#{Money},'')
+  </insert>
+  <!-- 岗位设置事务 -->
+  <delete id="deletePositions">
+    delete from [HR_CO_SETTING] where COMPANY_ID=#{CompanyId} and POSITION_ID=#{PositionId} and USE_TYPE=#{UseType}
+  </delete>
+  <insert id="insertPosition">
+    insert into HR_CO_SETTING(POSITION_ID,COMPANY_ID,PLAN_COUNT,USE_TYPE,REMARK) values(#{PositionId},#{CompanyId},#{PlanCount},#{UseType},#{Remark})
+  </insert>
+  <!-- 更新余额 -->
+  <update id="updateCompanyBalance">
+    update [HR_CO_ACCOUNT] set  ACCOUNT_BALANCE=ACCOUNT_BALANCE-#{AccountBalance} where COMPANY_ID=#{CompanyId}
+  </update>
+  <!-- 通过名称更新余额 -->
+  <update id="updateCompanyBalanceByCompayName">
+    update HR_CO_ACCOUNT set ACCOUNT_BALANCE=#{Money} where COMPANY_ID=(select COMPANY_ID from HR_COMPANY where name=#{CompanyName})
+  </update>
+</mapper>

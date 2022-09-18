@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataSet>
+  <table>
+    <thead>
+      <tr>
+        <th field="NAME" data-options="field:'NAME',width:250">单位名称</th>
+        <th field="POSITION_NAME" data-options="field:'POSITION_NAME',width:150">岗位名称</th>
+        <th field="kzs" data-options="field:'kzs',width:70">控制数</th>
+        <th field="sys" data-options="field:'sys',width:70">实有数</th>
+        <th field="lwpq" data-options="field:'lwpq',width:70">劳务派遣</th>
+        <th field="dwgl" data-options="field:'dwgl',width:70">单位管理</th>
+        <th field="kqs" data-options="field:'kqs',width:70">空缺数</th>
+      </tr>
+    </thead>
+  </table>
+</dataSet>

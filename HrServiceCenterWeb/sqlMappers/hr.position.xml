@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.position">
+  <!-- 返回排序后所有的基础编码数据  -->
+  <select id="findPositions" >
+    select  T.POSITION_ID PositionId,T.POSITION_NAME PositionName,T.POSITION_DESC Desc,
+    T.ACCUMULATION_FUND AccumulationFund,T.ASSIST_SALARY AssistSalary,T.BASE_SALARY BaseSalary,T.CONSOLATION_FEE ConsolationFee,T.INSURANCE
+    from HR_POSITION T ORDER BY POSITION_ID
+  </select>
+</mapper>

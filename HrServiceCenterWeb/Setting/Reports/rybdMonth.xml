@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataSet>
+  <table>
+    <thead>
+      <tr>
+        <th field="rownum" rowspan="2">序号</th>
+        <th field="NAME" rowspan="2">用工单位</th>
+        <th colspan="3">用工控制数</th>
+        <th colspan="2">新入职</th>
+        <th colspan="2">离职</th>
+        <th field="zz" rowspan="2">在职人数</th>
+        <th colspan="2">工资情况</th>
+      </tr>
+      <tr>
+        <th field="POSITION_NAME">岗位</th>
+        <th field="jh">核定数</th>
+        <th field="kq">空缺数</th>
+        <th field="xrz">人数</th>
+        <th field="xrzName">姓名</th>
+        <th field="lz">人数</th>
+        <th field="lzName">姓名</th>
+        <th field="yfgz" >应发工资总额</th>
+        <th field="sfgz">实发工资总额</th>
+      </tr>
+    </thead>
+  </table>
+</dataSet>

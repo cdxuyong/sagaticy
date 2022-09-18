@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "各单位控制数和实有数情况统计表";
+}
+<script type="text/javascript">
+    var opt = {};
+    opt.query = function(){
+        var url = '../Reports/GetGwtj';
+        $('#dgContainer').height('auto');
+        var params = {};
+        $('#dg').datagrid('loading');
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            data: params,
+            success: function (data) {
+                $('#dg').datagrid('loadData', data);
+                $('#dg').datagrid('loaded');
+            },
+            error: function () {
+                $('#dg').datagrid('loaded');
+                $.messager.alert('提示', '查询出错！');
+            }
+        });
+    };
+    opt.export = function () {
+        var url = '../Reports/DownGwtj';
+        var params = {};
+        HR.DownFile(url, params);
+    };
+    function init() {
+        opt.query();
+    }
+</script>
+<div class="container container-background">
+    <div class="page-header">
+        <h3>统计报表.<small>&nbsp;各单位控制数和实有数情况统计表</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i>刷新</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div style="padding-top:20px;height:800px;" id="dgContainer">
+        <table class="easyui-datagrid" title="" style="width:100%;" id="dg"
+               data-options="singleSelect:true,url:'',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'rownum',width:50">序号</th>
+                    <th data-options="field:'NAME',width:250">单位名称</th>
+                    <th data-options="field:'POSITION_NAME',width:150">岗位名称</th>
+                    <th data-options="field:'kzs',width:70">控制数</th>
+                    <th data-options="field:'sys',width:70">实有数</th>
+                    <th data-options="field:'lwpq',width:70">劳务派遣</th>
+                    <th data-options="field:'dwgl',width:70">单位管理</th>
+                    <th data-options="field:'kqs',width:70">空缺数</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+

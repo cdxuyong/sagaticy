@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "单位五险一金统计";
+}
+<script type="text/javascript">
+    var opt = {};
+    opt.query = function(){
+        var url = '../Reports/GetWxyjByMonth';
+        $('#dgContainer').height('auto');
+        var year = $('#cmbYears').combobox('getValue');
+        var month = $('#cmbMonth').combobox('getValue');
+        var params = { year: year, month: month };
+        $('#dg').datagrid('loading');
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            data: params,
+            success: function (data) {
+                $('#dg').datagrid('loadData', data);
+                $('#dg').datagrid('loaded');
+            },
+            error: function () {
+                $('#dg').datagrid('loaded');
+                $.messager.alert('提示', '查询出错！');
+            }
+        });
+    };
+    opt.export = function () {
+        var url = '../Reports/DownWxyjByMonth';
+        var year = $('#cmbYears').combobox('getValue');
+        var month = $('#cmbMonth').combobox('getValue');
+        var params = { year: year, month: month };
+        HR.DownFile(url, params);
+    };
+    function init() {
+    }
+</script>
+<div class="container container-background">
+    <div class="page-header">
+        <h3>统计报表.<small>&nbsp;用工单位五险一金缴费明细表（月度）</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <select id="cmbYears" class="easyui-combobox" style="width:100%;height:30px;" data-options="valueField:'id',textField:'text',url:'../Reports/GetYears'"></select>
+
+            </div>
+            <div class="col-md-1">
+                <select id="cmbMonth" class="easyui-combobox" style="width:100%;height:30px;">
+                    <option value="1">1月</option>
+                    <option value="2">2月</option>
+                    <option value="3">3月</option>
+                    <option value="4">4月</option>
+                    <option value="5">5月</option>
+                    <option value="6">6月</option>
+                    <option value="7">7月</option>
+                    <option value="8">8月</option>
+                    <option value="9">9月</option>
+                    <option value="10">10月</option>
+                    <option value="11">11月</option>
+                    <option value="12">12月</option>
+                </select>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 查询</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div style="padding-top:20px;height:800px;" id="dgContainer">
+        <table class="easyui-datagrid" title="" style="width:100%;" id="dg"
+               data-options="singleSelect:true,url:'',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'rownum',width:50" rowspan="2">序号</th>
+                    <th data-options="field:'NAME',width:150" rowspan="2">用工单位</th>
+                    <th colspan="6">社保金额（元）</th>
+                    <th data-options="field:'bx_count',width:60" rowspan="2">社保缴费<br />人次</th>
+                    <th data-options="field:'bx_hj',width:60" rowspan="2">社保小计<br />金额（元）</th>
+                    <th colspan="2">公积金</th>
+                    <th data-options="field:'gjj_count',width:60" rowspan="2">公积金<br />缴费人次</th>
+                    <th data-options="field:'gjj_hj',width:70" rowspan="2">公积金小计<br />金额（元）</th>
+                    <th data-options="field:'yfgz',width:70" rowspan="2">应发工资<br />小计（元）</th>
+                    <th data-options="field:'fyxj',width:70" rowspan="2">月费用<br />小计（元）</th>
+                </tr>
+                <tr>
+                    <th data-options="field:'yl',width:70">个人基本<br/>养老保险费</th>
+                    <th data-options="field:'yil',width:70">个人基本<br />医疗保险费</th>
+                    <th data-options="field:'sy',width:70">个人失业<br />保险费</th>
+                    <th data-options="field:'gs',width:70">个人工伤<br />保险费</th>
+                    <th data-options="field:'shy',width:70">个人生育<br />保险费</th>
+                    <th data-options="field:'_bx',width:70">单位<br />部分</th>
+                    <!-- 公积金 -->
+                    <th data-options="field:'gjj',width:70">个人部分<br />金额（元）</th>
+                    <th data-options="field:'_gjj',width:70">单位部分<br />金额（元）</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+

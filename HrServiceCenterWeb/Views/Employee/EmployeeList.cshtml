@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "人员档案";
+}
+<script src="~/JS/employee.employeeListOpt.js"></script>
+<script src="~/Library/easyui/datagrid-filter.js"></script>
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+<script>
+    var dataId = '@ViewBag.CompanyId';
+</script>
+<style>
+    .icon-filter {
+        background: url('../images/filter.png') no-repeat center center;
+    }
+</style>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>基础信息.<small>&nbsp;人员信息</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-4">
+                <input id="cmbCompany" class="easyui-combobox" style="width:100%;height:30px;" data-options="
+				url:'@Url.Action("QueryCompanyList","Company")',
+				prompt:'输入单位名称查询人员列表',
+				mode: 'remote',
+				valueField: 'CompanyId',
+				textField: 'Name',
+                onSelect: function(rec){
+                    opt.selectCompany(rec);
+                },
+				delay:2000">
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.add()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 新建</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.edit()" style="width:80px;"><i class="fa fa-circle-o" aria-hidden="true"></i> 编辑</a>
+                <a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.disabled()" style="width:80px;display:none;"><i class="fa fa-stop" aria-hidden="true"></i> 停用</a>
+                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.exportSimple()" style="width:100px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出花名册</a>
+                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.import()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true" title="按模板填写，如果导入失败请按提示修改"></i> 批量导入</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'PersonId',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+			        autoRowHeight:true,onDblClickRow:function(rowIndex,rowData){opt.edit()},rowStyler:opt.formatRow,
+			        pagination:true,filterBtnIconCls:'icon-filter',
+			        pageSize:20,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'PersonName',width:80">姓名</th>
+                    <th data-options="field:'CardId',width:120">身份证</th>
+                    <th data-options="field:'Sex',width:50">性别</th>
+                    <th data-options="field:'Birthday',width:80">出生日期</th>
+                    <th data-options="field:'CompanyName',width:150">单位</th>
+                    <th data-options="field:'PositionName',width:80">岗位</th>
+                    <th data-options="field:'JoinWorkTime',width:80">参工时间</th>
+                    <th data-options="field:'ContractTime',width:80">合同日期</th>
+                    <th data-options="field:'Phone',width:150">联系方式</th>
+                    <th data-options="field:'StateCaption',width:80">状态</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+<div id="winUpload"></div>
+

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "社保详情";
+}
+<!-- import opt js-->
+<script src="~/JS/pay.ImportorDetailOpt.js"></script>
+<script src="~/Library/easyui/datagrid-filter.js"></script>
+<style>
+    .icon-filter {
+        background: url('../images/filter.png') no-repeat center center;
+    }
+</style>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>发放管理.<small>&nbsp;<a href="~/Pay/ImportorList">社保管理.</a></small><small>&nbsp;社保详情</small></h3>
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <input id="hideview" type="hidden" value="@ViewBag.ImportId" />
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'ImportId',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+			        autoRowHeight:true,filterBtnIconCls:'icon-filter',pagination:true,
+			        pageSize:20,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'ItemName',width:120">险种</th>
+                    <th data-options="field:'PersonName',width:120">人员名称</th>
+                    <th data-options="field:'CardId',width:120">身份证号</th>
+                    <th data-options="field:'PayMonth',width:120">缴存日期</th>
+                    <th data-options="field:'PersonPayValue',width:120">个人缴存</th>
+                    <th data-options="field:'CompanyPayValue',width:120">单位缴存</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

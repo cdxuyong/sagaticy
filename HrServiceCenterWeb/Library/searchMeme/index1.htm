@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Plugin for On-demand Search Box: SeacrhMeme</title>    
+    <link href="css/searchMeme.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.searchMeme.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var searchOrange = $('#search-orange').searchMeme({
+				onSearch: function (searchText) {
+				alert(searchText);
+                searchOrange.searchMeme({ searchComplete: true });
+            }
+            , buttonPlacement: 'left', button: 'orange'
+            });
+        });
+    </script>
+</head>
+<body>
+        <div>
+            <input type="text" id="search-orange" />      
+        </div>	
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "角色管理";
+}
+
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>系统管理.<small>&nbsp;角色管理</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="uname" style="width: 180px;" class="form-control panelseach-text" placeholder="请输入关键字...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="RoleManageOpt.Query()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="RoleManageOpt.AddRole()"><i class="fa fa-address-book-o" aria-hidden="true"></i> 新建角色</a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <table id="dg" class="easyui-datagrid" style="width: auto">
+        <thead>
+            <tr style="background-color: #9797A0; color: white;">
+                <th data-options="field:'RoleId',checkbox:true,width:30" align="center" hidden="hidden">选择</th>
+                <th field="RoleName" align="center" width="15%">角色名</th>
+                <th field="Description" width="50%">简介</th>
+                <th field="Edit" align="center" width="33%" data-options="formatter:formatActions">操作</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="edit" class="easyui-window" title="" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 330px; height: 200px; padding: 10px; display: none;">
+    <table id="tb-view">
+        <tr>
+            <td>&nbsp</td>
+            <td>
+                <input id="roleId" type="hidden" form-field-name="RoleId" value="0" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 70px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">角色名：</td>
+            <td>
+                <input id="txtName" type="text" class="easyui-validatebox" data-options="required:true" value="" form-field-name="RoleName" style="width: 160px;" /><span style="color: red;"> * </span>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 90px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">描述：</td>
+            <td>
+                <input id="txtDesc" class="easyui-validatebox" data-options="required:true" value="" form-field-name="Description" maxlength="100" style="width: 160px;" /><span style="color: red;"> * </span>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <span style="margin-left: 25px;"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="RoleManageOpt.EditRoleBtn()"><i class="fa fa-pencil-square-o"></i>保存</a></span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="menu" class="easyui-window" title="分配功能" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 280px; height: 450px; padding: 10px; display: none;">
+    <input id="roleMenu" type="hidden" form-field-name="RoleId" value="0" />
+    <div class="row container-content" style="width: 100%">
+        <ul id="tree"></ul>
+        <div style="margin-top: 10px;">
+            <span style="margin-left: 25px;"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="RoleManageOpt.MenuSave()"><i class="fa fa-pencil-square-o"></i> 提交</a></span>
+            <span style="margin-left: 25px;"><a class="btn btn-primary btn-sm" href="javascript:void(0" onclick="$('#menu').window('close')"><i class="fa fa-pencil-square-o"></i> 返回</a></span>
+        </div>
+    </div>
+</div>
+
+<script src="~/JS/RoleManageOpt.js"></script>

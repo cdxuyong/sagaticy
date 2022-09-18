@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "用工单位各岗位人员变动、工资统计表";
+}
+<script type="text/javascript">
+    var opt = {};
+    opt.query = function(){
+        var url = '../Reports/GetRybdByYear';
+        $('#dgContainer').height('auto');
+        var year = $('#cmbYears').combobox('getValue');
+        var params = { year: year };
+        $('#dg').datagrid('loading');
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            data: params,
+            success: function (data) {
+                $('#dg').datagrid('loadData', data);
+                $('#dg').datagrid('loaded');
+            },
+            error: function () {
+                $('#dg').datagrid('loaded');
+                $.messager.alert('提示', '查询出错！');
+            }
+        });
+    };
+    opt.export = function () {
+        var url = '../Reports/DownRybdByYear';
+        var year = $('#cmbYears').combobox('getValue');
+        var params = { year: year };
+        HR.DownFile(url, params);
+    };
+    function init() {
+        var start = 2018;
+
+    }
+</script>
+<div class="container container-background">
+    <div class="page-header">
+        <h3>统计报表.<small>&nbsp;用工单位各岗位人员变动、工资统计表（年度）</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-3">
+                <select id="cmbYears" class="easyui-combobox" style="width:100%;height:30px;" data-options="valueField:'id',textField:'text',url:'../Reports/GetYears'">
+                </select>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 查询</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div style="padding-top:20px;height:800px;" id="dgContainer">
+        <table class="easyui-datagrid" title="" style="width:100%;" id="dg"
+               data-options="singleSelect:true,url:'',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'rownum',width:50" rowspan="2">序号</th>
+                    <th data-options="field:'NAME',width:200" rowspan="2">用工单位</th>
+                    <th colspan="2">人数</th>
+                    <th colspan="2">工资情况</th>
+                </tr>
+                <tr>
+                    <th data-options="field:'zz',width:100">在职</th>
+                    <th data-options="field:'lz',width:100">离职</th>
+
+                    <th data-options="field:'yf',width:100">应发工资总额</th>
+                    <th data-options="field:'sf',width:100">实发工资总额</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+

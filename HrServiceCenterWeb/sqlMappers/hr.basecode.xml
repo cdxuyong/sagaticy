@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.basecode">
+  <!-- 返回排序后所有的基础编码数据  -->
+  <select id="findBasecodes" >
+    SELECT t.id,t.PARENTID,t.CODE,t.OBJECT_TEXT Text,T.OBJECT_VALUE ObjectValue,t.CATEGORYID,t.ISLEAF FROM [T_S_BASECODE] t WHERE disabled=0 order by code
+  </select>
+  <select id="findPositions" >
+    SELECT POSITION_ID PositionId,POSITION_NAME PositionName,POSITION_DESC PositionDesc FROM [HR_POSITION] t order by POSITION_ID
+  </select>
+  <select id="findSalaryCategory" >
+    SELECT CATEGORY_ID CategoryID,CATEGORY_NAME CategoryName FROM [HR_SALARY_CATEGORY] t order by CATEGORY_ID
+  </select>
+</mapper>

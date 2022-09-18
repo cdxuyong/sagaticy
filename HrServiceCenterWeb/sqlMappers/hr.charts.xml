@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.chart">
+<!--岗位分布饼图-->
+  <select id="positionCount">
+    select p.POSITION_NAME name,count(e.POSITION_ID) value
+    from HR_POSITION p
+    left join HR_EMPLOYEE e on e.POSITION_ID=p.POSITION_ID
+    group by e.POSITION_ID,p.POSITION_ID,p.POSITION_NAME
+  </select>
+  <!--学历分布饼图-->
+  <select id="degreeCount" >
+    select b.OBJECT_TEXT name,count(e.DEGREE) value
+    from T_S_BASECODE b
+    left join HR_EMPLOYEE e on  b.OBJECT_VALUE=e.DEGREE
+    where b.PARENTID=4
+    group by e.DEGREE,b.OBJECT_VALUE,b.OBJECT_TEXT
+  </select>
+<!--人员统计柱状图-->
+  <select id="employeeCount">
+    select s.NAME DataAxis, t.[COUNT] Data from
+    (select c.COMPANY_ID,count(e.COMPANY_ID) [COUNT]
+    from HR_COMPANY c
+    left join HR_EMPLOYEE e on c.COMPANY_ID=e.COMPANY_ID
+    group by e.COMPANY_ID,c.COMPANY_ID) t
+    inner join HR_COMPANY s on t.COMPANY_ID=s.COMPANY_ID
+    order by  t.COUNT desc
+  </select>
+  <!--保险部分折线图-->
+  <select id="insuranceCount">
+    select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
+    from HR_SALARY_PAY_VALUE a
+    INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
+    where a.ITEM_ID in (4,5) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    group by b.PAY_MONTH
+  </select>
+  <!--应发工资部分折线图-->
+  <select id="shouldPayCount">
+    select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
+    from HR_SALARY_PAY_VALUE a
+    INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
+    where a.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    group by b.PAY_MONTH
+  </select>
+  <!--个人保险部分-->
+  <select id="personPayCount">
+    select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
+    from HR_SALARY_PAY_VALUE a
+    INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
+    where a.ITEM_ID in (201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    group by b.PAY_MONTH
+  </select>
+  <!--服务费-->
+  <select id="servicePayCount">
+    select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
+    from HR_SALARY_PAY_VALUE a
+    INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
+    where a.ITEM_ID in (6) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    group by b.PAY_MONTH
+  </select>
+  <!--工资+个人总额部分折线图-->
+  <select id="truePayCount">
+    select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
+    from HR_SALARY_PAY_VALUE a
+    INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
+    where a.ITEM_ID in (4,5,101,102,103,104,105,106,107,108,109,110,111,201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    group by b.PAY_MONTH
+  </select>
+</mapper>

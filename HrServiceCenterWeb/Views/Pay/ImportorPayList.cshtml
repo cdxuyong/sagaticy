@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "工资导入";
+}
+<!-- import opt js-->
+<script src="~/JS/pay.ImportorPayListOpt.js"></script>
+<link href="~/Library/uploadFiles/default.css" rel="stylesheet" />
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>薪酬管理.<small>&nbsp;工资管理</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="txtQuery" style="width:180px;" class="form-control panelseach-text" placeholder="请输入关键字...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.querydetail()"><i class="fa fa-file-o"></i> 查看详情</a>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.import();"><i class="fa fa-file-o" aria-hidden="true"></i> 批量导入</a>
+                <a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'a',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+			        autoRowHeight:true,onDblClickRow:function(rowIndex,rowData){opt.querydetail()},
+			        pagination:true,
+			        pageSize:10,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'ImportId',width:100">ID</th>
+                    <th data-options="field:'Title',width:300">标题</th>
+                    <th data-options="field:'CreateTime',width:120">创建时间</th>
+                    <th data-options="field:'CreatorName',width:120">创建人</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="winUpload"></div>
+</div>
+
+
+

@@ -1,0 +1,68 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+    <div class="container-fluid holderbar">
+        <div class="navbar-header holderbar-left">
+            <a class="navbar-brand holderbar-logo" href="#" id="logimg">
+                <img src="@Url.Content("~/images/HR_LOGO.png")" />
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav navbar-left" style="background-color: rgb(41,60,85);">
+                @foreach (var module in ViewBag.MenuList)
+                {
+                    if (module.MobDisplay == true)
+                    {
+                        if (module.Type == 1)
+                        {
+                            <li>
+                                <a href="@Url.Content(module.Menus[0].Url)"><span class="@module.ClassName"></span><span>@module.Menus[0].Name</span></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#" id="@module.CssId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="@module.ClassName"></span><span>@module.Name</span></a>
+                                <ul class="dropdown-menu submenu" aria-labelledby="@module.CssId">
+                                    @foreach (var list in module.Menus)
+                                    {
+                                        if (list.MobDisplay == true)
+                                        {
+                                            <li><a href="@Url.Content(list.Url)">@list.Name</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+            <div class="navbar-collapse collapse holderbar-right ">
+                <ul class="nav navbar-nav navbar-right" id="right_menu">
+                    <li id="">
+                        <a class="title">@ViewBag.User.TrueName ，系统当前在线 @ViewBag.UserNum 人</a>
+                    </li>
+                    <li><a href="@Url.Action("userpage", "Account")" title="个人中心"><span class="icon icon-user">&nbsp;</span></a></li>
+                    <li><a href="@Url.Action("LogOff", "Account")" title="安全退出"><span class="icon icon-signoff">&nbsp;</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+    window.onresize = function () {
+        if ($(window).width() < 1280) {
+            $("#right_menu").hide();
+            $("#logimg").hide();
+        }
+        else {
+            $("#right_menu").show();
+            $("#logimg").show();
+        }
+    }
+</script>

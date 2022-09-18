@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<report>
+  <columns>
+    <column name="companyName" title="companyName"></column>
+    <column name="POSITION_NAME" title="POSITION_NAME"></column>
+    <column name="PERSON_NAME" title="PERSON_NAME"></column>
+  </columns>
+  <parameters>
+  </parameters>
+  <sql>
+    <![CDATA[
+    SELECT
+    HR_COMPANY.NAME companyName,
+    P.POSITION_NAME POSITION_NAME,
+    HR_EMPLOYEE.PERSON_NAME,
+    HR_EMPLOYEE.CARD_ID,
+    HR_EMPLOYEE.SEX,
+    HR_EMPLOYEE.BIRTHDAY,
+    b1.OBJECT_TEXT DEGREE,
+    HR_EMPLOYEE.POLITY,
+    HR_EMPLOYEE.NATION,
+    HR_EMPLOYEE.PHONE,
+    HR_EMPLOYEE.ADDRESS,
+    HR_EMPLOYEE.CONTACTS_PERSON,
+    HR_EMPLOYEE.CONTACTS_PHONE,
+    HR_EMPLOYEE.SPECIALTY,
+    HR_EMPLOYEE.SCHOOL
+    FROM
+    HR_EMPLOYEE
+    INNER JOIN HR_COMPANY ON HR_EMPLOYEE.COMPANY_ID = HR_COMPANY.COMPANY_ID
+    LEFT join T_S_BASECODE b1 on HR_EMPLOYEE.DEGREE=b1.OBJECT_VALUE and b1.CATEGORYID=2
+    INNER JOIN HR_POSITION P ON HR_EMPLOYEE.POSITION_ID=P.POSITION_ID
+    ]]>
+  </sql>
+</report>

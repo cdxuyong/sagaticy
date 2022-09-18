@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+}
+<script src="~/JS/company.CompanyListOpt.js"></script>
+<link href="~/Library/uploadFiles/default.css" rel="stylesheet" />
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>基础信息.<small>&nbsp;用工单位信息管理</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="txtQuery" style="width:180px;" class="form-control panelseach-text" placeholder="请输入关键字...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.add()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 新建</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.edit()" style="width:80px;"><i class="fa fa-circle-o" aria-hidden="true"></i> 编辑</a>
+                <a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
+                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.import()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导入余额</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'CompanyId',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+                    onDblClickCell:grid_ondblclick,
+			        autoRowHeight:true,
+			        pagination:true,
+			        pageSize:10,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'CompanyId',width:100">ID</th>
+                    <th data-options="field:'Name',width:300">单位名称</th>
+                    <th data-options="field:'Code',width:150">组织机构编码</th>
+                    <th data-options="field:'Representative',width:100">法人代表</th>
+                    <th data-options="field:'Remark',width:200">备注</th>
+                    <th data-options="field:'AccountBalance',width:150,align:'center'">账户余额</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="winUpload"></div>
+
+
+

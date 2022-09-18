@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataSet>
+  <table>
+    <thead>
+      <tr>
+        <th field="rownum"  rowspan="2">序号</th>
+        <th field="NAME"   rowspan="2">用工单位</th>
+        <th colspan="2">人数</th>
+        <th colspan="2">工资情况</th>
+      </tr>
+      <tr>
+        <th field="zz">在职</th>
+        <th field="lz">离职</th>
+
+        <th field="yf">应发工资总额</th>
+        <th field="sf" >实发工资总额</th>
+      </tr>
+    </thead>
+  </table>
+</dataSet>

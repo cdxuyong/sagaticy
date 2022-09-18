@@ -1,0 +1,22 @@
+﻿.upload
+{
+}
+.upload-files
+{
+	overflow:auto;
+	padding:10px 0px 10px 20px;
+}
+.upload-file
+{
+	height:30px;
+}
+.upload-buttons
+{
+	text-align:center;
+}
+.upload-msg
+{
+	text-align:left;
+	font-size:9px;
+	padding:10px 0px 10px 20px;
+}

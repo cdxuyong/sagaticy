@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.pay">
+  <!-- 返回排序后所有的基础编码数据  -->
+  <!-- 查询发放列表  -->
+  <select id="findPayList" >
+    select t.PAY_ID PayId,
+    t.PAY_TITLE PayTitle,
+    c.NAME CompanyName,
+    t.PAY_MONTH PayMonth,t.Status,
+    t.CREATE_TIME CreateTime,
+    u.TRUENAME CreatorName from HR_SALARY_PAY t
+    left join HR_COMPANY c on t.COMPANY_ID=c.COMPANY_ID
+    left join T_S_USER u on t.CREATOR=u.USERID
+    where t.PAY_TITLE like '%${value}%'
+    order by t.STATUS,t.PAY_ID desc
+  </select>
+
+  <select id="findPayDefaultDetail">
+    select e.PERSON_ID PersonId,
+    e.PERSON_NAME PersonName,
+    CAST(0 as decimal(18,0)) as BasicWage,
+    CAST(0 as decimal(18,0)) as AidWageOne,
+    CAST(0 as decimal(18,0)) as AidWageTwo,
+    CAST(0 as decimal(18,0)) as AidWageThree,
+    CAST(0 as decimal(18,0)) as WageCount,
+    CAST(0 as decimal(18,0)) as Pension,
+    CAST(0 as decimal(18,0)) as Unemployment,
+    CAST(0 as decimal(18,0)) as Health,
+    CAST(0 as decimal(18,0)) as BuckleCount,
+    CAST(0 as decimal(18,0)) as TrueWage,
+    CAST(0 as decimal(18,0)) as Insurance,
+    CAST(0 as decimal(18,0)) as Fund,
+    CAST(0 as decimal(18,0)) as ServiceWage,
+    CAST(0 as decimal(18,0)) as [Count]
+    from HR_EMPLOYEE e where e.COMPANY_ID=${value}
+  </select>
+
+  <insert id="insertPayTable" parameterType="Payment">
+    <selectKey keyProperty="PayId" order="INSERTING" >
+      select @PayId=@@IDENTITY
+    </selectKey>
+    insert into HR_SALARY_PAY
+    (TEMPLATE_ID,COMPANY_ID,PAY_TITLE,PAY_MONTH,CREATOR,CREATE_TIME,STATUS)
+    values(#{TemplateId},#{CompanyId},#{PayTitle},#{PayMonth},#{CreatorId},#{CreateTime},#{Status})
+  </insert>
+  
+  <insert id="insertPayTableDetail" parameterType="PayValueInfo">
+    insert into HR_SALARY_PAY_VALUE(PAY_ID,ITEM_ID,PERSON_ID,PAY_VALUE)
+    values(#{PayId},#{ItemId},#{PersonId},#{PayValue})
+  </insert>
+
+  <!--发放表主表详情-->
+  <select id="findPayByPayId" >
+    select t.PAY_ID PayId,
+    t.PAY_TITLE PayTitle,
+    t.COMPANY_ID CompanyId,
+    t.PAY_MONTH PayMonth,
+    t.STATUS Status
+    from HR_SALARY_PAY t
+    where t.PAY_ID=${value}
+  </select>
+
+  <!--发放表详细表详情-->
+  <select id="findPayDetailByPayId" >
+    select t.PAY_ID PayId,
+    t.ITEM_ID ItemId,
+    t.PERSON_ID PersonId  ,
+    t.PAY_VALUE PayValue from HR_SALARY_PAY_VALUE t
+    where t.PAY_ID=${value}
+  </select>
+  
+  <!--新建发放表重复校验-->
+  <select id="findPay" parameterType="PayMent">
+    select t.PAY_ID PayId from HR_SALARY_PAY t
+    where t.COMPANY_ID=#{CompanyId} and t.PAY_MONTH=#{PayMonth}
+  </select>
+  
+  <!--删除发放表主表-->
+  <delete id="deletePay">
+    delete from HR_SALARY_PAY where PAY_ID=#{value}
+  </delete>
+
+  <!--删除发放表详细表-->
+  <delete id="deletePayDetail">
+    delete from HR_SALARY_PAY_VALUE where PAY_ID=#{value}
+  </delete>
+
+  <!--缴存数据导出-->
+  <select id="exportjiaocun" >
+    select c.NAME 单位名称,v1.itemname 险种名称,v1.PAY_MONTH 计划月度,b.PERSON_NAME 个人姓名,b.CARD_ID 身份证号码,
+    v1.ITEM_VALUE 个人缴存,v1.ITEM_CMP_VALUE 单位缴存,v2.ITEM_VALUE 个人缴存合计,v2.ITEM_CMP_VALUE 单位缴存合计  from (
+    select b.COMPANY_ID, b.CARD_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME itemname,sum(a.ITEM_VALUE) ITEM_VALUE,sum(a.ITEM_CMP_VALUE) ITEM_CMP_VALUE
+    from HR_SALARY_IMPORTOR_DATA a
+    inner JOIN HR_EMPLOYEE b on b.PERSON_ID=a.PERSON_ID
+    where a.PAY_MONTH='#{PayMonth}' and a.ITEM_ID in (201,202,203,204,205,206)
+    group by b.COMPANY_ID, b.CARD_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME
+    ) v1
+    LEFT JOIN HR_EMPLOYEE b on b.CARD_ID=v1.CARD_ID
+    left join HR_COMPANY c on c.COMPANY_ID=b.COMPANY_ID
+    left join (
+    select b.COMPANY_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME itemname,sum(a.ITEM_VALUE) ITEM_VALUE,sum(a.ITEM_CMP_VALUE) ITEM_CMP_VALUE
+    from HR_SALARY_IMPORTOR_DATA a
+    inner JOIN HR_EMPLOYEE b on b.PERSON_ID=a.PERSON_ID
+    where a.PAY_MONTH='#{PayMonth}'  and a.ITEM_ID in (201,202,203,204,205,206)
+    group by b.COMPANY_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME
+    ) v2 on v2.COMPANY_ID=b.COMPANY_ID and v2.PAY_MONTH=v1.PAY_MONTH and v2.itemname=v1.itemname
+    order BY v1.PAY_MONTH,v1.itemname, c.NAME, b.PERSON_NAME
+  </select>
+  
+</mapper>

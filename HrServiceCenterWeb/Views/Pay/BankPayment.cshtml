@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "缴存管理";
+}
+<!-- import opt js-->
+<script src="~/JS/pay.BankOpt.js"></script> 
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>薪酬管理.<small>&nbsp;网上银行代发工资</small></h3>
+    </div>
+    <div style="margin:20px 0;"></div>
+    <!-- 数据列表 -->
+    <div>
+        <form class="form-horizontal" id="formCompany">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">发放月份</label>
+                <div class="col-sm-5">
+                    <input id="datebox" editable="false" class="easyui-datebox" form-field-name="PayMonth" form-control-type="datebox" style="height:30px;width:150px" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <p style="color:red;">* 请选择发放月份后，再下载数据。</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-3">
+                    <button class="btn btn-primary" onclick="opt.export();return false;" style="width:200px;"><i class="fa fa-university" aria-hidden="true"></i> 下载银行发放数据</button>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-success" onclick="opt.export2();return false;" style="width:200px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i>  下载个税数据</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

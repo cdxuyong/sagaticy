@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+}
+
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>系统管理.<small>&nbsp;用户管理</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="uname" style="width:180px;" class="form-control panelseach-text" placeholder="请输入关键字...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="UserManageOpt.queryUser()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-1">
+
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="UserManageOpt.addUser()"><i class="fa fa-address-book-o" aria-hidden="true"></i> 新建用户</a>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <table id="dg" class="easyui-datagrid">
+        <thead>
+            <tr style="background-color: #9797A0; color: white;">
+                <th data-options="field:'UserId',checkbox:true,width:30" align="center" hidden="hidden">选择</th>
+                <th field="UserName" width="110px" align="center">用户名</th>
+                <th field="TrueName" width="80px" align="center">姓名</th>
+                <th field="CreateTime" width="110px" align="center">创建时间</th>
+                <th field="OrgName" width="130px" align="center">所属组织</th>
+                <th field="Edit" width="70" align="center" data-options="formatter:UserManageOpt.formatActions">操作</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div id="edit" class="easyui-window" title="" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 330px; padding: 10px; display: none">
+    <table id="tb-view">
+        <tr>
+            <td>&nbsp</td>
+            <td>
+                <input id="userId" type="hidden" form-field-name="UserId" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 70px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">用户名：</td>
+            <td>
+                <input id="txtName" type="text" class="easyui-validatebox" data-options="required:true" value="" form-field-name="UserName" style="width: 160px;" placeholder="请输出用户名" />
+                <input id="newName" type="hidden" form-field-name="NewUsername" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 90px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">真实姓名：</td>
+            <td>
+                <input type="text" name="TrueName" class="easyui-validatebox" data-options="required:true" id="tre" form-field-name="TrueName" placeholder="请输出真实姓名" style="width: 160px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 90px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">归属组织：</td>
+            <td>
+                <select id="cmbOrg" editable="false" class="easyui-combobox" data-options="valueField: 'OrgId',textField: 'OrgName',required:true" form-field-name="OrgId" type="text" form-control-type="combobox" style="width: 100px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <span style="margin-left: 25px;"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="UserManageOpt.saveBtn()"><i class="fa fa-pencil-square-o"></i>保存</a></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+</script>
+<script src="~/JS/UserManageOpt.js"></script>

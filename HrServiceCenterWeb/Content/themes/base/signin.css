@@ -1,0 +1,90 @@
+body {
+
+}
+.login-container {
+    width: 70%;
+    top: 50px;
+    text-align: center;
+    vertical-align:bottom;
+    position:absolute;
+    z-index:100000;
+    left: 15%;
+}
+.login-heading {
+    height: 50px;
+    color: #fff;
+    font-family: Î¢ÈíÑÅºÚ;
+}
+.login-heading .title {
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align:bottom;
+    padding:0px 10px 0px 10px;
+}
+.login-heading .ver {
+    font-size: 14px;
+    vertical-align:bottom;
+}
+.login-text {
+    color: #0066CC;
+}
+.form-signin {
+    width:auto;
+    min-width:250px;
+    max-width:350px;
+    margin: 20px auto 0 auto;
+    padding:40px 20px 40px 20px;
+    background: rgba(255,255,255,1);
+    border-radius: 5px;
+    box-shadow: 0 10px 70px 0 rgba(0,0,0,.3);
+}
+.margin-bottom-sm {
+    margin-bottom:20px;
+}
+.btn {
+    transition: all 250ms;
+}
+.login-button {
+    margin-top: 20px;
+    color: #0066CC !important;
+
+	-webkit-border-radius: 60px !important;
+	-moz-border-radius: 60px !important;
+	border-radius: 60px !important;
+}
+.login-button:hover{
+    color: #fff !important;
+    background: #70c9e3; /* Old browsers */
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+}
+
+.btn-primary-outline {
+    color: #0066CC;
+    background-color: transparent;
+}
+.btn-primary-outline, .btn-primary-outline.disabled, .btn-primary-outline.disabled.active, .btn-primary-outline.disabled.focus, .btn-primary-outline.disabled:active, .btn-primary-outline.disabled:focus, .btn-primary-outline.disabled:hover, .btn-primary-outline[disabled], .btn-primary-outline[disabled].active, .btn-primary-outline[disabled].focus, .btn-primary-outline[disabled]:active, .btn-primary-outline[disabled]:focus, .btn-primary-outline[disabled]:hover, fieldset[disabled] .btn-primary-outline, fieldset[disabled] .btn-primary-outline.active, fieldset[disabled] .btn-primary-outline.focus, fieldset[disabled] .btn-primary-outline:active, fieldset[disabled] .btn-primary-outline:focus, fieldset[disabled] .btn-primary-outline:hover {
+    border-color: #0066CC;
+}
+.btn-pill {
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    border-radius: 1000em;
+}
+.btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+.wfull {
+    width: 100%;
+}
+.login-foot {
+    font-family: Î¢ÈíÑÅºÚ;
+    font-size: 10px;
+    line-height: 30px;
+    vertical-align: middle;
+    color: #FFFFFF;
+}

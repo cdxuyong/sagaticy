@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>上传测试</title>
+    <script src="../../JS/jquery-3.2.1.js"></script>
+    <script src='../../Library/easyui/jquery.easyui.min.js' type='text/javascript'></script>
+    <script src='../../Library/easyui/locale/easyui-lang-zh_CN.js' type='text/javascript'></script>
+    <script src='../../JS/json2.js' type='text/javascript'></script>
+    <script src='../../JS/share.js' type='text/javascript'></script>
+    <!--import css -->
+    <link href="../../Library/easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../Library/easyui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../../themes/bootstrap/site.css" rel="stylesheet" type="text/css" />
+
+    <link href="default.css" rel="stylesheet" type="text/css" />
+
+    <script src="jquery.uploadFiles.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var isFirst = true;
+        function upload() {
+
+
+            $('#winUpload').upload({
+                multiple: false,
+                params: { name1: 'tom', name2: 0 },
+                width: 400,
+                height: 300,
+                ext: 'xlsx',
+                url: '../../AjaxSource/UploadFileHandler.ashx?cmd=importcells',
+                onAfterUpload: function (result) {
+                    if (result.success == true) {
+                        $('#winUpload').upload('hide');
+                        // add code to read result.data
+                        alert(result.data);
+                    }
+                    else {
+                        alert('result.data');
+                    }
+                }
+            });
+            if (isFirst) {
+                var txtContent = '<div style="padding-left:20px;">请输入自定义内容：<br/><input id="txtContent" name="txtContent" value="请输入内容" style="width:90%;"></input>  </div>';
+                $('#winUpload').upload('addElement', txtContent);
+                $('#txtContent').textbox({});
+
+                var cmbContent = '<div style="padding-left:20px;">请选择下拉菜单：<br/><select id="cmbContent" name="cmbContent" style="width:90%;"><option value="028-001">网格1</option><option value="网格2">Alaska</option></select> </div>';
+                $('#winUpload').upload('addElement', cmbContent);
+                $('#cmbContent').combobox({});
+
+
+                isFirst = false;
+            }
+            $('#winUpload').upload('show');
+        }
+        function upload2() {
+            $('#winUpload').upload({
+                multiple: true,
+                params: { name1: 'tom', name2: 0 },
+                ext: 'txt',
+                url: '../../AjaxSource/UploadFileHandler.ashx?cmd=importcells',
+                onAfterUpload: function (result) {
+                    if (result.success == true) {
+                        $('#winUpload').upload('hide');
+                        // add code to read result.data
+                        alert(result.data);
+                    }
+                    else {
+                        alert(result.data);
+                    }
+                }
+            });
+
+            $('#winUpload').upload('show');
+        }
+    </script>
+
+</head>
+<body>
+    <div style="padding:100px;">
+        <button onclick="upload()">测试</button>
+        <button onclick="upload2()">测试其他参数</button>
+    </div>
+    <div id="winUpload"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  菜单控制
+  参数说明：***【下参数必填】***
+  id -> 唯一标识。
+  caption -> 标题。
+  isroot-> 是否根节点。 true/false
+  mob_display->  控制在手机端部分菜单是否显示。  true/false
+  -->
+<Menus>
+  <Title id="1" caption="首页" title="首页，报表呈现" isroot="true" ic_class="icon icon-home" ul_class="" ic_id="" mob_display="true">
+    <Node id="101" caption="首页" url="~/home/index" title ="首页，报表呈现" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title id="2" caption="基本信息" title="基本信息" isroot="false" ic_class="icon icon-office" ul_class="" ic_id="" mob_display="true">
+    <Node  id="201" caption="用工单位信息" url="~/Company/CompanyList" title ="用工单位信息" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="202" caption="员工信息" url="~/Employee/EmployeeList" title ="员工信息" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title id="3" caption="薪酬管理" title="薪酬管理" isroot="false" ic_class="icon icon-poi" ul_class="" ic_id="drop1" mob_display="true">
+    <!--
+    <Node  id="301" caption="缴存发放项目管理" url="~/~" title ="缴存发放项目管理" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="302" caption="单位模板" url="~/Pay/TemplateList" title ="创建单位的发放项目模板" ic_class="" ic_id="" mob_display="true"/>
+    -->
+    <Node  id="303" caption="社保批量导入" url="~/Pay/ImportorList" title ="导入发放人员的保险数据" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="306" caption="工资批量导入" url="~/Pay/ImportorPayList" title ="导入发放人员的工资数据" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="304" caption="工资管理" url="~/Pay/PayList" title ="通过单位发放模板创建发放表" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="305" caption="数据中心" url="~/Pay/BankPayment" title ="提供各种数据下载导出" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title  id="4" caption="统计报表" title="统计报表" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
+    <Node  id="401" caption="单位五险一金统计（年度）" url="~/Reports/WxyjYear" title ="单位五险一金统计（年度）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="402" caption="单位五险一金统计（月度）" url="~/Reports/WxyjMonth" title ="单位五险一金统计（月度）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="403" caption="岗位人员变动、工资统计表（年度）" url="~/Reports/RybdYear" title ="岗位人员变动、工资统计表（年度）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="404" caption="岗位人员变动、工资统计表（月度）" url="~/Reports/RybdMonth" title ="岗位人员变动、工资统计表（月度）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="405" caption="各单位控制数和实有数情况统计表" url="~/Reports/Gwtj" title ="各单位控制数和实有数情况统计表" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title  id="5" caption="系统管理" title="系统管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
+    <Node  id="501" caption="账号管理" url="~/System/UserManage" title ="账号管理" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="502" caption="角色管理" url="~/System/RoleManage" title ="角色管理" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+</Menus>

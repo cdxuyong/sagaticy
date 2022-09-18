@@ -1,0 +1,5 @@
+Version:2.1
+Date:2020/3/11
+======================
+alter table HR_EMPLOYEE add UseType int;
+UPDATE HR_EMPLOYEE set UseType=0;

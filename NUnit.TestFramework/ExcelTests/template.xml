@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataSet>
+  <table>
+    <thead>
+      <tr>
+        <th field="rownum" width="50" rowspan="2">序号</th>
+        <th field="NAME" width="150" rowspan="2">用工单位</th>
+        <th colspan="6">社保金额（元）</th>
+        <th field="bx_count" width="70" rowspan="2">社保缴费人次</th>
+        <th field="bx_hj" width="70"  rowspan="2">社保小计金额（元）</th>
+        <th colspan="2">公积金</th>
+        <th field="gjj_count" width="70" rowspan="2">公积金缴费人次</th>
+        <th field="gjj_hj" width="70"  rowspan="2">公积金小计金额（元）</th>
+      </tr>
+      <tr>
+        <th field="yl" width="70" >个人基本养老保险费</th>
+        <th field="yil" width="70">个人基本医疗保险费</th>
+        <th field="sy" width="70">个人失业保险费</th>
+        <th field="gs" width="70" >个人工伤保险费</th>
+        <th field="shy" width="70" >个人生育保险费</th>
+        <th field="_bx" width="70" >单位部分</th>
+        <th field="gjj" width="70" >个人部分金额（元）</th>
+        <th field="_gjj" width="70" >单位部分金额（元）</th>
+      </tr>
+    </thead>
+  </table>
+</dataSet>

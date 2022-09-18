@@ -1,0 +1,33 @@
+﻿<reportView>
+    <data>
+        <item id="d1">
+            select c.NAME,count(e.COMPANY_ID) perconCount
+            ,sum( case e.POSITION_ID when 1 then 1 else 0 end ) as jsy
+            ,sum( case e.POSITION_ID when 2 then 1 else 0 end ) as hyfw
+            from HR_COMPANY c
+            INNER JOIN HR_EMPLOYEE e on e.COMPANY_ID=c.COMPANY_ID
+            group BY c.NAME
+            ORDER BY c.NAME
+        </item>
+    </data>
+    <div>
+        <div>单位用人统计</div>
+        <div>
+            <table m-data="d1">
+                <thead>
+                    <tr>
+                        <th filed="NAME">单位名称</th>
+                        <th filed="perconCount">员工总数</th>
+                        <th filed="jsy">驾驶员</th>
+                        <th filed="hyfw">会议服务</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!--
+        m-data 多数据集合
+        s-data 单行数据
+    -->
+</reportView>

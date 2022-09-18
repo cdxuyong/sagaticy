@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - 人力资源服务系统</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/themes/base/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/themes/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @Styles.Render(string.Format("~/Content/themes/{0}/site.css", "base"))
+
+    <!-- common js -->
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/JS/bootstrap.min.js")
+    <!-- ua js -->
+    @Scripts.Render("~/JS/json2.js")
+    @Scripts.Render("~/JS/share.js")
+    @Scripts.Render("~/JS/ie10-viewport-bug-workaround.js")
+</head>
+<body>
+    <!-- content -->
+    @RenderBody()
+
+</body>
+</html>

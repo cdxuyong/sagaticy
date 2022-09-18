@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{379636FE-CB72-41C3-A5CC-EC60981979FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlueFramework.User</RootNamespace>
+    <AssemblyName>BlueFramework.User</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\UrlConfigManage.cs" />
+    <Compile Include="Config\UrlConfig.cs" />
+    <Compile Include="DataAccess\SysAccess.cs" />
+    <Compile Include="DataAccess\UserAccess.cs" />
+    <Compile Include="DataAccess\UserLogAccess.cs" />
+    <Compile Include="Models\Guest.cs" />
+    <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\LogInfo.cs" />
+    <Compile Include="Models\MenuInfo.cs" />
+    <Compile Include="Models\OrgnizationInfo.cs" />
+    <Compile Include="Models\RoleInfo.cs" />
+    <Compile Include="Models\VEasyUiTree.cs" />
+    <Compile Include="Models\VisitorAction.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\Visitor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RightManager.cs" />
+    <Compile Include="RoleManager.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="UserContext.cs" />
+    <Compile Include="UserLog.cs" />
+    <Compile Include="UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BlueFramework.Common\BlueFramework.Common.csproj">
+      <Project>{5a4b51c5-9541-4d07-9725-96c1037d2e08}</Project>
+      <Name>BlueFramework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlueFramework.Data\BlueFramework.Data.csproj">
+      <Project>{5c80dd3e-f333-4a17-a33c-64aa99d4720b}</Project>
+      <Name>BlueFramework.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

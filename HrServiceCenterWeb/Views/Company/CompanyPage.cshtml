@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "公司档案信息";
+}
+<script src="~/JS/company.CompanyPageOpt.js"></script>
+<script type="text/javascript">
+    var dataId = @ViewBag.CompanyId;
+</script>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>基础信息.<small>&nbsp;<a href="~/Company/CompanyList">基本信息</a></small>.<small>&nbsp;用工单位信息</small></h3>
+    </div>
+
+    <!-- 档案信息 -->
+    <div style="margin:20px 0;"></div>
+    <div>
+        <form class="form-horizontal" id="formCompany">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">单位名称</label>
+                <div class="col-sm-9">
+                    <input class="easyui-textbox" form-field-name="Name" form-control-type="textbox" data-options="prompt:'输入单位的名称.',required:true,validType:'length[3,100]'" style="height:30px;width:100%" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">单位性质</label>
+                <div class="col-sm-4">
+                    <select class="easyui-combobox" form-field-name="CompanyType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value=""></option>
+                        <option value="党委机关">党委机关</option>
+                        <option value="政府机关">政府机关</option>
+                        <option value="群团机关">群团机关</option>
+                        <option value="参公事业">参公事业</option>
+                        <option value="全额事业">全额事业</option>
+                        <option value="差额事业">差额事业</option>
+                        <option value="自收自支事业">自收自支事业</option>
+                        <option value="社区">社区</option>
+                        <option value="企业">企业</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">统一社会信用代码</label>
+                <div class="col-sm-9">
+                    <input class="easyui-textbox" form-field-name="Code" form-control-type="textbox" data-options="prompt:'输入组织结构编码.',validType:'length[3,50]'" style="height:30px;width:100%" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">法定代表人</label>
+                <div class="col-sm-9">
+                    <input class="easyui-textbox" form-field-name="Representative" form-control-type="textbox" data-options="prompt:'输入法人姓名.',validType:'length[2,50]'" style="height:30px;width:100%" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-9">
+                    <select class="easyui-combobox" id="cmbState" form-field-name="State" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="0">正常</option>
+                        <option value="1">停用（其他模块自动隐藏该数据）</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-9">
+                    <input class="easyui-textbox" form-field-name="Remark" form-control-type="textbox" data-options="prompt:'输入备注.',validType:'length[3,250]'" style="height:30px;width:100%" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">账户余额</label>
+                <div class="col-sm-2">
+                    <input class="easyui-textbox" form-field-name="AccountBalance" form-control-type="textbox" data-options="disabled:true" style="height:30px;width:100px" />
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-success" onclick="opt.recharge();return false;" name="onOldData">充值</button>
+                </div>
+            </div>
+            <div class="form-group" id="divRecharge" style="display:none;">
+                <label class="col-sm-2 control-label">请输入金额</label>
+                <div class="col-sm-2">
+                    <input id="nbRecharge" class="easyui-numberbox" value="0.00" data-options="precision:2,groupSeparator:','" style="height:30px;width:100px" />
+                </div>
+                <div class="col-sm-2">
+                    <button id="btnSaveRecharge" class="btn btn-success" onclick="opt.saveRecharge();return false;">确定</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button class="btn btn-primary" onclick="opt.save();return false;" style="width:150px;">保存用工单位信息</button>
+                    <button class="btn btn-info" onclick="opt.addPosition();return false;" style="width:110px;" name="onOldData">+增加岗位</button>
+                    <button class="btn btn-info" onclick="opt.removePosition();return false;" style="width:110px;" name="onOldData">+删除岗位</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="dgContainer" class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <table id="dg" class="easyui-datagrid" title="人员编制设置" style="width:100%;height:400px"
+                   data-options="idField:'PositionId',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,onDblClickRow:function(rowIndex,rowData){opt.editPosition(rowData)}">
+                <thead>
+                    <tr>
+                        <th data-options="field:'PositionId',width:50">ID</th>
+                        <th data-options="field:'PositionName',width:100">岗位</th>
+                        <th data-options="field:'PlanCount',width:80">编制人数</th>
+                        <th data-options="field:'RealCount',width:80">实际人数</th>
+                        <th data-options="field:'LeaveCount',width:80">离职人数</th>
+                        <th data-options="field:'UseType',width:80">用工方式</th>
+                        <th data-options="field:'Remark',width:80">备注</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 岗位编辑窗 -->
+<div id="dlg" class="easyui-dialog" title="岗位设置窗" style="width:600px;height:400px;padding:20px 0px 0px 50px;" data-options="
+                closed:true,modal:true,
+				buttons: [{
+					text:'确定',
+					iconCls:'icon-ok',
+					handler:function(){
+						opt.savePosition();
+					}
+				},{
+					text:'取消',
+					handler:function(){
+						$('#dlg').dialog('close');
+					}
+				}]">
+    <form id="frmPosition" class="form-horizontal" style="overflow:hidden;">
+        <div class="form-group">
+            <div class="col-sm-2">岗位名称</div>
+            <div class="col-sm-4">
+                <input class="easyui-combobox" id="cmbPosition" style="width:100%;" form-field-name="PositionId" form-control-type="combobox"
+                       data-options="
+                url:'../BaseCode/GetPositions',
+                method:'get',
+                editable:false,
+                valueField:'PositionId',
+                textField:'PositionName',
+                onSelect: function(rec){
+                    opt.selectPosition(rec);
+                },
+                panelHeight:'auto'" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">用工控制数</div>
+            <div class="col-sm-4"><input type="text" id="txtPositionCount" class="easyui-numberbox" form-field-name="PlanCount" value="0" data-options="min:0,precision:0"></div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">用工形式</div>
+            <div class="col-sm-4">
+                <select class="easyui-combobox" form-field-name="UseType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                    <option value="劳务派遣">劳务派遣</option>
+                    <option value="单位管理">单位管理</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">备注</div>
+            <div class="col-sm-4"><input type="text" style="width:100%;" form-field-name="Remark" /></div>
+        </div>
+    </form>
+</div>
+
+

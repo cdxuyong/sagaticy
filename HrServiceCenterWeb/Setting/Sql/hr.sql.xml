@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <sql id="hr.payBank">
+    <![CDATA[
+    select 序号=Row_Number()over(partition by e.PERSON_ID order by e.PERSON_ID) , c.name 单位名称, e.card_id 身份证号, e.BANK_CARD 转入账号, 
+    e.BANK_NAME 银行,e.PERSON_NAME 转入户名,CASE WHEN PAY_VALUE>0 then PAY_VALUE ELSE 0 END  金额 
+    from HR_EMPLOYEE e 
+    inner join HR_COMPANY c on c.COMPANY_ID=e.COMPANY_ID
+            inner join (
+	            select t.PERSON_ID,
+                sum( case t.ITEM_ID 
+								when 201 then t.PAY_VALUE*-1 when 202 then t.PAY_VALUE*-1 when 203 then t.PAY_VALUE*-1 when 206 then t.PAY_VALUE*-1 
+								ELSE t.PAY_VALUE end ) PAY_VALUE  from HR_SALARY_PAY p
+	            inner join HR_SALARY_PAY_VALUE t on t.PAY_ID=p.PAY_ID
+	            where p.STATUS=2 and p.PAY_MONTH=@payMonth and t.ITEM_ID in  (101,102,103,104,105,106,107,108,109,110,111,201,202,203,206)
+	            group by t.PERSON_ID
+            ) v on v.PERSON_ID=e.PERSON_ID
+    ]]>
+  </sql>
+  <sql id="hr.paydetail">
+    <![CDATA[
+    select c.NAME 单位,e.PERSON_NAME 姓名,e.CARD_ID 身份证,e.PHONE 手机,应发工资,养老,失业,医疗,工伤,生育,公积金 from (
+	    select vv.PERSON_ID,sum(应发工资) 应发工资,sum(养老) 养老,sum(失业) 失业,sum(医疗) 医疗,sum(工伤) 工伤,sum(生育) 生育,sum(公积金) 公积金 
+	    from (
+		    select v.PERSON_ID,
+			    case v.ITEM_ID when 0 then v.PAY_VALUE else 0 end 应发工资 ,
+			    case v.ITEM_ID when 201 then v.PAY_VALUE else 0 end 养老 ,
+			    case v.ITEM_ID when 202 then v.PAY_VALUE else 0 end 失业 ,
+			    case v.ITEM_ID when 203 then v.PAY_VALUE else 0 end 医疗 ,
+			    case v.ITEM_ID when 204 then v.PAY_VALUE else 0 end 工伤 ,
+			    case v.ITEM_ID when 205 then v.PAY_VALUE else 0 end 生育 ,
+			    case v.ITEM_ID when 206 then v.PAY_VALUE else 0 end 公积金 
+		    from (
+		    -- 应发工资
+		    select t.PERSON_ID,0 ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		    inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		    where p.PAY_MONTH=@payMonth and t.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111)
+		    GROUP BY t.PERSON_ID
+		    union 
+		    -- 个人保险
+		    select t.PERSON_ID,t.ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		    inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		    where p.PAY_MONTH=@payMonth and t.ITEM_ID in (201,202,203,204,205,206)
+		    GROUP BY t.PERSON_ID,t.ITEM_ID
+		    ) v
+	    ) vv group by vv.PERSON_ID
+    ) vvv
+    inner join HR_EMPLOYEE e on e.PERSON_ID=vvv.PERSON_ID
+    inner join HR_COMPANY c on c.COMPANY_ID=e.COMPANY_ID
+    ]]>
+  </sql>
+  
+  <sql id="hr.WxyjYear">
+    <![CDATA[
+select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
+isnull(v4.yfgz,0) yfgz,isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(_gjj,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
+from HR_COMPANY c 
+left JOIN
+(
+	select e.COMPANY_ID,
+		sum(case v.ITEM_ID when 201 then v.PAY_VALUE else 0 end) yl,  
+		sum(case v.ITEM_ID when 202 then v.PAY_VALUE else 0 end) sy,
+		sum(case v.ITEM_ID when 203 then v.PAY_VALUE else 0 end) yil,
+		sum(case v.ITEM_ID when 204 then v.PAY_VALUE else 0 end) gs,
+		sum(case v.ITEM_ID when 205 then v.PAY_VALUE else 0 end) shy,
+		sum(case v.ITEM_ID when 206 then v.PAY_VALUE else 0 end) gjj,
+		sum(case v.ITEM_ID when 4 then v.PAY_VALUE else 0 end) _bx,
+		sum(case v.ITEM_ID when 5 then v.PAY_VALUE else 0 end) _gjj,
+		sum(case v.ITEM_ID when 6 then v.PAY_VALUE else 0 end) pqf
+		from (
+			select t.PERSON_ID,t.ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+			inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+			where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID in (201,202,203,204,205,206,4,5,6)
+			GROUP BY t.PERSON_ID,t.ITEM_ID
+	) v inner join HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v1 on v1.COMPANY_ID=c.COMPANY_ID
+left join 
+(
+	select e.COMPANY_ID,sum(v.pay_value) bx_hj,count(v.PERSON_ID) bx_count from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID in (201,202,203,204,205,4)
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v2 on v2.COMPANY_ID=c.COMPANY_ID
+left JOIN
+(
+	select e.COMPANY_ID,sum(v.pay_value) gjj_hj,count(v.PERSON_ID) gjj_count from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID in (206,5)
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v3 on v3.COMPANY_ID=c.COMPANY_ID
+left join
+(
+	select e.COMPANY_ID,sum(v.pay_value) yfgz from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID>=101 and t.ITEM_ID<=111
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v4 on v4.COMPANY_ID=c.COMPANY_ID
+where c.STATE=0
+ORDER BY c.NAME
+    ]]>
+  </sql>
+  <sql id="hr.WxyjMonth">
+    <![CDATA[
+select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
+isnull(v4.yfgz,0) yfgz,isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(_gjj,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
+from HR_COMPANY c 
+left JOIN
+(
+	select e.COMPANY_ID,
+		sum(case v.ITEM_ID when 201 then v.PAY_VALUE else 0 end) yl,  
+		sum(case v.ITEM_ID when 202 then v.PAY_VALUE else 0 end) sy,
+		sum(case v.ITEM_ID when 203 then v.PAY_VALUE else 0 end) yil,
+		sum(case v.ITEM_ID when 204 then v.PAY_VALUE else 0 end) gs,
+		sum(case v.ITEM_ID when 205 then v.PAY_VALUE else 0 end) shy,
+		sum(case v.ITEM_ID when 206 then v.PAY_VALUE else 0 end) gjj,
+		sum(case v.ITEM_ID when 4 then v.PAY_VALUE else 0 end) _bx,
+		sum(case v.ITEM_ID when 5 then v.PAY_VALUE else 0 end) _gjj,
+		sum(case v.ITEM_ID when 6 then v.PAY_VALUE else 0 end) pqf
+		from (
+			select t.PERSON_ID,t.ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+			inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+			where  p.PAY_MONTH=@payDate  and t.ITEM_ID in (201,202,203,204,205,206,4,5)
+			GROUP BY t.PERSON_ID,t.ITEM_ID
+	) v inner join HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v1 on v1.COMPANY_ID=c.COMPANY_ID
+left join 
+(
+	select e.COMPANY_ID,sum(v.pay_value) bx_hj,count(v.PERSON_ID) bx_count from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  p.PAY_MONTH=@payDate  and t.ITEM_ID in (201,202,203,204,205,4)
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v2 on v2.COMPANY_ID=c.COMPANY_ID
+left JOIN
+(
+	select e.COMPANY_ID,sum(v.pay_value) gjj_hj,count(v.PERSON_ID) gjj_count from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  p.PAY_MONTH=@payDate  and t.ITEM_ID in (206,5)
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v3 on v3.COMPANY_ID=c.COMPANY_ID
+left join
+(
+	select e.COMPANY_ID,sum(v.pay_value) yfgz from (		
+		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
+		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+		where  SUBSTRING(p.PAY_MONTH,1,4)=@payDate  and t.ITEM_ID>=101 and t.ITEM_ID<=111
+		GROUP BY t.PERSON_ID
+	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
+	group by e.COMPANY_ID
+) v4 on v4.COMPANY_ID=c.COMPANY_ID
+where c.STATE=0
+ORDER BY c.NAME
+    ]]>
+  </sql>
+  <sql id="hr.RybdYear">
+    <![CDATA[
+select c.COMPANY_ID,c.NAME, v1.lz,v2.zz,v3.yf,v3.yf-v4.yk sf from HR_COMPANY c
+LEFT JOIN (
+	select t.COMPANY_ID,count(*) lz  from HR_EMPLOYEE t where SUBSTRING(t.LEAVE_TIME,1,4)=@year group by t.COMPANY_ID
+) v1 on v1.COMPANY_ID=c.COMPANY_ID
+left JOIN(
+	select t.COMPANY_ID,count(t.person_id) zz from HR_EMPLOYEE t 
+	where SUBSTRING(t.Contract_FirstTime,1,4)=@year
+	group by t.COMPANY_ID
+)v2 on v2.COMPANY_ID=c.COMPANY_ID
+LEFT JOIN(
+	select p.COMPANY_ID,sum(pv.pay_value) yf from HR_SALARY_PAY p 
+	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
+	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111)
+	GROUP BY p.COMPANY_ID
+) v3 on v3.COMPANY_ID=c.COMPANY_ID
+LEFT JOIN(
+	select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
+	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
+	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206)
+	GROUP BY p.COMPANY_ID
+) v4 ON v4.COMPANY_ID=c.COMPANY_ID
+where c.STATE=0
+order by c.NAME
+
+    ]]>
+    
+  </sql>
+  <sql id="hr.RybdMonth">
+    <![CDATA[
+select c.COMPANY_ID,p.POSITION_ID, c.NAME,p.POSITION_NAME,jh,jh-zz kq,xrz,'' xrzName,lz,'' lzName,zz,yfgz,yfgz-yk sfgz from (
+	SELECT s.COMPANY_ID,s.POSITION_ID,sum(s.plan_count) jh FROM HR_CO_SETTING s GROUP BY s.COMPANY_ID,s.POSITION_ID
+) v1 
+LEFT join
+(
+	select t.COMPANY_ID,t.POSITION_ID,count(t.person_id) zz from HR_EMPLOYEE t 
+	where CONVERT(datetime,t.Contract_FirstTime,101)<=CONVERT(datetime,@beginDate,101) and CONVERT(datetime,t.Contract_Time,101)>=CONVERT(datetime,@endDate,101)
+	group by t.COMPANY_ID,t.POSITION_ID
+) v2 on v2.COMPANY_ID=v1.COMPANY_ID and v2.POSITION_ID=v1.POSITION_ID
+LEFT join
+(
+	select t.COMPANY_ID,t.POSITION_ID,count(t.person_id) lz from HR_EMPLOYEE t 
+	where CONVERT(datetime,t.LEAVE_TIME,101)>=CONVERT(datetime,@beginDate,101) and CONVERT(datetime,t.LEAVE_TIME,101)<=CONVERT(datetime,@endDate,101)
+	group by t.COMPANY_ID,t.POSITION_ID
+) v3 on v3.COMPANY_ID=v1.COMPANY_ID and v3.POSITION_ID=v1.POSITION_ID
+LEFT join
+(
+	select t.COMPANY_ID,t.POSITION_ID,count(t.person_id) xrz from HR_EMPLOYEE t 
+	where CONVERT(datetime,t.Contract_FirstTime,101)>=CONVERT(datetime,@beginDate,101) and CONVERT(datetime,t.Contract_FirstTime,101)<=CONVERT(datetime,@endDate,101)
+	group by t.COMPANY_ID,t.POSITION_ID
+) v4 on v4.COMPANY_ID=v1.COMPANY_ID and v4.POSITION_ID=v1.POSITION_ID
+left join
+(
+  select p.COMPANY_ID,sum(pv.pay_value) yfgz from HR_SALARY_PAY p 
+	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
+	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111)
+	GROUP BY p.COMPANY_ID
+) v5 on v5.COMPANY_ID=v1.COMPANY_ID
+left join(
+  select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
+	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
+	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206)
+	GROUP BY p.COMPANY_ID
+) v6 on v6.COMPANY_ID=v1.COMPANY_ID
+inner join HR_COMPANY c on v1.COMPANY_ID=c.COMPANY_ID and c.STATE=0
+inner JOIN HR_POSITION p on v1.POSITION_ID=p.POSITION_ID
+order BY c.NAME 
+
+    ]]>
+
+  </sql>
+  <sql id="hr.RybdXrzPesonsMonth">
+    <![CDATA[
+	select t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME from HR_EMPLOYEE t 
+	where CONVERT(datetime,t.Contract_FirstTime,101)<=CONVERT(datetime,@endDate,101) and 
+  CONVERT(datetime,t.Contract_FirstTime,101)>=CONVERT(datetime,@beginDate,101)
+  ORDER BY t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME
+    ]]>
+
+  </sql>
+  <sql id="hr.RybdLzPesonsMonth">
+    <![CDATA[
+	select t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME from HR_EMPLOYEE t 
+	where CONVERT(datetime,t.Contract_Time,101)<=CONVERT(datetime,@endDate,101) and CONVERT(datetime,t.Contract_Time,101)>=CONVERT(datetime,@beginDate,101)
+ORDER BY t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME
+    ]]>
+
+  </sql>
+  <sql id="hr.Gwtj">
+    <![CDATA[
+
+		select c.NAME,p.POSITION_NAME,v1.nums kzs, isnull(v2.nums,0) lwpq, isnull(v3.nums,0) dwgl, isnull(v.nums,0) sys,v1.nums - isnull(v.nums,0) kqs from 
+		HR_COMPANY c 
+		left JOIN 
+		(
+			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) nums from HR_CO_SETTING s   group by s.COMPANY_ID,s.POSITION_ID
+		) v1 on v1.COMPANY_ID=c.COMPANY_ID
+		left JOIN 
+		(
+			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) nums from HR_CO_SETTING s where   s.USE_TYPE='劳务派遣' group by s.COMPANY_ID,s.POSITION_ID
+		) v2 on v2.COMPANY_ID=c.COMPANY_ID  and v1.POSITION_ID=v2.POSITION_ID
+		left JOIN 
+		(
+			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) nums from HR_CO_SETTING s where   s.USE_TYPE='单位管理' group by s.COMPANY_ID,s.POSITION_ID
+		) v3 on v3.COMPANY_ID=c.COMPANY_ID  and v1.POSITION_ID=v3.POSITION_ID
+		left JOIN
+		(
+			select e.COMPANY_ID,e.POSITION_ID,count(*) nums 
+			from HR_EMPLOYEE e
+			where e.State=0
+			GROUP BY e.COMPANY_ID,e.POSITION_ID
+		) v on v.COMPANY_ID=v1.COMPANY_ID and v.POSITION_ID=v1.POSITION_ID
+		inner join HR_POSITION p on p.POSITION_ID=v1.POSITION_ID
+		order by c.COMPANY_ID,v1.POSITION_ID
+    ]]>
+
+  </sql>
+</root>

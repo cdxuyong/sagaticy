@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "单位五险一金统计";
+}
+<script type="text/javascript">
+    var opt = {};
+    opt.query = function(){
+        var url = '../Reports/GetRybdByMonth';
+        $('#dgContainer').height('auto');
+        var year = $('#cmbYears').combobox('getValue');
+        var month = $('#cmbMonth').combobox('getValue');
+        var params = { year: year, month: month };
+        $('#dg').datagrid('loading');
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            data: params,
+            success: function (data) {
+                $('#dg').datagrid('loadData', data);
+                $('#dg').datagrid('loaded');
+            },
+            error: function () {
+                $('#dg').datagrid('loaded');
+                $.messager.alert('提示', '查询出错！');
+            }
+        });
+    };
+    opt.export = function () {
+        var url = '../Reports/DownRybdByMonth';
+        var year = $('#cmbYears').combobox('getValue');
+        var month = $('#cmbMonth').combobox('getValue');
+        var params = { year: year, month: month };
+        HR.DownFile(url, params);
+    };
+    function init() {
+    }
+</script>
+<div class="container container-background">
+    <div class="page-header">
+        <h3>统计报表.<small>&nbsp;用工单位各岗位人员变动、工资统计表（月度）</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <select id="cmbYears" class="easyui-combobox" style="width:100%;height:30px;" data-options="valueField:'id',textField:'text',url:'../Reports/GetYears'"></select>
+
+            </div>
+            <div class="col-md-1">
+                <select id="cmbMonth" class="easyui-combobox" style="width:100%;height:30px;">
+                    <option value="1">1月</option>
+                    <option value="2">2月</option>
+                    <option value="3">3月</option>
+                    <option value="4">4月</option>
+                    <option value="5">5月</option>
+                    <option value="6">6月</option>
+                    <option value="7">7月</option>
+                    <option value="8">8月</option>
+                    <option value="9">9月</option>
+                    <option value="10">10月</option>
+                    <option value="11">11月</option>
+                    <option value="12">12月</option>
+                </select>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 查询</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div style="padding-top:20px;height:800px;" id="dgContainer">
+        <table class="easyui-datagrid" title="" style="width:100%;" id="dg"
+               data-options="singleSelect:true,url:'',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'rownum',width:50" rowspan="2">序号</th>
+                    <th data-options="field:'NAME',width:150" rowspan="2">用工单位</th>
+                    <th colspan="3">用工控制数</th>
+                    <th colspan="2">新入职</th>
+                    <th colspan="2">离职</th>
+                    <th data-options="field:'zz',width:70" rowspan="2">在职人数</th>
+                    <th colspan="2">工资情况</th>
+                </tr>
+                <tr>
+                    <th data-options="field:'POSITION_NAME',width:70">岗位</th>
+                    <th data-options="field:'jh',width:70">核定数</th>
+                    <th data-options="field:'kq',width:70">空缺数</th>
+                    <th data-options="field:'xrz',width:70">人数</th>
+                    <th data-options="field:'xrzName',width:70">姓名</th>
+                    <th data-options="field:'lz',width:70">人数</th>
+                    <th data-options="field:'lzName',width:70">姓名</th>
+                    <th data-options="field:'yfgz',width:70">应发工资总额</th>
+                    <th data-options="field:'sfgz',width:70">实发工资总额</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+
