@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueFramework.User", "BlueFramework.User\BlueFramework.User.csproj", "{379636FE-CB72-41C3-A5CC-EC60981979FA}"
 EndProject
@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{925367
 	ProjectSection(SolutionItems) = preProject
 		setup_sql.txt = setup_sql.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publish2Local", "Publish2Local\Publish2Local.csproj", "{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,10 @@ Global
 		{90639196-9034-404E-93BB-3E593F873DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90639196-9034-404E-93BB-3E593F873DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90639196-9034-404E-93BB-3E593F873DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

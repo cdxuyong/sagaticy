@@ -165,6 +165,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\WorkController.cs" />
     <Compile Include="DataAccess\EmployeeAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -346,6 +347,10 @@
     <Content Include="Files\2018年6月份缴存导入数据.xls" />
     <Content Include="Files\2019年10月工资表.xls" />
     <Content Include="Files\批量导入人员模板.xlsx" />
+    <Content Include="Files\单位结算.xlsx" />
+    <Content Include="Files\考勤月报.xlsx" />
+    <Content Include="Files\考勤表.xlsx" />
+    <Content Include="Files\导入单位账户余额.xlsx" />
     <None Include="JS\jquery.validate-vsdoc.js" />
     <Content Include="JS\jquery.validate.js" />
     <Content Include="JS\jquery.validate.min.js" />
@@ -1016,6 +1021,7 @@
     <Content Include="Views\Reports\RybdYear.cshtml" />
     <Content Include="Views\Reports\RybdMonth.cshtml" />
     <Content Include="Views\Reports\Gwtj.cshtml" />
+    <Content Include="Views\Work\Checks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1046,6 +1052,10 @@
     <ProjectReference Include="..\BlueFramework.User\BlueFramework.User.csproj">
       <Project>{379636fe-cb72-41c3-a5cc-ec60981979fa}</Project>
       <Name>BlueFramework.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Publish2Local\Publish2Local.csproj">
+      <Project>{1b7f970e-dc5d-4466-98d1-2a3e6bdf9943}</Project>
+      <Name>Publish2Local</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

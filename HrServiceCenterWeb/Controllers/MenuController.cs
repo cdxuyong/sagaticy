@@ -22,6 +22,7 @@ namespace HrServiceCenterWeb.Controllers
         {
             ViewBag.User = (UserInfo)BlueFramework.User.UserContext.Current;
             ViewBag.MenuList = menuInfo;
+            ViewBag.UserNum = BlueFramework.User.Session.Current.CountOnlines();
             return PartialView("Menu");//分布试图
         }
 

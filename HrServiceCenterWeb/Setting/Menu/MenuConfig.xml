@@ -20,8 +20,8 @@
     <Node  id="301" caption="缴存发放项目管理" url="~/~" title ="缴存发放项目管理" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="302" caption="单位模板" url="~/Pay/TemplateList" title ="创建单位的发放项目模板" ic_class="" ic_id="" mob_display="true"/>
     -->
-    <Node  id="303" caption="社保批量导入" url="~/Pay/ImportorList" title ="导入发放人员的保险数据" ic_class="" ic_id="" mob_display="true"/>
-    <Node  id="306" caption="工资批量导入" url="~/Pay/ImportorPayList" title ="导入发放人员的工资数据" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="303" caption="社保管理" url="~/Pay/ImportorList" title ="导入发放人员的保险数据" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="306" caption="工资管理" url="~/Pay/ImportorPayList" title ="导入发放人员的工资数据" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="304" caption="工资管理" url="~/Pay/PayList" title ="通过单位发放模板创建发放表" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="305" caption="数据中心" url="~/Pay/BankPayment" title ="提供各种数据下载导出" ic_class="" ic_id="" mob_display="true"/>
   </Title>
@@ -31,6 +31,15 @@
     <Node  id="403" caption="岗位人员变动、工资统计表（年度）" url="~/Reports/RybdYear" title ="岗位人员变动、工资统计表（年度）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="404" caption="岗位人员变动、工资统计表（月度）" url="~/Reports/RybdMonth" title ="岗位人员变动、工资统计表（月度）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="405" caption="各单位控制数和实有数情况统计表" url="~/Reports/Gwtj" title ="各单位控制数和实有数情况统计表" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title  id="6" caption="考勤管理" title="考勤管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
+    <Node  id="601" caption="考勤明细" url="~/Work/Checks" title ="考勤明细" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="602" caption="考勤月报" url="~/Work/MonthReporter" title ="考勤月报" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="603" caption="考勤查询" url="~/Work/ChecksQuery" title ="考勤查询" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
+  <Title  id="7" caption="结算管理" title="结算管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
+    <Node  id="701" caption="结算清单" url="~/Work/Checks" title ="结算清单" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="702" caption="结算汇总" url="~/Work/MonthReporter" title ="结算汇总" ic_class="" ic_id="" mob_display="true"/>
   </Title>
   <Title  id="5" caption="系统管理" title="系统管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
     <Node  id="501" caption="账号管理" url="~/System/UserManage" title ="账号管理" ic_class="" ic_id="" mob_display="true"/>

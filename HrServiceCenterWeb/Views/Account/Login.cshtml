@@ -56,7 +56,7 @@
 <div class="container login-container">
     <div class="login-heading">
         <img src="~/images/HR_LOGO.png" style="width:32px;" />
-        <span class="title">人力资源服务系统</span><span class="ver">v2.1.0.20200304</span>
+        <span class="title">人力资源服务系统</span><span class="ver">@Publish2Local.Complication.Version</span>
     </div>
     <form class="form-signin" action="@Url.Action("Login", "Account")" method="post" >
         <div class="input-group margin-bottom-sm">
@@ -84,7 +84,7 @@
         @Html.ValidationSummary()
     </form>
     <div class="login-foot">
-        <p>峨眉山市新世纪人才服务有限公司 </p>
+        <p>@Publish2Local.Complication.SpotName </p>
     </div>
 </div>
 <div id="backContainer">

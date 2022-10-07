@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
-using BlueFramework.User.Models;
 
 namespace NUnit.Tests1
 {

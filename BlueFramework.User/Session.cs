@@ -33,6 +33,11 @@ namespace BlueFramework.User
             currentSession = new Session(timerSpan);
         }
 
+        public int CountOnlines()
+        {
+            return visitors.Count;
+        }
+
         private Session(int timerSpan)
         {
             lastActions = new Dictionary<string, VisitorAction>();
@@ -105,7 +110,10 @@ namespace BlueFramework.User
 
         public void PushAction(VisitorAction action)
         {
-            lastActions.Add(action.ActionId, action);
+            if (!visitors.ContainsKey(action.ActionId))
+            {
+                lastActions.Add(action.ActionId, action);
+            }
         }
 
         public VisitorAction PopAction(string actionId)

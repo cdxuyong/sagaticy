@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NUnit.Tests1</RootNamespace>
     <AssemblyName>NUnit.Tests1</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -48,8 +48,8 @@
     <Compile Include="EntityContextTests.cs" />
     <Compile Include="Excel\POIExcelTests.cs" />
     <Compile Include="Models\UserInfo.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -83,7 +83,7 @@
       <Name>BlueFramework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlueFramework.Data\BlueFramework.Data.csproj">
-      <Project>{5C80DD3E-F333-4A17-A33C-64AA99D4720B}</Project>
+      <Project>{5c80dd3e-f333-4a17-a33c-64aa99d4720b}</Project>
       <Name>BlueFramework.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlueFramework.User\BlueFramework.User.csproj">
