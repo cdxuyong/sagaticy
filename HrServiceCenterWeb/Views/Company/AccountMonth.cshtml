@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "结算管理";
+}
+<!-- import opt js-->
+<script src="~/JS/company.AccountMonth.js"></script>
+<link href="~/Library/uploadFiles/default.css" rel="stylesheet" />
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>结算管理.<small>&nbsp;结算月报</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="txtQuery" style="width:180px;" class="form-control panelseach-text" placeholder="请输入月份...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.import();"><i class="fa fa-file-o" aria-hidden="true"></i> 导出报告</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'a',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+			        autoRowHeight:true,onDblClickRow:function(rowIndex,rowData){opt.querydetail()},
+			        pagination:true,
+			        pageSize:10,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'CmpName',width:300">单位</th>
+                    <th data-options="field:'PayDate',width:120">结算月份</th>
+                    <th data-options="field:'Total',width:120">结算总金额（元）</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!--模态框-->
+    <div id="winUpload"></div>
+</div>
+
+
+

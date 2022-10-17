@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapper namespace="hr.check">
+  <!-- 查询考勤列表  -->
+  <select id="findChecks" >
+    select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
+    from HR_CHECK t
+    left join T_S_USER u on t.CREATOR=u.USERID
+    where t.TITLE like '%${value}%' and IMPORT_TYPE=1
+    order by  t.IMPORT_ID desc
+  </select>
+  <select id="findDayChecks" >
+    select d.IMPORT_ID importId, d.PERSON_ID PersonId,e.PERSON_NAME PersonName,e.CARD_ID CardId, e.CMP_NAME CmpName,
+    d.CHECK_DATE CheckDate,d.CHECK_ADR CheckAdress,d.START_TIME StartTime,d.END_TIME EndTime,d.WORK_HOUR WorkHours,d.DEMO
+    from hr_check_day d
+    inner join hr_employee e on e.PERSON_ID=d.PERSON_ID
+    where d.IMPORT_ID=${value}
+  </select>
+  <select id="findDayChecksByKeys" >
+    select d.IMPORT_ID importId, d.PERSON_ID PersonId,e.PERSON_NAME PersonName,e.CARD_ID CardId, e.CMP_NAME CmpName,
+    d.CHECK_DATE CheckDate,d.CHECK_ADR CheckAdress,d.START_TIME StartTime,d.END_TIME EndTime,d.WORK_HOUR WorkHours,d.DEMO
+    from hr_check_day d
+    inner join hr_employee e on e.PERSON_ID=d.PERSON_ID
+    where e.PERSON_NAME like '%${pName}%' and e.CMP_NAME like '%${cmpName}%'
+  </select>
+  <!-- 删除导入记录-->
+  <delete id="deleteCheck">
+    delete from HR_CHECK where IMPORT_ID=#{value}
+  </delete>
+  <!-- 删除日考勤列表详情-->
+  <delete id="deleteCheckDay">
+    delete from HR_CHECK_DAY where IMPORT_ID=#{value}
+  </delete>
+  <insert id="insertCheckDay" parameterType="CheckDayInfo">
+    insert into HR_CHECK_DAY(IMPORT_ID,PERSON_ID,CHECK_DATE,CHECK_ADR,START_TIME,END_TIME,WORK_HOUR,DEMO)
+    values(#{ImportId},#{PersonId},#{CheckDate},#{CheckAdress},#{StartTime},#{EndTime},#{WorkHours},#{Demo})
+  </insert>
+  <insert id="insertCheck" parameterType="CheckInfo">
+    <selectKey keyProperty="ImportId" order="INSERTING" >
+      <!-- 将插入数据的主键返回，返回到对象中，下列为sqlserver自增主键 -->
+      select @ImportId=@@IDENTITY
+    </selectKey>
+    insert into HR_CHECK(TITLE,CREATOR,CREATE_TIME,IMPORT_TYPE) values(#{Title},#{CreatorId},#{CreateTime},#{ImportType})
+  </insert>
+  <!-- 月报 -->
+  <select id="findMonthChecks" >
+    select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
+    from HR_CHECK t
+    left join T_S_USER u on t.CREATOR=u.USERID
+    where t.TITLE like '%${value}%' and IMPORT_TYPE=2
+    order by  t.IMPORT_ID desc
+  </select>
+  <insert id="insertCheckMonth" parameterType="CheckMonthInfo">
+    insert into HR_CHECK_MONTH(IMPORT_ID,PERSON_ID,CHECK_MONTH,CHECK_DAYS,LATE_DAYS,LOST_DAYS)
+    values(#{ImportId},#{PersonId},#{CheckMonth},#{CheckDays},#{LateDays},#{LostDays})
+  </insert>
+  <select id="sumMonthChecks" >
+    with v1 as (
+    SELECT e.CMP_NAME cmpName,m.CHECK_MONTH Month,sum(m.check_days) checkDays,sum(m.late_days) lateDays,sum(m.lost_days) lostDays from HR_CHECK_MONTH m
+    inner join HR_EMPLOYEE e on e.PERSON_ID=m.PERSON_ID
+    group by e.CMP_NAME,m.CHECK_MONTH
+    )
+    select * from v1 order by v1.Month desc,v1.cmpName
+  </select>
+  <select id="findMonthDetail" >
+    with v1 as (
+    SELECT e.CMP_NAME cmpName,m.CHECK_MONTH CheckMonth,e.PERSON_NAME PersonName,e.CARD_ID CardId, m.check_days checkDays,m.late_days lateDays,m.lost_days lostDays
+    from HR_CHECK_MONTH m
+    inner join HR_EMPLOYEE e on e.PERSON_ID=m.PERSON_ID
+    where e.CMP_NAME='${pName}' and m.CHECK_MONTH= '${pDate}'
+    )
+    select * from v1
+  </select>
+</mapper>

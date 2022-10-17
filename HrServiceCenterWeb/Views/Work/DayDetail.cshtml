@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "员工考勤";
+}
+<!-- import opt js-->
+<script src="~/JS/check.ImportorDayOpt.js"></script>
+<link href="~/Library/uploadFiles/default.css" rel="stylesheet" />
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+<script src="~/Library/easyui/datagrid-filter.js"></script>
+<style>
+    .icon-filter {
+        background: url('../images/filter.png') no-repeat center center;
+    }
+</style>
+<script type="text/javascript">
+    var importorId = '@ViewBag.ImportId'
+</script>
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>员工考勤.<small>&nbsp;<a href="~/Work/QueryImportorList">考勤明细</a> </small>.<small>&nbsp;详情</small></h3>
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+               data-options="idField:'a',
+			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
+			        autoRowHeight:true,filterBtnIconCls:'icon-filter',
+			        pagination:true,
+			        pageSize:20,pageList:[10,20,30,40,50,100]">
+            <thead>
+                <tr>
+                    <th data-options="field:'PersonName',width:60">姓名</th>
+                    <th data-options="field:'CardId',width:150">身份证号</th>
+                    <th data-options="field:'CmpName',width:120">用工单位</th>
+                    <th data-options="field:'CheckDate',width:80">考勤日期</th>
+                    <th data-options="field:'CheckAdress',width:120">考勤地点</th>
+                    <th data-options="field:'StartTime',width:150">上班打卡时间</th>
+                    <th data-options="field:'EndTime',width:150">下班打卡时间</th>
+                    <th data-options="field:'WorkHours',width:80">有效时长(小时)</th>
+                    <th data-options="field:'DEMO',width:80">备注</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+

@@ -198,5 +198,103 @@ namespace HrServiceCenterWeb.Controllers
             JsonResult jsonResult = Json(result, JsonRequestBehavior.AllowGet);
             return jsonResult;
         }
+
+        #region 结算管理
+        // GET: /Company/CompanyList
+        public ActionResult AccountImports()
+        {
+            return View();
+        }
+
+        // GET: /Company/AccountMonth
+        public ActionResult AccountMonth()
+        {
+            return View();
+        }
+        // GET: /Company/AccountImportDetail
+        public ActionResult AccountImportDetail(string importName)
+        {
+            ViewBag.ImportName = importName;
+            return View();
+        }
+
+        // Company/QueryAccountImports?q=
+        /// <summary>
+        /// 查询结算表
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
+        public ActionResult QueryAccountImports(string q)
+        {
+            if (string.IsNullOrEmpty(q))
+                q = "";
+            var list = new Manager.CompanyManager().QueryAccountImport(q);
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            var result = new
+            {
+                code = 200,
+                data = jsonString
+            };
+            JsonResult jsonResult = Json(result);
+            return jsonResult;
+        }
+        public ActionResult QueryAccountDetail(string query)
+        {
+            var list = new Manager.CompanyManager().QueryAccountDetail(query);
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            var result = new
+            {
+                code = 200,
+                data = jsonString
+            };
+            JsonResult jsonResult = Json(result);
+            return jsonResult;
+        }
+        /// <summary>
+        /// 导入结算表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ImportAccountDetail()
+        {
+            if (Request.Files.Count == 0)
+            {
+                Object failResult = new
+                {
+                    success = false,
+                    data = ""
+                };
+                JsonResult failJsonResult = Json(failResult, JsonRequestBehavior.AllowGet);
+                return failJsonResult;
+            }
+
+            IExcel excel = ExcelFactory.CreateDefault();
+            DataSet ds = excel.Read(Request.Files[0].InputStream);
+            DataTable dt = ds.Tables[0];
+            string message;
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(Request.Files[0].FileName);
+            bool pass = new CompanyManager().ImportAccountDetail(dt,fileName, out message);
+            Object result = new
+            {
+                success = pass,
+                data = message
+            };
+            JsonResult jsonResult = Json(result, JsonRequestBehavior.AllowGet);
+            return jsonResult;
+        }
+
+        public ActionResult QueryAccountMonth(string q)
+        {
+            q = null;
+            var list = new Manager.CompanyManager().QueryAccountMonth(q);
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            var result = new
+            {
+                code = 200,
+                data = jsonString
+            };
+            JsonResult jsonResult = Json(result);
+            return jsonResult;
+        }
+        #endregion
     }
 }

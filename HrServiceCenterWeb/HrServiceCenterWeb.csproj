@@ -172,12 +172,18 @@
     </Compile>
     <Compile Include="Lib\RequestModule.cs" />
     <Compile Include="Manager\BaseCodeProvider.cs" />
+    <Compile Include="Manager\CompanyManager.cs" />
     <Compile Include="Manager\EmployeeManager.cs" />
     <Compile Include="Manager\PayManager.cs" />
+    <Compile Include="Manager\CheckManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\ReportManager.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseCodeInfo.cs" />
+    <Compile Include="Models\CheckMonthInfo.cs" />
+    <Compile Include="Models\CheckDayInfo.cs" />
+    <Compile Include="Models\CompanyAccountImportVO.cs" />
+    <Compile Include="Models\CheckMonthSumVO.cs" />
     <Compile Include="Models\CompanyAccountBO.cs" />
     <Compile Include="Models\CompanyAccountRecordInfo.cs" />
     <Compile Include="Models\CompanyAccountInfo.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="Models\CountetBase.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\InsuranceDetailInfo.cs" />
+    <Compile Include="Models\CheckInfo.cs" />
     <Compile Include="Models\InsuranceInfo.cs" />
     <Compile Include="Models\PayDetailInfo.cs" />
     <Compile Include="Models\PayDetailVO.cs" />
@@ -288,9 +295,17 @@
     <Content Include="index.html" />
     <Content Include="JS\bootstrap.min.js" />
     <Content Include="JS\chart.HomePage.js" />
+    <Content Include="JS\check.ChecksQueryOpt.js" />
+    <Content Include="JS\company.AccountImportDetail.js" />
+    <Content Include="JS\company.AccountMonth.js" />
+    <Content Include="JS\company.AccountImports.js" />
+    <Content Include="JS\check.MonthDetailOpt.js" />
+    <Content Include="JS\check.MonthListOpt.js" />
     <Content Include="JS\employee.employeePageOpt.js" />
+    <Content Include="JS\check.ImportorDayOpt.js" />
     <Content Include="JS\pay.ImportorDetailOpt.js" />
     <Content Include="JS\pay.BankOpt.js" />
+    <Content Include="JS\check.ImportorListOpt.js" />
     <Content Include="JS\pay.ImportorPayDetailOpt.js" />
     <Content Include="JS\pay.ImportorPayListOpt.js" />
     <Content Include="JS\pay.PayEditorOpt.js" />
@@ -961,6 +976,9 @@
     <Content Include="Setting\Sql\hr.sql.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="sqlMappers\hr.check.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="sqlMappers\hr.payment.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -1022,6 +1040,13 @@
     <Content Include="Views\Reports\RybdMonth.cshtml" />
     <Content Include="Views\Reports\Gwtj.cshtml" />
     <Content Include="Views\Work\Checks.cshtml" />
+    <Content Include="Views\Work\DayDetail.cshtml" />
+    <Content Include="Views\Work\MonthReporter.cshtml" />
+    <Content Include="Views\Work\MonthDetail.cshtml" />
+    <Content Include="Views\Work\ChecksQuery.cshtml" />
+    <Content Include="Views\Company\AccountImports.cshtml" />
+    <Content Include="Views\Company\AccountMonth.cshtml" />
+    <Content Include="Views\Company\AccountImportDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

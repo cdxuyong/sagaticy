@@ -62,7 +62,8 @@
     update [HR_CO_ACCOUNT] set  ACCOUNT_BALANCE=#{AccountBalance} where COMPANY_ID=#{CompanyId}
   </update>
   <insert id="insertCompanyAccountDetail">
-    insert into HR_CO_ACCOUNT_RECORD(ACCOUNT_ID,ACCOUNT_BALANCE,CREATE_TIME,CREATOR,MONEY,REMARK) values(#{AccountId},#{AccountBalance},#{CreateTime},#{Creator},#{Money},'')
+    insert into HR_CO_ACCOUNT_RECORD(ACCOUNT_ID,ACCOUNT_BALANCE,CREATE_TIME,CREATOR,MONEY,REMARK,PAY_DATE,BILL_DATE,IMPORT_NAME,ITEM_NAME,PERSON_NAME,OPT_DATE,ENTRY_DATE)
+    values(#{AccountId},#{AccountBalance},#{CreateTime},#{Creator},#{Money},#{Remark},#{PayDate},#{BillDate},#{ImportName},#{ItemName},#{PersonName},#{OptDate},#{EntryDate})
   </insert>
   <!-- 岗位设置事务 -->
   <delete id="deletePositions">
@@ -79,4 +80,32 @@
   <update id="updateCompanyBalanceByCompayName">
     update HR_CO_ACCOUNT set ACCOUNT_BALANCE=#{Money} where COMPANY_ID=(select COMPANY_ID from HR_COMPANY where name=#{CompanyName})
   </update>
+  
+  <!-- 结算管理 -->
+  <select id="queryAccountImport">
+    with v as (
+    select t.IMPORT_NAME importName,max(t.CREATE_TIME) createTime,max(t.PAY_DATE) payDate,sum( t.MONEY) total
+    from hr_co_account_record t where t.IMPORT_NAME like '%${value}%'
+    group by t.IMPORT_NAME
+    )
+    select * from v order by v.payDate,v.importName desc
+  </select>
+  <select id="queryAccountDetail">
+    select c.NAME cmpName,t.PAY_DATE payDate,t.MONEY,t.ITEM_NAME itemName,t.BILL_DATE billDate,t.ENTRY_DATE entryDate,t.PERSON_NAME personName,t.OPT_DATE optDate,t.remark 
+    from hr_co_account_record t
+    inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=t.ACCOUNT_ID
+    inner join HR_COMPANY c on c.COMPANY_ID=a.COMPANY_ID
+    where t.IMPORT_NAME='${value}'
+  </select>
+  <select id="queryAccountMonth">
+    with v as (
+    select t.ACCOUNT_ID ,t.PAY_DATE,sum( t.MONEY) total
+    from hr_co_account_record t where t.PAY_DATE is not null 
+    group by t.ACCOUNT_ID,t.PAY_DATE
+    )
+    select c.NAME cmpName,v.PAY_DATE payDate,v.total from v
+    inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=v.ACCOUNT_ID
+    inner join HR_COMPANY c on c.COMPANY_ID=a.COMPANY_ID
+    order by v.PAY_DATE desc,c.NAME
+  </select>
 </mapper>

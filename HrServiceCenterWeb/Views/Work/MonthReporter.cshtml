@@ -3,12 +3,12 @@
     ViewBag.Title = "考勤管理";
 }
 <!-- import opt js-->
-<script src="~/JS/check.ImportorListOpt.js"></script>
+<script src="~/JS/check.MonthListOpt.js"></script>
 <link href="~/Library/uploadFiles/default.css" rel="stylesheet" />
 <script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
 <div class="container container-layout">
     <div class="page-header">
-        <h3>考勤管理.<small>&nbsp;考勤明细</small></h3>
+        <h3>考勤管理.<small>&nbsp;考勤月报</small></h3>
     </div>
     <div id="pnlSearch">
         <div class="row">
@@ -19,8 +19,9 @@
                 <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.query()"><i class="fa fa-search"></i> 快速查询</a>
             </div>
             <div class="col-md-5">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.createMonth();"><i class="fa fa-file-o" aria-hidden="true"></i> 生成月报</a>
                 <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.import();"><i class="fa fa-file-o" aria-hidden="true"></i> 导入考勤</a>
-                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.querydetail()"><i class="fa fa-file-o" aria-hidden="true"></i> 查看详情</a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.querydetail()"><i class="fa fa-file-o" aria-hidden="true"></i> 查看明细</a>
                 <a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
             </div>
         </div>
@@ -36,10 +37,11 @@
 			        pageSize:10,pageList:[10,20,30,40,50,100]">
             <thead>
                 <tr>
-                    <th data-options="field:'ImportId',width:100">ID</th>
-                    <th data-options="field:'Title',width:300">标题</th>
-                    <th data-options="field:'CreateTime',width:120">创建时间</th>
-                    <th data-options="field:'CreatorName',width:120">创建人</th>
+                    <th data-options="field:'CmpName',width:300">单位名称</th>
+                    <th data-options="field:'CheckMonth',width:120">考勤月份</th>
+                    <th data-options="field:'CheckDays',width:120">考勤天数</th>
+                    <th data-options="field:'LateDays',width:120">迟到人次</th>
+                    <th data-options="field:'LostDays',width:120">迟到人次</th>
                 </tr>
             </thead>
         </table>
@@ -54,7 +56,7 @@
             </form>
         </div>
     </div>
-  
+
     <div id="winUpload"></div>
 </div>
 

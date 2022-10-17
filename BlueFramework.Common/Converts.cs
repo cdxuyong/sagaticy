@@ -50,5 +50,20 @@ namespace BlueFramework.Common
             }
             return dataTable;
         }
+
+        /// <summary>
+        /// 年月日格式转换
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static DateTime Convert2Date(string s)
+        {
+            var arr = s.Split(new char[] {'-','/' });
+            int y = arr.Length>0 ? int.Parse(arr[0]) : 0;
+            int m = arr.Length > 1 ? int.Parse(arr[1]) : 0;
+            int d = arr.Length > 2 ? int.Parse(arr[2]) : 1;
+            return new DateTime(y, m, d);
+        }
+
     }
 }
