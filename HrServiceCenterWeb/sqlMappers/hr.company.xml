@@ -114,7 +114,7 @@
   <select id="queryAccountMonth">
     with v as (
     select t.ACCOUNT_ID ,t.PAY_DATE,sum( t.MONEY) total
-    from hr_co_account_record t where t.PAY_DATE is not null 
+    from hr_co_account_record t where t.PAY_DATE is not null and t.status=1
     group by t.ACCOUNT_ID,t.PAY_DATE
     )
     select c.NAME cmpName,v.PAY_DATE payDate,v.total from v

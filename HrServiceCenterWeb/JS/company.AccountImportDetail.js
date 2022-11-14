@@ -48,6 +48,9 @@ opt.exec = function () {
             if (!result.data) {
                 $.messager.alert('提示', '提交失败！');
             }
+            else {
+                $.messager.alert('提示', '提交成功，请刷新页面！');
+            }
         },
         error: function () {
             $.messager.alert('提示', '提交失败！');
