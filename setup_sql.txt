@@ -3,3 +3,25 @@ Date:2020/3/11
 ======================
 alter table HR_EMPLOYEE add UseType int;
 UPDATE HR_EMPLOYEE set UseType=0;
+
+
+==========================
+-- 清理薪酬数据
+truncate table HR_SALARY_PAY_VALUE;
+truncate table HR_SALARY_PAY_OBJECT;
+truncate table [dbo].[HR_SALARY_PAY_ITEM];
+truncate table HR_SALARY_PAY;
+truncate table [dbo].[HR_SALARY_IMPORTOR_DATA];
+truncate table [dbo].[HR_SALARY_IMPORTOR];
+
+-- 清理人员档案数据
+truncate table [dbo].[HR_EMPLOYEE]
+
+-- 清理单位信息
+truncate table [dbo].[HR_CO_ACCOUNT_RECORD];
+truncate table [dbo].[HR_CO_SETTING];
+truncate table [dbo].[HR_COMPANY];
+truncate table [dbo].[HR_CO_ACCOUNT];
+
+
+

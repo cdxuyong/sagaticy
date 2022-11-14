@@ -27,8 +27,17 @@ namespace HrServiceCenterWeb.DataAccess
             Database dataBase = dbFactory.CreateDefault();
             string sql = "select max(person_code) maxCode from HR_EMPLOYEE";
             object result = dataBase.ExecuteScalar(CommandType.Text, sql);
-            return int.Parse(result.ToString());
+            if(result != null)
+            {
+                if (string.IsNullOrEmpty(result.ToString()))
+                    return 0;
 
+            }
+            else
+            {
+                return 0;
+            }
+            return int.Parse(result.ToString());
         }
     }
 }

@@ -32,37 +32,6 @@ opt.query = function () {
         }
     });
 }
-
-
-//删除操作
-opt.delete = function (id) {
-    var row = $('#dg').datagrid('getSelected');
-
-    if (row == null) {
-        $.messager.alert('提示', '未选中任何数据!');
-        return;
-    }
-    $.messager.confirm('提示窗', '您确认删除吗?', function (event) {
-        if (event) {
-            $.ajax({
-                type: 'POST',
-                url: "../Work/DeleteCheck",
-                data: {
-                    id: row.ImportId
-                },
-                dataType: "json",
-                success: function (result) {
-                    $.messager.alert('提示', result);
-                    opt.query();
-                }
-            });
-        }
-        else {
-            return;
-        }
-    });
-}
-
 //查看详情
 opt.querydetail = function () {
     // TODO 
@@ -73,7 +42,7 @@ opt.querydetail = function () {
     }
     debugger
     var id = row.ImportName;
-    var url = '../Company/AccountImportDetail?importName=' + id;
+    var url = '../Company/AccountImportDetail?q=' + id;
     self.location = url;
 }
 

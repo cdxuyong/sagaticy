@@ -3,9 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Data;
+using Newtonsoft.Json.Converters;
 
 namespace BlueFramework.Common
 {
+    public class MonthFormat : IsoDateTimeConverter
+    {
+        public MonthFormat()
+        {
+            DateTimeFormat = "yyyy-MM";
+        }
+
+        public MonthFormat(string format)
+        {
+            DateTimeFormat = format;
+        }
+    }
+
+    public class DateFormat : IsoDateTimeConverter
+    {
+        public DateFormat()
+        {
+            DateTimeFormat = "yyyy-MM-dd";
+        }
+
+        public DateFormat(string format)
+        {
+            DateTimeFormat = format;
+        }
+    }
+
+    public class DateFullFormat : IsoDateTimeConverter
+    {
+        public DateFullFormat()
+        {
+            DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        }
+
+        public DateFullFormat(string format)
+        {
+            DateTimeFormat = format;
+        }
+    }
+
     public static class Converts
     {
         public static DataTable ListToDataTable<T>(this List<T> list,Dictionary<string,string> fields=null)

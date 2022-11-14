@@ -114,6 +114,8 @@ namespace BlueFramework.User.DataAccess
                     {
                         try
                         {
+                            int Id = GetMaxMenuRightId() + 1;
+
                             string sql1 = "delete from T_S_MENURIGHT where ROLEID = '" + roleId + "'";
                             DbCommand dbCommand1 = database.GetSqlStringCommand(sql1);
                             database.ExecuteNonQuery(dbCommand1, dbTransaction);
@@ -121,7 +123,6 @@ namespace BlueFramework.User.DataAccess
                             if (item != null)
                             {
                                 string[] menu = item.Select(i => i.ToString()).ToArray();
-                                int Id = GetMaxMenuRightId() + 1;
                                 for (int i = 0; i < menu.Length; i++)
                                 {
                                     string clown = menu[i];
@@ -133,9 +134,11 @@ namespace BlueFramework.User.DataAccess
                             }
                             dbTransaction.Commit();
                         }
-                        catch (Exception exception)
+                        catch (Exception ex)
                         {
                             dbTransaction.Rollback();
+                            BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Error(ex.Message);
+                            BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Error(ex.StackTrace);
                             return false;
                         }
                     }
@@ -143,6 +146,8 @@ namespace BlueFramework.User.DataAccess
             }
             catch (Exception ex)
             {
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Error(ex.Message);
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Error(ex.StackTrace);
                 return false;
             }
             return true;

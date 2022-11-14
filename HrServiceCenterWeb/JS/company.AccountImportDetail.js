@@ -5,9 +5,6 @@ function init() {
     $('#dgContainer').height(height);
     $('#dg').datagrid('resize');
     opt.query();
-    $('#upload').filebox({
-
-    })
 }
 
 
@@ -33,7 +30,52 @@ opt.query = function () {
         }
     });
 }
-
+//提交结算
+opt.exec = function () {
+    var url = '../Company/SubmitImportDetail';
+    var params = { importName: importName };
+    $.messager.progress({
+        msg: '处理中，请稍候...'
+    });
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: params,
+        success: function (result) {
+            debugger
+            $.messager.progress('close');
+            if (!result.data) {
+                $.messager.alert('提示', '提交失败！');
+            }
+        },
+        error: function () {
+            $.messager.alert('提示', '提交失败！');
+        }
+    });
+}
+//删除操作
+opt.delete = function () {
+    $.messager.confirm('提示窗', '您确认删除吗?', function (event) {
+        if (event) {
+            $.ajax({
+                type: 'GET',
+                url: "../Company/DeleteAccountImportByName?importName=" + importName,
+                dataType: "json",
+                success: function (result) {
+                    debugger
+                    $.messager.alert('提示', result.data);
+                    if (result.success) {
+                        opt.query();
+                    }
+                }
+            });
+        }
+        else {
+            return;
+        }
+    });
+}
 //时间窗口
 opt.showDialogByTime = function () {
     $('#inputwindow').dialog('open');

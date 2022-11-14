@@ -212,9 +212,9 @@ namespace HrServiceCenterWeb.Controllers
             return View();
         }
         // GET: /Company/AccountImportDetail
-        public ActionResult AccountImportDetail(string importName)
+        public ActionResult AccountImportDetail(string q)
         {
-            ViewBag.ImportName = importName;
+            ViewBag.ImportName = q;
             return View();
         }
 
@@ -282,6 +282,34 @@ namespace HrServiceCenterWeb.Controllers
             return jsonResult;
         }
 
+        /// <summary>
+        /// 删除未结算数据
+        /// </summary>
+        /// <param name="importName"></param>
+        /// <returns></returns>
+        public ActionResult DeleteAccountImportByName(string importName)
+        {
+            bool pass = new Manager.CompanyManager().DeleteAccountImportByName(importName);
+            Object result = new
+            {
+                success = pass,
+                data = pass ? "删除成功" : "删除失败，数据可能已经被提交。"
+            };
+            JsonResult jsonResult = Json(result, JsonRequestBehavior.AllowGet);
+            return jsonResult;
+        }
+
+        public ActionResult SubmitImportDetail(string importName)
+        {
+            var succ = new Manager.CompanyManager().SubmitAccountImportDetail(importName);
+            var result = new
+            {
+                code = 200,
+                data = succ
+            };
+            JsonResult jsonResult = Json(result);
+            return jsonResult;
+        }
         public ActionResult QueryAccountMonth(string q)
         {
             q = null;

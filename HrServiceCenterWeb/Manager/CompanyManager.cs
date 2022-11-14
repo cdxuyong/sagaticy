@@ -162,18 +162,18 @@ namespace HrServiceCenterWeb.Manager
 
             int i = 0;
             int passRows = 0;
+            int detailId = new DataAccess.DbAccess().GetMax("HR_CO_ACCOUNT_RECORD", "id");
             using (EntityContext context = Session.CreateContext())
             {
                 try
                 {
                     context.BeginTransaction();
-
-
                     foreach (DataRow row in dataTable.Rows)
                     {
                         i++;
                         CompanyAccountRecordInfo ari = new CompanyAccountRecordInfo();
                         var cmpName = row["用工单位"].ToString();
+                        ari.Id = detailId + i;
                         ari.PayDate = BlueFramework.Common.Converts.Convert2Date(row["结算月份"].ToString());
                         ari.ItemName = row["结算项目"].ToString();
                         ari.Money = decimal.Parse(row["结算金额"].ToString());
@@ -210,6 +210,66 @@ namespace HrServiceCenterWeb.Manager
             }
             return pass;
         }
+        
+        /// <summary>
+        /// 提交结算
+        /// </summary>
+        /// <param name="importName"></param>
+        /// <returns></returns>
+        public bool SubmitAccountImportDetail(string importName)
+        {
+            List<CompanyAccountRecordInfo> list = null;
+            var succ = true;
+            using (EntityContext context = new EntityContext())
+            {
+                list = context.SelectList<CompanyAccountRecordInfo>("hr.company.querySubmitAccountDetail", importName);
+                try
+                {
+                    context.BeginTransaction();
+                    int i = 0;
+                    for (i=0; i < list.Count; i++)
+                    {
+                        CompanyAccountRecordInfo info = list[i];
+                        info.AccountBalance = info.AccountBalance + info.Money;
+                        // 更新明细
+                        var pass = context.Save<CompanyAccountRecordInfo>("hr.company.submitCompanyAccountDetail", info);
+                        if (!pass) throw new Exception("update CompanyAccountRecordInfo failed");
+                        if(i+1<list.Count && list[i+1].CompanyId == info.CompanyId)
+                        {
+                            // 更新同单位的余额
+                            list[i + 1].AccountBalance = info.AccountBalance;
+                        }
+                        if(i+1>=list.Count || list[i + 1].CompanyId != info.CompanyId)
+                        {
+                            // 更新单位账户余额
+                            CompanyAccountInfo accountInfo = new CompanyAccountInfo()
+                            {
+                                CompanyId = info.CompanyId,
+                                AccountBalance = info.AccountBalance
+                            };
+                            pass = context.Save<CompanyAccountInfo>("hr.company.updateCompanyAccount", accountInfo);
+                            if (!pass) throw new Exception("update CompanyAccountRecordInfo failed");
+                        }
+                    }
+                    context.Commit();
+                }
+                catch
+                {
+                    succ = false;
+                    context.Rollback();
+                }
+
+            }
+            return succ;
+        }
+        public bool DeleteAccountImportByName(string importName)
+        {
+            using (EntityContext context = new EntityContext())
+            {
+                return context.Delete("hr.company.deleteCompanyAccountImport", importName);
+            }
+        }
+
 
         /// <summary>
         /// 查询导入表明细
@@ -238,6 +298,10 @@ namespace HrServiceCenterWeb.Manager
             {
                 list = context.SelectList<CompanyAccountImportVO>("hr.company.queryAccountImport",q);
             }
+            list.ForEach(x =>
+            {
+                x.StatusName = 1 == x.Status ? "已结算" : "未处理";
+            });
             return list;
         }
 

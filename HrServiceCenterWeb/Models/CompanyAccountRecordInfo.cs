@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BlueFramework.Common;
+using Newtonsoft.Json;
 
 namespace HrServiceCenterWeb.Models
 {
     public class CompanyAccountRecordInfo
     {
+        /// <summary>
+        /// id
+        /// </summary>
+        public int Id { get; set; }
         public int CompanyId { get; set; }
 
         public string CmpName { get; set; }
@@ -23,17 +29,23 @@ namespace HrServiceCenterWeb.Models
         /// <summary>
         /// 结算月份【20221015】
         /// </summary>
+        [JsonConverter(typeof(MonthFormat))]
         public DateTime PayDate { get; set; }
         /// <summary>
         /// 开票日期【20221015】
         /// </summary>
+        [JsonConverter(typeof(DateFormat))]
         public DateTime BillDate { get; set; }
         /// <summary>
         /// 到账日期【20221015】
         /// </summary>
+        [JsonConverter(typeof(DateFormat))]
         public DateTime EntryDate { get; set; }
+
+        [JsonConverter(typeof(DateFormat))]
         public DateTime OptDate { get; set; }
 
+        [JsonConverter(typeof(DateFullFormat))]
         public DateTime CreateTime { get; set; }
 
         public int Creator { get; set; }
@@ -51,5 +63,6 @@ namespace HrServiceCenterWeb.Models
         /// </summary>
         public string ImportName { get; set; }
         public string Remark { get; set; }
+
     }
 }

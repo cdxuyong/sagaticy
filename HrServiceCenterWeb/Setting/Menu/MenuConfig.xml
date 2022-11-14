@@ -25,6 +25,10 @@
     <Node  id="304" caption="发放管理" url="~/Pay/PayList" title ="通过单位发放模板创建发放表" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="305" caption="数据中心" url="~/Pay/BankPayment" title ="提供各种数据下载导出" ic_class="" ic_id="" mob_display="true"/>
   </Title>
+  <Title  id="7" caption="结算管理" title="结算管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
+    <Node  id="701" caption="结算清单" url="~/Company/AccountImports" title ="结算清单" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="702" caption="结算汇总" url="~/Company/AccountMonth" title ="结算汇总" ic_class="" ic_id="" mob_display="true"/>
+  </Title>
   <Title  id="4" caption="统计报表" title="统计报表" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
     <Node  id="401" caption="单位五险一金统计（年度）" url="~/Reports/WxyjYear" title ="单位五险一金统计（年度）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="402" caption="单位五险一金统计（月度）" url="~/Reports/WxyjMonth" title ="单位五险一金统计（月度）" ic_class="" ic_id="" mob_display="true"/>
@@ -37,10 +41,7 @@
     <Node  id="602" caption="考勤月报" url="~/Work/MonthReporter" title ="考勤月报" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="603" caption="考勤查询" url="~/Work/ChecksQuery" title ="考勤查询" ic_class="" ic_id="" mob_display="true"/>
   </Title>
-  <Title  id="7" caption="结算管理" title="结算管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
-    <Node  id="701" caption="结算清单" url="~/Company/AccountImports" title ="结算清单" ic_class="" ic_id="" mob_display="true"/>
-    <Node  id="702" caption="结算汇总" url="~/Company/AccountMonth" title ="结算汇总" ic_class="" ic_id="" mob_display="true"/>
-  </Title>
+
   <Title  id="5" caption="系统管理" title="系统管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
     <Node  id="501" caption="账号管理" url="~/System/UserManage" title ="账号管理" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="502" caption="角色管理" url="~/System/RoleManage" title ="角色管理" ic_class="" ic_id="" mob_display="true"/>

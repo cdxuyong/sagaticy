@@ -62,9 +62,16 @@
     update [HR_CO_ACCOUNT] set  ACCOUNT_BALANCE=#{AccountBalance} where COMPANY_ID=#{CompanyId}
   </update>
   <insert id="insertCompanyAccountDetail">
-    insert into HR_CO_ACCOUNT_RECORD(ACCOUNT_ID,ACCOUNT_BALANCE,CREATE_TIME,CREATOR,MONEY,REMARK,PAY_DATE,BILL_DATE,IMPORT_NAME,ITEM_NAME,PERSON_NAME,OPT_DATE,ENTRY_DATE)
-    values(#{AccountId},#{AccountBalance},#{CreateTime},#{Creator},#{Money},#{Remark},#{PayDate},#{BillDate},#{ImportName},#{ItemName},#{PersonName},#{OptDate},#{EntryDate})
+    insert into HR_CO_ACCOUNT_RECORD(ACCOUNT_ID,ACCOUNT_BALANCE,CREATE_TIME,CREATOR,MONEY,REMARK,PAY_DATE,BILL_DATE,IMPORT_NAME,ITEM_NAME,PERSON_NAME,OPT_DATE,ENTRY_DATE,id)
+    values(#{AccountId},#{AccountBalance},#{CreateTime},#{Creator},#{Money},#{Remark},#{PayDate},#{BillDate},#{ImportName},#{ItemName},#{PersonName},#{OptDate},#{EntryDate},#{Id})
   </insert>
+  <update id="submitCompanyAccountDetail">
+    update [HR_CO_ACCOUNT_RECORD] set  ACCOUNT_BALANCE=#{AccountBalance},status=1 where id=#{Id}
+  </update>
+  <!-- 删除导入的未结算数据 -->
+  <delete id="deleteCompanyAccountImport">
+    delete from [HR_CO_ACCOUNT_RECORD] where IMPORT_NAME=#{value} and status=0
+  </delete>
   <!-- 岗位设置事务 -->
   <delete id="deletePositions">
     delete from [HR_CO_SETTING] where COMPANY_ID=#{CompanyId} and POSITION_ID=#{PositionId} and USE_TYPE=#{UseType}
@@ -84,7 +91,7 @@
   <!-- 结算管理 -->
   <select id="queryAccountImport">
     with v as (
-    select t.IMPORT_NAME importName,max(t.CREATE_TIME) createTime,max(t.PAY_DATE) payDate,sum( t.MONEY) total
+    select t.IMPORT_NAME importName,max(t.CREATE_TIME) createTime,max(t.PAY_DATE) payDate,sum( t.MONEY) total,max(t.status) status
     from hr_co_account_record t where t.IMPORT_NAME like '%${value}%'
     group by t.IMPORT_NAME
     )
@@ -96,6 +103,13 @@
     inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=t.ACCOUNT_ID
     inner join HR_COMPANY c on c.COMPANY_ID=a.COMPANY_ID
     where t.IMPORT_NAME='${value}'
+  </select>
+  <select id="querySubmitAccountDetail">
+    select t.PAY_DATE payDate,t.MONEY,t.ITEM_NAME itemName,t.BILL_DATE billDate,t.ENTRY_DATE entryDate,t.PERSON_NAME personName,t.OPT_DATE optDate,t.remark ,t.CREATE_TIME createTime,
+    a.ACCOUNT_BALANCE AccountBalance,t.id,t.STATUS,a.Company_Id CompanyId from HR_CO_ACCOUNT_RECORD t
+    inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=t.ACCOUNT_ID
+    where t.IMPORT_NAME='${value}' and t.STATUS=0
+    order by t.ACCOUNT_ID, t.id
   </select>
   <select id="queryAccountMonth">
     with v as (

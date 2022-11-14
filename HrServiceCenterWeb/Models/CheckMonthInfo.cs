@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BlueFramework.Common;
+using Newtonsoft.Json;
 
 namespace HrServiceCenterWeb.Models
 {
@@ -11,6 +13,7 @@ namespace HrServiceCenterWeb.Models
         public string PersonName { get; set; }
         public string CardId { get; set; }
         public string CmpName { get; set; }
+        [JsonConverter(typeof(MonthFormat))]
         public DateTime CheckMonth { get; set; }
         public int CheckDays { get; set; }
 

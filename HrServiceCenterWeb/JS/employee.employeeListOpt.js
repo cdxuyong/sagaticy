@@ -99,6 +99,7 @@ opt.exportSimple = function () {
 };
 opt.import = function () {
     $('#winUpload').upload({
+        title: '人员档案导入对话框',
         multiple: false,
         params: {},
         ext: 'xlsx',
@@ -112,6 +113,11 @@ opt.import = function () {
             }
         }
     });
+
+    if (!($('#importInformation').length > 0)) {
+        var txtContent = '<div id="importInformation" style="padding-left:20px;padding-top:10px; color:red;"> *注意： <br/> 1.编号是不能重复的数字编码；<br/>2.身份证号码不能重复；<br/>3.单位名称不能错误 </div>';
+        $('#winUpload').upload('addElement', txtContent);
+    }
 
     $('#winUpload').upload('show');
 };

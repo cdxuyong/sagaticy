@@ -28,6 +28,7 @@ namespace HrServiceCenterWeb.Manager
             Payment payment = LoadPayment(paymentId);
             payment.Status = 2;
 
+            int detailID = new DataAccess.DbAccess().GetMax("HR_CO_ACCOUNT_RECORD", "id");
             using(EntityContext context = Session.CreateContext())
             {
                 try
@@ -35,18 +36,25 @@ namespace HrServiceCenterWeb.Manager
                     CompanyInfo companyInfo = context.Selete<CompanyInfo>("hr.company.findCompanyById", payment.CompanyId);
 
                     CompanyAccountRecordInfo accountRecordInfo = new CompanyAccountRecordInfo();
+                    accountRecordInfo.Id = detailID + 1;
                     accountRecordInfo.CompanyId = payment.CompanyId;
                     accountRecordInfo.AccountId = companyInfo.AccountId;
                     accountRecordInfo.AccountBalance = companyInfo.AccountBalance;
-                    accountRecordInfo.Money = payment.Total;
+                    accountRecordInfo.Money = -1 * payment.Total;
                     accountRecordInfo.CreateTime = DateTime.Now;
+                    accountRecordInfo.PayDate = DateTime.Parse(payment.PayMonth);
+                    accountRecordInfo.ItemName = "应扣总额";
+                    accountRecordInfo.EntryDate = DateTime.Now;
+                    accountRecordInfo.OptDate = DateTime.Now;
+                    accountRecordInfo.BillDate = DateTime.Now;
+                    accountRecordInfo.PersonName = BlueFramework.User.UserContext.Current.UserName;
 
                     context.BeginTransaction();
                     CompanyAccountInfo accountInfo = new CompanyAccountInfo()
                     {
                         CompanyId = accountRecordInfo.CompanyId,
                         AccountId = accountRecordInfo.AccountId,
-                        AccountBalance = accountRecordInfo.AccountBalance - accountRecordInfo.Money
+                        AccountBalance = accountRecordInfo.AccountBalance + accountRecordInfo.Money
                     };
                     context.Save<CompanyAccountInfo>("hr.company.updateCompanyAccount", accountInfo);
                     context.Save<CompanyAccountRecordInfo>("hr.company.insertCompanyAccountDetail", accountRecordInfo);
@@ -377,5 +385,6 @@ namespace HrServiceCenterWeb.Manager
             DataSet ds = db.ExecuteDataSet(command);
             return ds;
         }
+
     }
 }
