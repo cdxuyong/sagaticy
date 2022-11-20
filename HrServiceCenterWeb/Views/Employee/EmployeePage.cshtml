@@ -34,7 +34,7 @@
                 </div>
                 <label class="col-sm-2 control-label">岗位</label>
                 <div class="col-sm-4">
-                    <input class="easyui-combobox" form-field-name="PositionId" form-control-type="combobox" style="width:100%;height:30px;" data-options="{url:'@Url.Content("~/BaseCode/GetPositions")',valueField: 'PositionId',textField: 'PositionName',method: 'get',editable:false,required:true}">
+                    <input class="easyui-combobox" form-field-name="PositionId" form-control-type="combobox" id="cmbPosition" style="width:100%;height:30px;" data-options="{url:'@Url.Content("~/BaseCode/GetPositions")',valueField: 'PositionId',textField: 'PositionName',method: 'get',required:true}">
                 </div>
             </div>
             <div class="form-group">
@@ -157,7 +157,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label">服务费（元）/月</label>
                 <div class="col-sm-4">
-                    <input class="easyui-numberbox" value="100" form-field-name="ServiceFee" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
+                    <input class="easyui-numberbox" value="0" form-field-name="ServiceFee" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
                 </div>
                 <label class="col-sm-2 control-label">档案用途</label>
                 <div class="col-sm-4">

@@ -5,14 +5,45 @@
 <script src="~/Library/echarts/theme/infographic.js"></script>
 <script src="~/JS/chart.HomePage.js"></script>
 <script src="~/JS/vue.min.js"></script>
+<style>
+    #rcorners1, #rcorners3 {
+        border-radius: 5px;
+        border: 2px solid #e0f2f2;
+        padding: 0px;
+    }
+    #rcorners2, #rcorners4 {
+        border-radius: 5px;
+        border: 2px solid #e0f2f2;
+        padding: 0px;
+    }
+    #rcorners0 {
+        border-radius: 5px;
+        border: 0px solid #ff0000;
+        padding: 5px;
+        color:#ff0000;
+    }
+</style>
 <div class="container" style="padding-top:10px;">
+    <!--版本更新-->
+    <div class="row" style="display:none;" id="rcorners0">
+        <span>程序更新升级，请按ctrl+shift+delete快捷键清理浏览器缓存！</span>
+        <p>
+            更新内容：<br/>
+            1）增加帮助说明<br/>
+            2）修复已知若干问题。
+        </p>
+    </div>
+    <script type="text/javascript">
+        var _myVersion = '@Publish2Local.Complication.Version';
+        var _uVersion = HR.getVersion();
 
-
+    </script>
     <!-- 合同预警-->
-    <div class="row" >
-        <div id="app" class="home_panel" >
-            <div class="home_panel_title">合同即将到期人员</div>
-            <ol >
+    <div class="row" id="rcorners1">
+        <div id="app" class="home_panel_o">
+            <h4 style="text-align:center"><i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i> 合同即将到期</h4>
+            @*<div class="home_panel_title"></div>*@
+            <ol>
                 <li v-for="p in persons">
                     <span>{{ p.PersonName }} </span> /
                     <span> {{ p.ContractTime }} / </span>
@@ -27,10 +58,11 @@
     </div>
 
     <!-- 离退休预警 -->
-    <div style="height:10px;"></div>
-    <div class="row">
+    <div style="height:5px;"></div>
+    <div class="row" id="rcorners2">
         <div id="app2" class="home_panel_o">
-            <div class="home_panel_title">即将退休人员</div>
+            <h4 style="text-align:center"><i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i> 即将退休人员</h4>
+            @*<div class="home_panel_title">即将退休人员</div>*@
             <ol>
                 <li v-for="p in persons">
                     <span>{{ p.PersonName }} </span> /
@@ -46,13 +78,13 @@
     </div>
 
     <!-- 工资发放统计 -->
-    <div style="height:10px;"></div>
-    <div class="row home_panel"  >
+    <div style="height:5px;"></div>
+    <div class="row home_panel" id="rcorners3">
         <div id="payChart" style="height:300px;"></div>
     </div>
     <!-- 岗位统计 -->
-    <div style="height:10px;"></div>
-    <div class="row home_panel_o" >
+    <div style="height:5px;"></div>
+    <div class="row home_panel" id="rcorners4">
         <div class="col-md-4">
             <div id="employeePositionCounter" style="width: 100%;height:300px;"></div>
         </div>

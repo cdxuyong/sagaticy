@@ -4,14 +4,14 @@
   <select id="positionCount">
     select p.POSITION_NAME name,count(e.POSITION_ID) value
     from HR_POSITION p
-    left join HR_EMPLOYEE e on e.POSITION_ID=p.POSITION_ID
+    inner join HR_EMPLOYEE e on e.POSITION_ID=p.POSITION_ID
     group by e.POSITION_ID,p.POSITION_ID,p.POSITION_NAME
   </select>
   <!--学历分布饼图-->
   <select id="degreeCount" >
     select b.OBJECT_TEXT name,count(e.DEGREE) value
     from T_S_BASECODE b
-    left join HR_EMPLOYEE e on  b.OBJECT_VALUE=e.DEGREE
+    inner join HR_EMPLOYEE e on  b.OBJECT_VALUE=e.DEGREE
     where b.PARENTID=4
     group by e.DEGREE,b.OBJECT_VALUE,b.OBJECT_TEXT
   </select>

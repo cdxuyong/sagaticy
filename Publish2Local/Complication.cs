@@ -4,9 +4,9 @@ namespace Publish2Local
 {
     public  class Complication
     {
-        public const string Spot = "DEMO";
+        public const string Spot = "WT";
         public static string SpotName = "";
-        public static string Version = "2.2.0";
+        public static string Version = "2.2.2";
 
         static Complication()
         {
@@ -20,7 +20,7 @@ namespace Publish2Local
             }
             if ("WT".Equals(Spot))
             {
-                SpotName = "乐山市XXXX人才服务有限公司";
+                SpotName = "乐山新纪元人才服务有限公司";
             }
         }
     }

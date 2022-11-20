@@ -38,15 +38,23 @@ opt.add = function () {
 opt.save = function () {
     var validate = false;
     var companyId = $('#cmbCompany').combobox('getValue');
+    var positionId = $('#cmbPosition').combobox('getValue');
     var companyText = $('#cmbCompany').combobox('getText');
     var companyList = $('#cmbCompany').combobox('getData');
+    var positionList = $('#cmbPosition').combobox('getData');
     companyList.forEach(function (item, i) {
         if (item.CompanyId == companyId) {
             validate = true;
         }
     });
+    validate = false;
+    positionList.forEach(function (item, i) {
+        if (item.PositionId == positionId) {
+            validate = true;
+        }
+    });
     if (!validate) {
-        $.messager.alert('警告', '请从下拉列表中选择单位！');
+        $.messager.alert('警告', '请从下拉列表中选择单位和岗位！');
         return;
     }
     var validate = $('#formEmployee').form('validate');

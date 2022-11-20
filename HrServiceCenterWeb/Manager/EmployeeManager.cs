@@ -389,6 +389,9 @@ namespace HrServiceCenterWeb.Manager
             }
             #endregion
             if (!pass) return false;
+            bool hasFee = dataTable.Columns.Contains("服务费") ? true : false ;
+            string bankName = dataTable.Columns.Contains("银行名称") ? "银行名称" : "银行卡";
+            string bankCard = dataTable.Columns.Contains("银行卡号") ? "银行卡号" : "银行";
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 DataRow row = dataTable.Rows[i];
@@ -420,8 +423,8 @@ namespace HrServiceCenterWeb.Manager
                 person.CompanyId = int.Parse( row["cmpid"].ToString() );
                 person.PositionId = int.Parse( row["posid"].ToString() );
                 person.Degree = int.Parse(row["eduid"].ToString());
-                person.BankCard = row["银行"].ToString();
-                person.BankName = row["银行卡"].ToString();
+                person.BankName = row[bankName].ToString();
+                person.BankCard = row[bankCard].ToString();
                 try
                 {
                     person.JoinWorkTime = DateTime.Parse(row["参工时间"].ToString()).ToString("yyyy-MM-dd");
@@ -436,7 +439,15 @@ namespace HrServiceCenterWeb.Manager
                 catch { message += $"{i + 1}行合同到期日期有误，"; pass = false; }
                 
                 person.AgreementNO = row["协议编号"].ToString();
-                person.BankName = row["银行卡"].ToString();
+                try
+                {
+                    person.ServiceFee = hasFee ? int.Parse(row["服务费"].ToString()) : 0;
+                }
+                catch 
+                {
+                    message += $"{i + 1}行服务费非数字，"; 
+                    pass = false;
+                }
                 try
                 {
                     person.PersonCode = int.Parse(row["编号"].ToString());

@@ -143,6 +143,18 @@ opt.selectPosition = function (position) {
     });
 }
 opt.savePosition = function () {
+    var validate = false;
+    var positionId = $('#cmbPosition').combobox('getValue');
+    var positionList = $('#cmbPosition').combobox('getData');
+    positionList.forEach(function (item, i) {
+        if (item.PositionId == positionId) {
+            validate = true;
+        }
+    });
+    if (!validate) {
+        $.messager.alert('提示', '请从下拉框中选择岗位！');
+        return;
+    }
     var param = HR.Form.getValues('frmPosition');
     param.CompanyId = dataId;
     var url = '../Company/SavePosition';

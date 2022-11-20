@@ -2,6 +2,10 @@
 var opt = window.NameSpace || {};
 
 function init() {
+        debugger
+    if (_myVersion != _uVersion) {
+        $("#rcorners0").show();
+    }
     /*
     $.ajax({
         url: "../Counter/GetEmployeeCount",

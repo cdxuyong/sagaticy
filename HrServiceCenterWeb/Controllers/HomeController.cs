@@ -12,6 +12,7 @@ namespace HrServiceCenterWeb.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Version = Publish2Local.Complication.Version;
             return View();
         }
 
