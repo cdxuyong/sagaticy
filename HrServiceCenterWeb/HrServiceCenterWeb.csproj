@@ -367,6 +367,7 @@
     <Content Include="Files\考勤月报.xlsx" />
     <Content Include="Files\考勤表.xlsx" />
     <Content Include="Files\导入单位账户余额.xlsx" />
+    <Content Include="Files\卓越人力资源服务系统-操作手册.docx" />
     <None Include="JS\jquery.validate-vsdoc.js" />
     <Content Include="JS\jquery.validate.js" />
     <Content Include="JS\jquery.validate.min.js" />

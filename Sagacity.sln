@@ -30,7 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{925367
 		setup_sql.txt = setup_sql.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publish2Local", "Publish2Local\Publish2Local.csproj", "{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publish2Local", "Publish2Local\Publish2Local.csproj", "{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBackService", "DataBackService\DataBackService.csproj", "{B86B7CAE-3519-443F-AE1C-431D4B0E1C83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,10 @@ Global
 		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86B7CAE-3519-443F-AE1C-431D4B0E1C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86B7CAE-3519-443F-AE1C-431D4B0E1C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86B7CAE-3519-443F-AE1C-431D4B0E1C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86B7CAE-3519-443F-AE1C-431D4B0E1C83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

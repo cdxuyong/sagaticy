@@ -21,10 +21,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:19</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.dll">
-      <publishTime>11/17/2022 21:47:23</publishTime>
+      <publishTime>11/20/2022 19:53:04</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.pdb">
-      <publishTime>11/17/2022 21:47:23</publishTime>
+      <publishTime>11/20/2022 19:53:04</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.dll">
       <publishTime>11/17/2022 10:39:25</publishTime>
@@ -45,10 +45,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/17/2022 10:39:26</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.dll">
-      <publishTime>11/17/2022 21:47:27</publishTime>
+      <publishTime>11/20/2022 19:53:11</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.pdb">
-      <publishTime>11/17/2022 21:47:27</publishTime>
+      <publishTime>11/20/2022 19:53:11</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -105,10 +105,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/11/2017 15:00:06</publishTime>
     </File>
     <File Include="bin/Publish2Local.dll">
-      <publishTime>11/17/2022 21:47:23</publishTime>
+      <publishTime>11/20/2022 19:53:04</publishTime>
     </File>
     <File Include="bin/Publish2Local.pdb">
-      <publishTime>11/17/2022 21:47:23</publishTime>
+      <publishTime>11/20/2022 19:53:04</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -878,6 +878,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Files/2019年10月工资表.xls">
       <publishTime>11/17/2022 20:44:06</publishTime>
     </File>
+    <File Include="Files/卓越人力资源服务系统-操作手册.docx">
+      <publishTime>11/20/2022 18:30:22</publishTime>
+    </File>
     <File Include="Files/单位结算.xlsx">
       <publishTime>10/11/2022 22:08:45</publishTime>
     </File>
@@ -915,7 +918,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/12/2018 00:04:46</publishTime>
     </File>
     <File Include="JS/chart.HomePage.js">
-      <publishTime>01/03/2019 21:24:13</publishTime>
+      <publishTime>11/19/2022 22:32:54</publishTime>
     </File>
     <File Include="JS/check.ChecksQueryOpt.js">
       <publishTime>10/15/2022 22:18:16</publishTime>
@@ -1026,7 +1029,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/16/2018 20:52:28</publishTime>
     </File>
     <File Include="JS/share.js">
-      <publishTime>05/19/2018 14:12:41</publishTime>
+      <publishTime>11/20/2022 18:37:47</publishTime>
     </File>
     <File Include="JS/UserManageOpt.js">
       <publishTime>05/14/2018 21:27:37</publishTime>
@@ -2790,7 +2793,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/13/2018 20:24:44</publishTime>
     </File>
     <File Include="sqlMappers/hr.charts.xml">
-      <publishTime>10/23/2018 22:05:07</publishTime>
+      <publishTime>11/19/2022 22:37:54</publishTime>
     </File>
     <File Include="sqlMappers/hr.check.xml">
       <publishTime>10/15/2022 22:22:03</publishTime>
@@ -2850,7 +2853,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/17/2022 21:02:10</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/12/2022 20:09:17</publishTime>
+      <publishTime>11/20/2022 18:37:59</publishTime>
     </File>
     <File Include="Views/Pay/BankPayment.cshtml">
       <publishTime>09/13/2018 22:27:46</publishTime>
@@ -2898,7 +2901,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Views/Shared/Menu.cshtml">
-      <publishTime>12/25/2021 19:51:25</publishTime>
+      <publishTime>11/19/2022 22:58:08</publishTime>
     </File>
     <File Include="Views/Shared/_EmpleLayout.cshtml">
       <publishTime>04/11/2018 23:54:34</publishTime>
