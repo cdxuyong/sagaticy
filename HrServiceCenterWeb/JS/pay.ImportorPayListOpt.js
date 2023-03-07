@@ -99,7 +99,7 @@ opt.import = function () {
     });
 
     if (!($('#importInformation').length > 0)){
-        var txtContent = '<div id="importInformation" style="padding-left:20px;color:red;"> * 请按此格式规范文件名称：年月+工资表名称（2018年7月工资表）<br/> </div>';
+        var txtContent = '<div id="importInformation" style="padding-left:20px;color:red;"> * 请按此格式规范文件名称：单位名称+年月+工资表名称（人事局2018年7月工资表）<br/> </div>';
         $('#winUpload').upload('addElement', txtContent);
     }
 

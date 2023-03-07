@@ -5,6 +5,7 @@
     select p.POSITION_NAME name,count(e.POSITION_ID) value
     from HR_POSITION p
     inner join HR_EMPLOYEE e on e.POSITION_ID=p.POSITION_ID
+    where 1=1 ${where}
     group by e.POSITION_ID,p.POSITION_ID,p.POSITION_NAME
   </select>
   <!--学历分布饼图-->
@@ -12,7 +13,7 @@
     select b.OBJECT_TEXT name,count(e.DEGREE) value
     from T_S_BASECODE b
     inner join HR_EMPLOYEE e on  b.OBJECT_VALUE=e.DEGREE
-    where b.PARENTID=4
+    where b.PARENTID=4 ${where}
     group by e.DEGREE,b.OBJECT_VALUE,b.OBJECT_TEXT
   </select>
 <!--人员统计柱状图-->
@@ -30,7 +31,7 @@
     select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
     from HR_SALARY_PAY_VALUE a
     INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
-    where a.ITEM_ID in (4,5) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    where a.ITEM_ID in (4,5) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23) ${where}
     group by b.PAY_MONTH
   </select>
   <!--应发工资部分折线图-->
@@ -38,7 +39,7 @@
     select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
     from HR_SALARY_PAY_VALUE a
     INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
-    where a.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    where a.ITEM_ID in (101,102,103,104,105,106,107,108,109,110,111) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23) ${where}
     group by b.PAY_MONTH
   </select>
   <!--个人保险部分-->
@@ -46,7 +47,7 @@
     select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
     from HR_SALARY_PAY_VALUE a
     INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
-    where a.ITEM_ID in (201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    where a.ITEM_ID in (201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23) ${where} 
     group by b.PAY_MONTH
   </select>
   <!--服务费-->
@@ -54,7 +55,7 @@
     select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
     from HR_SALARY_PAY_VALUE a
     INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
-    where a.ITEM_ID in (6) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    where a.ITEM_ID in (6) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23) ${where} 
     group by b.PAY_MONTH
   </select>
   <!--工资+个人总额部分折线图-->
@@ -62,7 +63,7 @@
     select b.PAY_MONTH DataAxis,sum(a.PAY_VALUE) Data
     from HR_SALARY_PAY_VALUE a
     INNER JOIN HR_SALARY_PAY b on a.PAY_ID=b.PAY_ID
-    where a.ITEM_ID in (4,5,101,102,103,104,105,106,107,108,109,110,111,201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23)
+    where a.ITEM_ID in (4,5,101,102,103,104,105,106,107,108,109,110,111,201,202,203,206) and b.PAY_MONTH>=CONVERT(varchar(100),dateadd(MONTH,-13,GETDATE()), 23) ${where} 
     group by b.PAY_MONTH
   </select>
 </mapper>

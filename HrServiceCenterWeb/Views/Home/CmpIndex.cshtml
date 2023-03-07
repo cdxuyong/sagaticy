@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Library/echarts/js/echarts.min.js"></script>
+<script src="~/Library/echarts/theme/infographic.js"></script>
+<script src="~/JS/chart.HomePage.js"></script>
+<script src="~/JS/vue.min.js"></script>
+<style>
+    #rcorners1, #rcorners3 {
+        border-radius: 5px;
+        border: 2px solid #e0f2f2;
+        padding: 0px;
+    }
+    #rcorners2, #rcorners4 {
+        border-radius: 5px;
+        border: 2px solid #e0f2f2;
+        padding: 0px;
+    }
+    #rcorners0 {
+        border-radius: 5px;
+        border: 0px solid #ff0000;
+        padding: 5px;
+        color:#ff0000;
+    }
+</style>
+<div class="container" style="padding-top:10px;">
+    <!--版本更新-->
+    <div class="row" style="display:none;" id="rcorners0">
+        <span>程序更新升级，请按ctrl+shift+delete快捷键清理浏览器缓存！</span>
+        <p>
+            更新内容：<br/>
+            1）增加帮助说明<br/>
+            2）修复已知若干问题。
+        </p>
+    </div>
+    <script type="text/javascript">
+        var _myVersion = '@Publish2Local.Complication.Version';
+        var _uVersion = HR.getVersion();
+
+    </script>
+
+
+    <!-- 工资发放统计 -->
+    <div style="height:5px;"></div>
+    <div class="row home_panel" id="rcorners3">
+        <div id="payChart" style="height:300px;"></div>
+    </div>
+    <!-- 岗位统计 -->
+    <div style="height:5px;"></div>
+    <div class="row home_panel" id="rcorners4">
+        <div class="col-md-4">
+            <div id="employeePositionCounter" style="width: 100%;height:300px;"></div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <div id="employeeDegreeCounter" style="width: 100%;height:300px;"></div>
+        </div>
+    </div>
+    <!-- 人员统计 -->
+    <div id="employeeCounter" style="width: 100%;height:300px;display:none;" class="row"></div>
+    <div style="height:10px;"></div>
+    <div class="row home_panel_bottom">
+        <div class="home_panel_title">常用模板下载</div>
+        <ul>
+            <li><a href="../../Files/2019年10月工资表.xls">工资导入模板</a></li>
+            <li><a href="../../Files/2018年6月份缴存导入数据.xls">社保导入模板</a></li>
+            <li><a href="../../Files/批量导入人员模板.xlsx">批量导入人员模板</a></li>
+            <li><a href="../../Files/导入单位账户余额.xlsx">批量导入单位账户余额</a></li>
+            <li><a href="../../Files/单位结算.xlsx">单位结算模板</a></li>
+            <li><a href="../../Files/考勤表.xlsx">考勤明细模板</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+
+</script>

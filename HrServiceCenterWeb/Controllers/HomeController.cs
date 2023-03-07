@@ -1,4 +1,5 @@
-﻿using HrServiceCenterWeb.Manager;
+﻿using BlueFramework.User;
+using HrServiceCenterWeb.Manager;
 using HrServiceCenterWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,10 @@ namespace HrServiceCenterWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.Version = Publish2Local.Complication.Version;
-            return View();
+            if (UserContext.CurrentUser.IsCompanyUser)
+                return View("CmpIndex");
+            else
+                return View();
         }
 
         public ActionResult About()

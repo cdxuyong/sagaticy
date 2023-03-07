@@ -11,7 +11,7 @@
     u.TRUENAME CreatorName from HR_SALARY_PAY t
     left join HR_COMPANY c on t.COMPANY_ID=c.COMPANY_ID
     left join T_S_USER u on t.CREATOR=u.USERID
-    where t.PAY_TITLE like '%${value}%'
+    where t.PAY_TITLE like '%${value}%' ${where}
     order by t.STATUS,t.PAY_ID desc
   </select>
 

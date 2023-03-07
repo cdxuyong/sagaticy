@@ -25,3 +25,5 @@ truncate table [dbo].[HR_CO_ACCOUNT];
 
 
 
+
+

@@ -6,6 +6,8 @@ using System.Data;
 
 using BlueFramework.Blood;
 using System.Data.Common;
+using BlueFramework.User;
+using BlueFramework.Blood.DataAccess;
 
 namespace HrServiceCenterWeb.Manager
 {
@@ -18,7 +20,16 @@ namespace HrServiceCenterWeb.Manager
         public List<Models.CountetBase> GetPositionCounts()
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.positionCount", null);
+            CommandParameter[] dbParms = new CommandParameter[1];
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+            }
+            else
+            {
+                dbParms[0] = new CommandParameter("where", "");
+            }
+            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.positionCount", dbParms);
             return list;
         }
 
@@ -29,7 +40,16 @@ namespace HrServiceCenterWeb.Manager
         public List<Models.CountetBase> GetDegreeCounts()
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.degreeCount", null);
+            CommandParameter[] dbParms = new CommandParameter[1];
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+            }
+            else
+            {
+                dbParms[0] = new CommandParameter("where", "");
+            }
+            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.degreeCount", dbParms);
             return list;
         }
 
@@ -51,11 +71,20 @@ namespace HrServiceCenterWeb.Manager
         {
             List<Models.CounterVO> series = new List<Models.CounterVO>();
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<Models.CounterBO> insuranceList = context.SelectList<Models.CounterBO>("hr.chart.insuranceCount", null);
-            List<Models.CounterBO> shouldPayList = context.SelectList<Models.CounterBO>("hr.chart.shouldPayCount", null);
-            List<Models.CounterBO> personPayList = context.SelectList<Models.CounterBO>("hr.chart.personPayCount", null);
-            List<Models.CounterBO> truePayList = context.SelectList<Models.CounterBO>("hr.chart.truePayCount", null);
-            List<Models.CounterBO> servicePayList = context.SelectList<Models.CounterBO>("hr.chart.servicePayCount", null);
+            CommandParameter[] dbParms = new CommandParameter[1];
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[0] = new CommandParameter("where", $" and b.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+            }
+            else
+            {
+                dbParms[0] = new CommandParameter("where", "");
+            }
+            List<Models.CounterBO> insuranceList = context.SelectList<Models.CounterBO>("hr.chart.insuranceCount", dbParms);
+            List<Models.CounterBO> shouldPayList = context.SelectList<Models.CounterBO>("hr.chart.shouldPayCount", dbParms);
+            List<Models.CounterBO> personPayList = context.SelectList<Models.CounterBO>("hr.chart.personPayCount", dbParms);
+            List<Models.CounterBO> truePayList = context.SelectList<Models.CounterBO>("hr.chart.truePayCount", dbParms);
+            List<Models.CounterBO> servicePayList = context.SelectList<Models.CounterBO>("hr.chart.servicePayCount", dbParms);
 
             Dictionary<string, DateTime> months = new Dictionary<string, DateTime>();
             DateTime startDate = DateTime.Parse( DateTime.Now.ToString("yyyy-MM-01") );

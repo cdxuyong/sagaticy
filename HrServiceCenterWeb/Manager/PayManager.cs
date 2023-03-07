@@ -13,6 +13,7 @@ using System.Web;
 using System.Xml;
 using BlueFramework.Data;
 using BlueFramework.Blood.Config;
+using BlueFramework.Blood.DataAccess;
 
 namespace HrServiceCenterWeb.Manager
 {
@@ -238,14 +239,34 @@ namespace HrServiceCenterWeb.Manager
         public List<InsuranceInfo> QueryImportorInsuranceList(string query)
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findInsurance", query);
+            CommandParameter[] dbParms = new CommandParameter[2];
+            dbParms[0] = new CommandParameter("value", query);
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[1] = new CommandParameter("where", $" and t.CREATOR="+UserContext.CurrentUser.UserId);
+            }
+            else
+            {
+                dbParms[1] = new CommandParameter("where", "");
+            }
+            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findInsurance", dbParms);
             return list;
         }
 
         public List<InsuranceInfo> QueryImportorPaymentList(string query)
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findPayments", query);
+            CommandParameter[] dbParms = new CommandParameter[2];
+            dbParms[0] = new CommandParameter("value", query);
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[1] = new CommandParameter("where", $" and t.CREATOR=" + UserContext.CurrentUser.UserId);
+            }
+            else
+            {
+                dbParms[1] = new CommandParameter("where", "");
+            }
+            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findPayments", dbParms);
             return list;
         }
 
@@ -505,7 +526,17 @@ namespace HrServiceCenterWeb.Manager
         public List<Payment> QueryPayList(string query)
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<Payment> list = context.SelectList<Payment>("hr.pay.findPayList", query);
+            CommandParameter[] dbParms = new CommandParameter[2];
+            dbParms[0] = new CommandParameter("value", query);
+            if (UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[1] = new CommandParameter("where", $" and t.CREATOR=" + UserContext.CurrentUser.UserId);
+            }
+            else
+            {
+                dbParms[1] = new CommandParameter("where", "");
+            }
+            List<Payment> list = context.SelectList<Payment>("hr.pay.findPayList", dbParms);
             return list;
         }
 

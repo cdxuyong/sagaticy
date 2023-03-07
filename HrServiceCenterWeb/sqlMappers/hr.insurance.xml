@@ -5,14 +5,14 @@
     select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
     from HR_SALARY_IMPORTOR t
     left join T_S_USER u on t.CREATOR=u.USERID
-    where t.TITLE like '%${value}%' and IMPORT_TYPE=1
+    where t.TITLE like '%${value}%' and IMPORT_TYPE=1 ${where}
     order by  t.IMPORT_ID desc
   </select>
   <select id="findPayments" >
     select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
     from HR_SALARY_IMPORTOR t
     left join T_S_USER u on t.CREATOR=u.USERID
-    where t.TITLE like '%${value}%' and IMPORT_TYPE=2
+    where t.TITLE like '%${value}%' and IMPORT_TYPE=2  ${where} 
     order by  t.IMPORT_ID desc
   </select>
   <!-- 删除保险列表-->

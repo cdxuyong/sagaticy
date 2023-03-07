@@ -35,7 +35,7 @@
         </thead>
     </table>
 </div>
-<div id="edit" class="easyui-window" title="" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 330px; padding: 10px; display: none">
+<div id="edit" class="easyui-window" title="" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 600px; padding: 10px; display: none">
     <table id="tb-view">
         <tr>
             <td>&nbsp</td>
@@ -44,7 +44,7 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 70px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">用户名：</td>
+            <td style="width: 200px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">用户名：</td>
             <td>
                 <input id="txtName" type="text" class="easyui-validatebox" data-options="required:true" value="" form-field-name="UserName" style="width: 160px;" placeholder="请输出用户名" />
                 <input id="newName" type="hidden" form-field-name="NewUsername" value="" />
@@ -54,7 +54,7 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="width: 90px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">真实姓名：</td>
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">真实姓名：</td>
             <td>
                 <input type="text" name="TrueName" class="easyui-validatebox" data-options="required:true" id="tre" form-field-name="TrueName" placeholder="请输出真实姓名" style="width: 160px;" />
             </td>
@@ -62,10 +62,16 @@
         <tr>
             <td>&nbsp;</td>
         </tr>
-        <tr>
-            <td style="width: 90px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">归属组织：</td>
+        <tr style="height:40px;">
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">归属组织：</td>
             <td>
-                <select id="cmbOrg" editable="false" class="easyui-combobox" data-options="valueField: 'OrgId',textField: 'OrgName',required:true" form-field-name="OrgId" type="text" form-control-type="combobox" style="width: 100px;"></select>
+                <select id="cmbOrg" editable="false" class="easyui-combobox" data-options="valueField: 'OrgId',textField: 'OrgName',required:true" form-field-name="OrgId" type="text" form-control-type="combobox" style="width: 300px; height: 30px;"></select>
+            </td>
+        </tr>
+        <tr id="trCompanyID" style="height:40px;">
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">所属单位（其他单位时填写）：</td>
+            <td>
+                <input class="easyui-combobox" form-field-name="CompanyId" form-control-type="combobox" id="cmbCompany" style="width:100%;height:30px;" data-options="{url:'@Url.Content("~/Company/GetCompanyList?query=")',valueField: 'CompanyId',textField: 'Name'}">
             </td>
         </tr>
         <tr>

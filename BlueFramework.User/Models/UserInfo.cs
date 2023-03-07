@@ -34,6 +34,11 @@ namespace BlueFramework.User.Models
         public string OrgName { get; set; }
 
         /// <summary>
+        /// 所属单位ID
+        /// </summary>
+        public int CompanyId { get; set; }
+
+        /// <summary>
         /// user orgnization
         /// </summary>
         public OrgnizationInfo Orgnization { get; set; }
@@ -63,6 +68,17 @@ namespace BlueFramework.User.Models
         /// 数据继承（来自）于角色分配权限
         /// </summary>
         public List<int> DataRights { get; set; }
+        /// <summary>
+        /// 是否为公司特定用户
+        /// </summary>
+
+        public bool IsCompanyUser
+        {
+            get
+            {
+                return CompanyId > 0 || OrgId > 10000 ? true : false;
+            }
+        }
 
     }
 }
