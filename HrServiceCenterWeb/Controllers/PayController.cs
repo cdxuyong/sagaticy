@@ -9,6 +9,7 @@ using System.Data;
 using BlueFramework.Common.CSV;
 using System.Xml;
 using BlueFramework.Common.Excel;
+using BlueFramework.User;
 
 namespace HrServiceCenterWeb.Controllers
 {
@@ -325,6 +326,7 @@ namespace HrServiceCenterWeb.Controllers
         // VIEW: /Pay/PayList
         public ActionResult PayList()
         {
+            ViewBag.IsAdmin = UserContext.CurrentUser.IsCompanyUser?false:true;
             return View();
         }
 

@@ -19,7 +19,12 @@
             <div class="col-md-5">
                 <a class="btn btn-primary btn-sm" style="width:100px;" href="javascript:void(0)" onclick="opt.add()"><i class="fa fa-file-o" aria-hidden="true"></i> 新建发放</a>
                 <a class="btn btn-primary btn-sm" style="width:100px;" href="javascript:void(0)" onclick="opt.edit()"><i class="fa fa-circle-o" aria-hidden="true"></i> 编辑发放</a>
-                <a class="btn btn-primary btn-sm" style="width:100px;" href="javascript:void(0)" onclick="opt.openBatchDialog()"><i class="fa fa-circle-o" aria-hidden="true"></i> 批量创建</a>
+                @{
+                    if (ViewBag.IsAdmin)
+                    {
+                        <a class="btn btn-primary btn-sm" style="width:100px;" href="javascript:void(0)" onclick="opt.openBatchDialog()"><i class="fa fa-circle-o" aria-hidden="true"></i> 批量创建</a>
+                    }
+                }
                 <a class="btn btn-danger btn-sm" style="width:100px;" href="javascript:void(0)" onclick="opt.delete()"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
             </div>
         </div>

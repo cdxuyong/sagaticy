@@ -62,7 +62,7 @@ namespace BlueFramework.User.DataAccess
             Database database = dbFactory.CreateDefault();
             user.UserId = getMaxUserId() + 1;
             string sql = string.Format("insert into T_S_USER(USERID,ORG_ID,USERNAME,PASSWORD,TRUENAME,ISADMIN,STATE,CREATE_TIME,COMPANYID)"
-         + "values({0},{1},'{2}','{3}','{4}',{5},{6},'{7}')", user.UserId, user.OrgId, user.UserName, user.Password, user.TrueName, 0, 1, DateTime.Now.ToString("yyyy/MM/dd"),user.CompanyId);
+         + "values({0},{1},'{2}','{3}','{4}',{5},{6},'{7}',{8})", user.UserId, user.OrgId, user.UserName, user.Password, user.TrueName, 0, 1, DateTime.Now.ToString("yyyy/MM/dd"),user.CompanyId);
             DbCommand dbCommand = database.GetSqlStringCommand(sql);
             int result = database.ExecuteNonQuery(dbCommand);
             if (result > 0)

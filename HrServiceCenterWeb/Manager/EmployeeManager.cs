@@ -6,6 +6,7 @@ using System.Data;
 using BlueFramework.Blood;
 using HrServiceCenterWeb.Models;
 using BlueFramework.Blood.Config;
+using BlueFramework.Blood.DataAccess;
 
 namespace HrServiceCenterWeb.Manager
 {
@@ -38,7 +39,17 @@ namespace HrServiceCenterWeb.Manager
         public List<CompanyInfo> GetCompanies(string query)
         {
             EntityContext context = Session.CreateContext();
-            List<CompanyInfo> list = context.SelectList<CompanyInfo>("hr.company.findCompanys", query);
+            CommandParameter[] dbParms = new CommandParameter[2];
+            dbParms[0] = new CommandParameter("value", query);
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                dbParms[1] = new CommandParameter("where", $" and t.COMPANY_ID=" + BlueFramework.User.UserContext.CurrentUser.CompanyId);
+            }
+            else
+            {
+                dbParms[1] = new CommandParameter("where", "");
+            }
+            List<CompanyInfo> list = context.SelectList<CompanyInfo>("hr.company.findCompanys", dbParms);
             return list;
         }
 
