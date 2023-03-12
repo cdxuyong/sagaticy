@@ -28,7 +28,9 @@ opt.disable = function () {
 opt.autoName = function (company) {
     var date = $('#datebox').datebox('getText');
     var cmp = $('#cmpname').combobox('getText');
-    var name = cmp + date + '工资表';
+    var day = new Date(date);
+    day.getFullYear()
+    var name = cmp + day.getFullYear() + '年' + (1+day.getMonth()) + '月' + '工资发放表';
     $('#tempname').val(name);
     $('#cmpMoney').html('当前余额：' + company.AccountBalance + '元');
 };
@@ -150,8 +152,10 @@ opt.createGrid = function (items, table) {
     var obj = { "total": 2, "rows": table };
     var head1 = [
         { field: 'PersonId', title: 'ID', rowspan: 2, width: 0 },
-        { field: 'PersonName', title: '姓名', rowspan: 2, width: 60 },
-        { field: 'PersonCode', title: '身份证', rowspan: 2, width: 100 }
+        { field: 'PersonName', title: '员工姓名', rowspan: 2, width: 60 },
+        { field: 'PersonCode', title: '身份证号码', rowspan: 2, width: 100 },
+        { field: 'CardID', title: '工资卡号', rowspan: 2, width: 100 },
+        { field: 'Position', title: '岗位', rowspan: 2, width: 80 }
     ];
     var head2 = [];
     for (var i = 0; i < items.length; i++) {

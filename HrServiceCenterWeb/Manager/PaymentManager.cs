@@ -189,7 +189,9 @@ namespace HrServiceCenterWeb.Manager
             dt.Columns.Add("PersonId");
             dt.Columns.Add("PersonName");
             dt.Columns.Add("PersonCode");
-            foreach(PayItemDO item in items)
+            dt.Columns.Add("CardID");
+            dt.Columns.Add("Position");
+            foreach (PayItemDO item in items)
             {
                 if (item.IsLeaf == false) continue;
                 item.ItemName = "f_" + item.ItemId;
@@ -206,6 +208,8 @@ namespace HrServiceCenterWeb.Manager
                 dr["PersonId"] = o.ObjectId;
                 dr["PersonName"] = o.ObjectName;
                 dr["PersonCode"] = o.ObjectCode;
+                dr["CardID"] = o.CardID;
+                dr["Position"] = o.Position;
                 dt.Rows.Add(dr);
                 rows.Add(o.ObjectId, dr);
             }
@@ -224,37 +228,37 @@ namespace HrServiceCenterWeb.Manager
             #region calculate columns
             foreach (DataRow dr in dt.Rows)
             {
-                dr["f_199"] =
-                    decimal.Parse(dr["f_101"].ToString()) +
-                    decimal.Parse(dr["f_102"].ToString()) +
-                    decimal.Parse(dr["f_103"].ToString()) +
-                    decimal.Parse(dr["f_104"].ToString()) +
-                    decimal.Parse(dr["f_105"].ToString()) +
-                    decimal.Parse(dr["f_106"].ToString()) +
-                    decimal.Parse(dr["f_107"].ToString()) +
-                    decimal.Parse(dr["f_108"].ToString()) +
-                    decimal.Parse(dr["f_109"].ToString()) +
-                    decimal.Parse(dr["f_110"].ToString()) +
-                    decimal.Parse(dr["f_111"].ToString());
-                dr["f_299"] =
-                    decimal.Parse(dr["f_201"].ToString()) +
-                    decimal.Parse(dr["f_202"].ToString()) +
-                    decimal.Parse(dr["f_203"].ToString()) +
-                    decimal.Parse(dr["f_206"].ToString());
-                decimal realPayValue = 
-                    decimal.Parse(dr["f_199"].ToString()) - 
-                    decimal.Parse(dr["f_299"].ToString());
+                decimal yfgz = 0;
+                foreach(var i in items)
+                {
+                    if(i.ParentId == 1 && i.ItemId != 199)
+                    {
+                        yfgz += decimal.Parse(dr[i.ItemName].ToString());
+                    }
+                }
+                decimal gryk = 0;
+                foreach (var i in items)
+                {
+                    if (i.ParentId == 2 && i.ItemId != 299)
+                    {
+                        gryk += decimal.Parse(dr[i.ItemName].ToString());
+                    }
+                }
+                dr["f_199"] = yfgz;//应发工资
+                dr["f_299"] = gryk;//个人应扣
+                decimal realPayValue = yfgz - gryk;
                 dr["f_3"] = realPayValue<0 ? 0: realPayValue;
-                dr["f_7"] = 
-                    decimal.Parse(dr["f_199"].ToString()) +
-                    decimal.Parse(dr["f_4"].ToString()) +
-                    decimal.Parse(dr["f_5"].ToString())+
-                    decimal.Parse(dr["f_6"].ToString());
-                decimal realPaytotal =
-                    decimal.Parse(dr["f_199"].ToString()) +
-                    decimal.Parse(dr["f_4"].ToString()) +
-                    decimal.Parse(dr["f_5"].ToString());
-                payment.Total += realPaytotal;
+                if (dt.Columns.Contains("f_7"))
+                {
+                    dr["f_7"] = decimal.Parse(dr["f_199"].ToString()) + decimal.Parse(dr["f_4"].ToString()) + decimal.Parse(dr["f_5"].ToString()) + decimal.Parse(dr["f_6"].ToString());
+                    decimal realPaytotal = decimal.Parse(dr["f_199"].ToString()) + decimal.Parse(dr["f_4"].ToString()) + decimal.Parse(dr["f_5"].ToString());
+                    payment.Total += realPaytotal;
+                }
+                else
+                {
+                    payment.Total += realPayValue;
+                }
+
             }
             #endregion
 
@@ -267,7 +271,7 @@ namespace HrServiceCenterWeb.Manager
             JObject joSum = new JObject();
             joSum.Add("PersonCode", "合计");
             payment.Sheet.footer.Add(joSum);
-            for(int i = 3; i < dt.Columns.Count; i++)
+            for(int i = 5; i < dt.Columns.Count; i++)
             {
                 string columnName = dt.Columns[i].ColumnName;
                 string exp = string.Format("sum({0})", columnName);

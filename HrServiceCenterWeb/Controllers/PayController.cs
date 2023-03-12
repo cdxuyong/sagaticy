@@ -144,6 +144,8 @@ namespace HrServiceCenterWeb.Controllers
         // VIEW: /Pay/ImportorList
         public ActionResult ImportorList()
         {
+            ViewBag.IsAdmin = UserContext.CurrentUser.IsCompanyUser ? false : true;
+
             return View();
         }
 

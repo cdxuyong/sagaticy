@@ -302,7 +302,20 @@ namespace HrServiceCenterWeb.Manager
         {
             Dictionary<string, int> cardIds = getItemCardId();
             Dictionary<string, int> titles = getItemTitle();
-            //Dictionary<string, int> thirddic = getThirdItem();
+
+            string colPayMonth = "计划月度";
+            string colAccountIndex = "做账期号";
+            string colPayIndex = "费款所属期";
+            string colPersonName = dt.Columns.Contains("个人姓名")?"个人姓名": "姓名";
+            string colIdCard = dt.Columns.Contains("身份证号码") ? "身份证号码" : "证件号";
+            string colPayType = dt.Columns.Contains("险种") ? "险种" : "应缴类型";
+            string colBase = "缴费基数";
+            string colScalCmp = "单位缴费比例";
+            string colScalPerson = "个人缴费比例";
+            string colPayCmp = dt.Columns.Contains("单位缴费金额") ? "单位缴费金额" : "单位缴费";
+            string colPayPerson = dt.Columns.Contains("个人缴费金额") ? "个人缴费金额" : "个人缴费";
+            string colMemo = "备注";
+
             using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
                 try
@@ -330,12 +343,18 @@ namespace HrServiceCenterWeb.Manager
                         //入库导入详细表
                         InsuranceDetailInfo idi = new InsuranceDetailInfo();
                         idi.ImportId = ii.ImportId;
-                        idi.PayMonth = row["计划月度"].ToString();
-                        idi.PersonName = row["个人姓名"].ToString().Trim();
-                        idi.PersonPayValue = decimal.Parse(row["个人缴存"].ToString());
-                        idi.CompanyPayValue= decimal.Parse(row["单位缴存"].ToString());
-                        idi.ImportColumnName = row["险种"].ToString();
-                        string cardId = row["身份证号码"].ToString().ToLower()+"."+idi.PersonName;
+                        idi.PayMonth = row[colPayMonth].ToString();
+                        idi.PayIndex = row[colPayIndex].ToString();
+                        idi.AccountIndex = row[colAccountIndex].ToString();
+                        idi.PersonName = row[colPersonName].ToString().Trim();
+                        idi.BaseValue = decimal.Parse(row[colBase].ToString());
+                        idi.ScaleCompany = decimal.Parse(row[colScalCmp].ToString());
+                        idi.ScalePerson = decimal.Parse(row[colScalPerson].ToString());
+                        idi.PersonPayValue = decimal.Parse(row[colPayPerson].ToString());
+                        idi.CompanyPayValue= decimal.Parse(row[colPayCmp].ToString());
+                        idi.ImportColumnName = row[colPayType].ToString();
+                        idi.Memo = row[colMemo].ToString();
+                        string cardId = row[colIdCard].ToString().ToLower()+"."+idi.PersonName;
                         if (cardIds.ContainsKey(cardId))
                         {
                             idi.PersonId = cardIds[cardId];
@@ -347,9 +366,9 @@ namespace HrServiceCenterWeb.Manager
                             outmsg += string.Format("第{0}行 {1} 人员的身份证号码和姓名不匹配， ",rowIndex, idi.PersonName ); 
                             continue;
                         }
-                        if (titles.ContainsKey(row["险种"].ToString()))
+                        if (titles.ContainsKey(row[colPayType].ToString()))
                         {
-                            idi.ItemId = titles[row["险种"].ToString()];
+                            idi.ItemId = titles[row[colPayType].ToString()];
                         }
                         else
                         {

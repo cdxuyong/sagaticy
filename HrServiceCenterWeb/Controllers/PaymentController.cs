@@ -142,14 +142,18 @@ namespace HrServiceCenterWeb.Controllers
             TTemplate template = new TTemplate();
             TRow R1 = new TRow();
             TRow R2 = new TRow();
-            int index1 = 3;
-            int index2 = 3;
+            int index1 = 5;
+            int index2 = 5;
             TCell A = new TCell("PersonId", "ID", 0, 0); A.RowSpan = 2;A.Width = 1;
             TCell B = new TCell("PersonName", "姓名", 0, 1);B.RowSpan = 2;
             TCell C = new TCell("PersonCode", "身份证", 0, 2); C.RowSpan = 2;
+            TCell D = new TCell("CardID", "工资卡号", 0, 3); C.RowSpan = 2;
+            TCell E = new TCell("Position", "岗位", 0, 4); C.RowSpan = 2;
             R1.Cells.Add(A);
             R1.Cells.Add(B);
             R1.Cells.Add(C);
+            R1.Cells.Add(D);
+            R1.Cells.Add(E);
             foreach (PayItemDO item in payment.Items)
             {
                 TCell cell = new TCell();

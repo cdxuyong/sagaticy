@@ -87,23 +87,28 @@
 
   <!--缴存数据导出-->
   <select id="exportjiaocun" >
-    select c.NAME 单位名称,v1.itemname 险种名称,v1.PAY_MONTH 计划月度,b.PERSON_NAME 个人姓名,b.CARD_ID 身份证号码,
-    v1.ITEM_VALUE 个人缴存,v1.ITEM_CMP_VALUE 单位缴存,v2.ITEM_VALUE 个人缴存合计,v2.ITEM_CMP_VALUE 单位缴存合计  from (
-    select b.COMPANY_ID, b.CARD_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME itemname,sum(a.ITEM_VALUE) ITEM_VALUE,sum(a.ITEM_CMP_VALUE) ITEM_CMP_VALUE
+    -- V1个人统计
+    with v1 as (
+    select b.COMPANY_ID, b.CARD_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME itemname,sum(a.ITEM_VALUE) ITEM_VALUE,sum(a.ITEM_CMP_VALUE) ITEM_CMP_VALUE,
+    avg(a.BASE_VALUE) BASE_VALUE,avg(a.SCALE_PERSON) SCALE_PERSON,avg(a.SCALE_CMP) SCALE_CMP
     from HR_SALARY_IMPORTOR_DATA a
     inner JOIN HR_EMPLOYEE b on b.PERSON_ID=a.PERSON_ID
     where a.PAY_MONTH='#{PayMonth}' and a.ITEM_ID in (201,202,203,204,205,206)
     group by b.COMPANY_ID, b.CARD_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME
-    ) v1
-    LEFT JOIN HR_EMPLOYEE b on b.CARD_ID=v1.CARD_ID
-    left join HR_COMPANY c on c.COMPANY_ID=b.COMPANY_ID
-    left join (
+    ),
+    -- v2单位统计
+    v2 as (
     select b.COMPANY_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME itemname,sum(a.ITEM_VALUE) ITEM_VALUE,sum(a.ITEM_CMP_VALUE) ITEM_CMP_VALUE
     from HR_SALARY_IMPORTOR_DATA a
     inner JOIN HR_EMPLOYEE b on b.PERSON_ID=a.PERSON_ID
     where a.PAY_MONTH='#{PayMonth}'  and a.ITEM_ID in (201,202,203,204,205,206)
     group by b.COMPANY_ID,a.PAY_MONTH,a.IMPORT_COLUMN_NAME
-    ) v2 on v2.COMPANY_ID=b.COMPANY_ID and v2.PAY_MONTH=v1.PAY_MONTH and v2.itemname=v1.itemname
+    )
+    select c.NAME 单位名称,v1.itemname 险种名称,v1.PAY_MONTH 计划月度,b.PERSON_NAME 个人姓名,b.CARD_ID 身份证号码,v1.BASE_VALUE 缴费基数,v1.SCALE_PERSON 个人缴费比例,v1.SCALE_PERSON 单位缴费比例,
+    v1.ITEM_VALUE 个人缴存,v1.ITEM_CMP_VALUE 单位缴存,v2.ITEM_VALUE 个人缴存合计,v2.ITEM_CMP_VALUE 单位缴存合计  from  v1
+    LEFT JOIN HR_EMPLOYEE b on b.CARD_ID=v1.CARD_ID
+    left join HR_COMPANY c on c.COMPANY_ID=b.COMPANY_ID
+    left join  v2 on v2.COMPANY_ID=b.COMPANY_ID and v2.PAY_MONTH=v1.PAY_MONTH and v2.itemname=v1.itemname
     order BY v1.PAY_MONTH,v1.itemname, c.NAME, b.PERSON_NAME
   </select>
   

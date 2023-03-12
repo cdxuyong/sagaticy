@@ -24,8 +24,10 @@
     delete from HR_SALARY_IMPORTOR_DATA where IMPORT_ID=#{value}
   </delete>
   <insert id="insertInsuranceDetail" parameterType="InsuranceDetailInfo">
-    insert into HR_SALARY_IMPORTOR_DATA(IMPORT_ID,PERSON_ID,PAY_MONTH,ITEM_ID,IMPORT_COLUMN_NAME,ITEM_VALUE,ITEM_CMP_VALUE)
-    values(#{ImportId},#{PersonId},#{PayMonth},#{ItemId},#{ImportColumnName},#{PersonPayValue},#{CompanyPayValue})
+    insert into HR_SALARY_IMPORTOR_DATA(IMPORT_ID,PERSON_ID,PAY_MONTH,ITEM_ID,IMPORT_COLUMN_NAME,ITEM_VALUE,ITEM_CMP_VALUE,
+    BASE_VALUE,SCALE_PERSON,SCALE_CMP,PAY_INDEX,ACCOUNT_INDEX,MEMO)
+    values(#{ImportId},#{PersonId},#{PayMonth},#{ItemId},#{ImportColumnName},#{PersonPayValue},#{CompanyPayValue},
+    #{BaseValue},#{ScalePerson},#{ScaleCompany},#{PayIndex},#{AccountIndex},#{Memo})
   </insert>
   <insert id="insertInsurance" parameterType="InsuranceInfo">
     <selectKey keyProperty="ImportId" order="INSERTING" >
@@ -41,7 +43,8 @@
     where t.TITLE = #{value}
   </select>
   <select id="findInsuranceDetailById">
-    select t.IMPORT_ID ImportId,e.PERSON_NAME PersonName,e.CARD_ID CardId,t.PAY_MONTH PayMonth,t.IMPORT_COLUMN_NAME ItemName,t.ITEM_VALUE PersonPayValue,ITEM_CMP_VALUE CompanyPayValue
+    select t.IMPORT_ID ImportId,e.PERSON_NAME PersonName,e.CARD_ID CardId,t.PAY_MONTH PayMonth,t.IMPORT_COLUMN_NAME ItemName,t.ITEM_VALUE PersonPayValue,ITEM_CMP_VALUE CompanyPayValue,
+    BASE_VALUE BaseValue,SCALE_PERSON ScalePerson,SCALE_CMP ScaleCompany,PAY_INDEX PayIndex,ACCOUNT_INDEX AccountIndex,MEMO
     from HR_SALARY_IMPORTOR_DATA t
     left join HR_EMPLOYEE e on t.PERSON_ID=e.PERSON_ID
     where t.IMPORT_ID=#{value}

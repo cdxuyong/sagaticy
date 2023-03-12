@@ -34,6 +34,20 @@ namespace HrServiceCenterWeb.Models
 
         public string ImportColumnName { get; set; }
 
+        /// <summary>
+        /// 缴存基数
+        /// </summary>
+        public decimal BaseValue { get; set; }
+        /// <summary>
+        /// 个人缴存比例
+        /// </summary>
+        public decimal ScalePerson { get; set; }
+        public decimal ScaleCompany { get; set; }
+        public string PayIndex { get; set; }
+        public string AccountIndex { get; set; }
+        public string Memo { get; set; }
+
+
         public InsuranceDetailInfo Clone()
         {
             InsuranceDetailInfo o = new InsuranceDetailInfo();

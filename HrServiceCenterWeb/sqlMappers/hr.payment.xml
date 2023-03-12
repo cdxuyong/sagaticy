@@ -59,9 +59,10 @@
   </select>
   <!-- 查询发放表对象-->
   <select id="findPaymentPersons" >
-    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.CARD_ID CardID,p.POSITION_NAME Position
     from HR_EMPLOYEE t
     inner join HR_SALARY_PAY_OBJECT t1 on t1.PERSON_ID=t.PERSON_ID
+    left join HR_POSITION p on p.POSITION_ID=t.POSITION_ID
     where t1.PAY_ID=#{value}
     order by t.PERSON_ID
   </select>
@@ -113,7 +114,7 @@
   <select id="queryImportorDetail" >
     select e.PERSON_NAME,e.CARD_ID,e.BANK_CARD,
     sum(f101) f101,sum(f102) f102,sum(f103) f103,sum(f104) f104,sum(f105) f105,sum(f106) f106,
-    sum(f107) f107,sum(f108) f108,sum(f109) f109,sum(f110) f110,sum(f111) f111
+    sum(f107) f107,sum(f108) f108,sum(f109) f109,sum(f110) f110,sum(f111) f111,sum(f207) f207
     from (
     select t.PERSON_ID,
     case t.ITEM_ID when 101 then t.item_value else 0 END f101,
@@ -126,7 +127,8 @@
     case t.ITEM_ID when 108 then t.item_value else 0 END f108,
     case t.ITEM_ID when 109 then t.item_value else 0 END f109,
     case t.ITEM_ID when 110 then t.item_value else 0 END f110,
-    case t.ITEM_ID when 111 then t.item_value else 0 END f111
+    case t.ITEM_ID when 111 then t.item_value else 0 END f111,
+    case t.ITEM_ID when 207 then t.item_value else 0 END f207
     from HR_SALARY_IMPORTOR_DATA t
     where t.IMPORT_ID=#{value}
     ) v
