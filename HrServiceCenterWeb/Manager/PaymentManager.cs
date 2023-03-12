@@ -91,7 +91,12 @@ namespace HrServiceCenterWeb.Manager
                     accountRecordInfo.AccountBalance = companyInfo.AccountBalance;
                     accountRecordInfo.Money = payment.Total*-1;
                     accountRecordInfo.CreateTime = DateTime.Now;
-
+                    accountRecordInfo.PayDate = DateTime.Parse(payment.PayMonth);
+                    accountRecordInfo.ItemName = "撤销总额";
+                    accountRecordInfo.EntryDate = DateTime.Now;
+                    accountRecordInfo.OptDate = DateTime.Now;
+                    accountRecordInfo.BillDate = DateTime.Now;
+                    accountRecordInfo.PersonName = BlueFramework.User.UserContext.Current.UserName;
                     context.BeginTransaction();
                     CompanyAccountInfo accountInfo = new CompanyAccountInfo()
                     {

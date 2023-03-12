@@ -28,3 +28,18 @@ UPDATE HR_EMPLOYEE set UseType=0;
 alter table T_S_USER add COMPANYID int;
 UPDATE T_S_USER set COMPANYID=0;
 ```
+
+### version 2.3.1
+
+```sql
+
+-- 数据导入模型调整
+alter table HR_SALARY_IMPORTOR_DATA add BASE_VALUE numeric(18, 2);
+alter table HR_SALARY_IMPORTOR_DATA add SCALE_PERSON numeric(18, 2);
+alter table HR_SALARY_IMPORTOR_DATA add SCALE_CMP numeric(18, 2);
+alter table HR_SALARY_IMPORTOR_DATA add PAY_INDEX varchar(16);
+alter table HR_SALARY_IMPORTOR_DATA add ACCOUNT_INDEX varchar(16);
+alter table HR_SALARY_IMPORTOR_DATA add MEMO varchar(256);
+
+
+```
