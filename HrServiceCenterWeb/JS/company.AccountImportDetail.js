@@ -83,4 +83,11 @@ opt.delete = function () {
 opt.showDialogByTime = function () {
     $('#inputwindow').dialog('open');
 };
+// 导出结算明细
+// 20230319 add
+opt.export = function () {
+    var url = '../Company/ExportAccountPayDetail';
+    var params = { Id: 0, ImportName: importName };
+    HR.DownFile(url, params);
+};
 

@@ -14,7 +14,7 @@ function init() {
 //查询列表
 opt.query = function () {
     var url = '../Company/QueryAccountImports';
-    var params = { query: $('#txtQuery').val() };
+    var params = { q: $('#txtQuery').val() };
     $('#dg').datagrid('loading');
     $.ajax({
         url: url,

@@ -33,7 +33,7 @@ namespace HrServiceCenterWeb.Manager
             {
                 dbParms[1] = new CommandParameter("where", "");
             }
-            List<CompanyInfo> list = context.SelectList<CompanyInfo>("hr.company.findCompanys", query);
+            List<CompanyInfo> list = context.SelectList<CompanyInfo>("hr.company.findCompanys", dbParms);
             return list;
         }
 
@@ -297,6 +297,24 @@ namespace HrServiceCenterWeb.Manager
             return list;
         }
 
+        public DataSet GetAccountPayDetail(CompanyAccountRecordInfo recordInfo)
+        {
+            EntityConfig config = ConfigManagent.Configs["hr.employee.exportPersons"];
+            BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
+            string sql = config.Sql;
+            DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
+            return ds;
+        }
+
+        public DataSet GetAccountPaySum()
+        {
+            EntityConfig config = ConfigManagent.Configs["hr.employee.exportPersons"];
+            BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
+            string sql = config.Sql;
+            DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
+            return ds;
+        }
+
         /// <summary>
         /// 查询导入列表
         /// </summary>
@@ -316,14 +334,81 @@ namespace HrServiceCenterWeb.Manager
             return list;
         }
 
+        public DataSet ExportAccountImport(CompanyAccountRecordInfo recordInfo)
+        {
+            EntityConfig config = ConfigManagent.Configs["hr.company.exportAccountImport"];
+            BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
+            string sql = config.Sql;
+            sql = sql.Replace("${value}", recordInfo.ImportName);
+            DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
+            return ds;
+        }
+
         public List<CompanyAccountImportVO> QueryAccountMonth(string q)
         {
             List<CompanyAccountImportVO> list = null;
+            DateTime startDate = DateTime.Now.AddYears(-2);
+            DateTime endDate = DateTime.Now;
+            if (!string.IsNullOrEmpty(q))
+            {
+                try
+                {
+                    if (q.IndexOf('-') > 0 || q.IndexOf('/') > 0)
+                    {
+                        startDate = DateTime.Parse(q);
+                        endDate = startDate.AddMonths(1);
+                    }
+                    else
+                    {
+                        startDate = new DateTime(int.Parse(q),1,1);
+                        endDate = startDate.AddYears(1);
+                    }
+                }
+                catch { }
+
+            }
+
             using (EntityContext context = new EntityContext())
             {
-                list = context.SelectList<CompanyAccountImportVO>("hr.company.queryAccountMonth", q);
+                var queryParms = new CommandParameter[2]
+                {
+                    new CommandParameter("start",startDate),
+                    new CommandParameter("end",endDate)
+                };
+                list = context.SelectList<CompanyAccountImportVO>("hr.company.queryAccountMonth",queryParms);
             }
             return list;
+        }
+
+        public DataSet ExportAccountMonth(string q)
+        {
+            DateTime startDate = DateTime.Now.AddYears(-2);
+            DateTime endDate = DateTime.Now;
+            if (!string.IsNullOrEmpty(q))
+            {
+                try
+                {
+                    if (q.IndexOf('-') > 0 || q.IndexOf('/') > 0)
+                    {
+                        startDate = DateTime.Parse(q);
+                        endDate = startDate.AddMonths(1);
+                    }
+                    else
+                    {
+                        startDate = new DateTime(int.Parse(q), 1, 1);
+                        endDate = startDate.AddYears(1);
+                    }
+                }
+                catch { }
+
+            }
+            EntityConfig config = ConfigManagent.Configs["hr.company.exportAccountMonth"];
+            BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
+            string sql = config.Sql;
+            sql = sql.Replace("#{start}", $"'{startDate.ToString("yyyy-MM-dd")}'");
+            sql = sql.Replace("#{end}", $"'{endDate.ToString("yyyy-MM-dd")}'");
+            DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
+            return ds;
         }
     }
 }

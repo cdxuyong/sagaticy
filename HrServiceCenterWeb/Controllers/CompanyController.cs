@@ -310,9 +310,14 @@ namespace HrServiceCenterWeb.Controllers
             JsonResult jsonResult = Json(result);
             return jsonResult;
         }
+
+        /// <summary>
+        /// 月度结算报告
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public ActionResult QueryAccountMonth(string q)
         {
-            q = null;
             var list = new Manager.CompanyManager().QueryAccountMonth(q);
             var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(list);
             var result = new
@@ -322,6 +327,72 @@ namespace HrServiceCenterWeb.Controllers
             };
             JsonResult jsonResult = Json(result);
             return jsonResult;
+        }
+
+        /// <summary>
+        /// 导出结算明细
+        /// </summary>
+        /// <param name="recordInfo"></param>
+        /// <returns></returns>
+        public ActionResult ExportAccountPayDetail(CompanyAccountRecordInfo recordInfo)
+        {
+            IExcel excel = ExcelFactory.CreateDefault();
+            DataSet ds = new Manager.CompanyManager().ExportAccountImport(recordInfo);
+            POIStream stream = new POIStream();
+            stream.AllowClose = false;
+            excel.Write(stream, ds, ExcelExtendType.XLSX);
+            stream.AllowClose = true;
+            byte[] buffer = new byte[stream.Length];
+            stream.Position = 0;
+            stream.Read(buffer, 0, buffer.Length);
+            stream.Close();
+
+            HttpResponse context = System.Web.HttpContext.Current.Response;
+            try
+            {
+                context.ContentType = "application/ms-excel";
+                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode("结算清单", System.Text.Encoding.UTF8)));
+                context.BinaryWrite(buffer);
+                context.Flush();
+                context.End();
+            }
+            catch (Exception ex)
+            {
+                context.ContentType = "text/plain";
+                context.Write(ex.Message);
+            }
+            return null;
+        }
+
+
+        public ActionResult ExportAccountMonth(string q)
+        {
+            IExcel excel = ExcelFactory.CreateDefault();
+            DataSet ds = new Manager.CompanyManager().ExportAccountMonth(q);
+            POIStream stream = new POIStream();
+            stream.AllowClose = false;
+            excel.Write(stream, ds, ExcelExtendType.XLSX);
+            stream.AllowClose = true;
+            byte[] buffer = new byte[stream.Length];
+            stream.Position = 0;
+            stream.Read(buffer, 0, buffer.Length);
+            stream.Close();
+
+            HttpResponse context = System.Web.HttpContext.Current.Response;
+            try
+            {
+                context.ContentType = "application/ms-excel";
+                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode("结算清单", System.Text.Encoding.UTF8)));
+                context.BinaryWrite(buffer);
+                context.Flush();
+                context.End();
+            }
+            catch (Exception ex)
+            {
+                context.ContentType = "text/plain";
+                context.Write(ex.Message);
+            }
+            return null;
         }
         #endregion
     }

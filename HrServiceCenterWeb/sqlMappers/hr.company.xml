@@ -97,6 +97,15 @@
     )
     select * from v order by v.payDate,v.importName desc
   </select>
+  <!-- 导出结算明细 -->
+  <select id="exportAccountImport">
+    with v as (
+    select t.IMPORT_NAME 文件名称,max(t.CREATE_TIME) 文件日期,max(t.PAY_DATE) 结算月份,sum( t.MONEY) 合计,case max(t.status) when 1 then '已结算' else '未结算' end  状态
+    from hr_co_account_record t where t.IMPORT_NAME like '%${value}%'
+    group by t.IMPORT_NAME
+    )
+    select * from v order by v.结算月份 desc,v.文件名称
+  </select>
   <select id="queryAccountDetail">
     select c.NAME cmpName,t.PAY_DATE payDate,t.MONEY,t.ITEM_NAME itemName,t.BILL_DATE billDate,t.ENTRY_DATE entryDate,t.PERSON_NAME personName,t.OPT_DATE optDate,t.remark 
     from hr_co_account_record t
@@ -111,13 +120,26 @@
     where t.IMPORT_NAME='${value}' and t.STATUS=0
     order by t.ACCOUNT_ID, t.id
   </select>
+  <!-- 结算月度统计 -->
   <select id="queryAccountMonth">
     with v as (
     select t.ACCOUNT_ID ,t.PAY_DATE,sum( t.MONEY) total
-    from hr_co_account_record t where t.PAY_DATE is not null and t.status=1
+    from hr_co_account_record t where t.PAY_DATE is not null and t.status=1 and t.PAY_DATE&gt;=#{start} and t.PAY_DATE&lt;#{end}
     group by t.ACCOUNT_ID,t.PAY_DATE
     )
     select c.NAME cmpName,v.PAY_DATE payDate,v.total from v
+    inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=v.ACCOUNT_ID
+    inner join HR_COMPANY c on c.COMPANY_ID=a.COMPANY_ID
+    order by v.PAY_DATE desc,c.NAME
+  </select>
+  <!-- 导出结算月度统计 -->
+  <select id="exportAccountMonth">
+    with v as (
+    select t.ACCOUNT_ID ,t.PAY_DATE,sum( t.MONEY) total
+    from hr_co_account_record t where t.PAY_DATE is not null and t.status=1 and t.PAY_DATE&gt;=#{start} and t.PAY_DATE&lt;#{end}
+    group by t.ACCOUNT_ID,t.PAY_DATE
+    )
+    select c.NAME 单位名称,v.PAY_DATE 结算日期,v.total 结算金额 from v
     inner join HR_CO_ACCOUNT a on a.ACCOUNT_ID=v.ACCOUNT_ID
     inner join HR_COMPANY c on c.COMPANY_ID=a.COMPANY_ID
     order by v.PAY_DATE desc,c.NAME

@@ -14,7 +14,7 @@ function init() {
 //查询列表
 opt.query = function () {
     var url = '../Company/QueryAccountMonth';
-    var params = { query: $('#txtQuery').val() };
+    var params = { q: $('#txtQuery').val() };
     $('#dg').datagrid('loading');
     $.ajax({
         url: url,
@@ -38,3 +38,10 @@ opt.showDialogByTime = function () {
     $('#inputwindow').dialog('open');
 };
 
+// 导出结算明细
+// 20230326 add
+opt.export = function () {
+    var url = '../Company/ExportAccountMonth';
+    var params = { q: $('#txtQuery').val() };
+    HR.DownFile(url, params);
+};
