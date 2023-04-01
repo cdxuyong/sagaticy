@@ -10,4 +10,7 @@
   <select id="findSalaryCategory" >
     SELECT CATEGORY_ID CategoryID,CATEGORY_NAME CategoryName FROM [HR_SALARY_CATEGORY] t order by CATEGORY_ID
   </select>
+  <insert id="insertPosition">
+    insert into HR_POSITION(POSITION_ID,POSITION_NAME) values(#{id},#{name})
+  </insert>
 </mapper>

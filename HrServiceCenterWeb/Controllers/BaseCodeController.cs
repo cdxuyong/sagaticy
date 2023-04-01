@@ -42,5 +42,20 @@ namespace HrServiceCenterWeb.Controllers
             json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return json;
         }
+        // POST: BaseCode/GetPositions/
+        [HttpPost]
+        public ActionResult AddPositions(string name)
+        {
+            // 增加至数据库
+            string message = string.Empty;
+            BaseCodeProvider.Current.AddPosition(name,out message);
+            var data = new
+            {
+                status = 200,
+                message = string.IsNullOrEmpty(message) ? "添加成功，请从列表中选择！" : message
+            };
+            return Json(data);
+
+        }
     }
 }

@@ -85,10 +85,12 @@ namespace HrServiceCenterWeb.Manager
                 {
                     CompanyInfo companyInfo = context.Selete<CompanyInfo>("hr.company.findCompanyById", payment.CompanyId);
 
+
+
                     CompanyAccountRecordInfo accountRecordInfo = new CompanyAccountRecordInfo();
                     accountRecordInfo.CompanyId = payment.CompanyId;
-                    accountRecordInfo.AccountId = companyInfo.AccountId;
-                    accountRecordInfo.AccountBalance = companyInfo.AccountBalance;
+                    accountRecordInfo.AccountId = companyInfo == null ? 0 : companyInfo.AccountId;
+                    accountRecordInfo.AccountBalance = companyInfo == null ? 0 : companyInfo.AccountBalance;
                     accountRecordInfo.Money = payment.Total*-1;
                     accountRecordInfo.CreateTime = DateTime.Now;
                     accountRecordInfo.PayDate = DateTime.Parse(payment.PayMonth);

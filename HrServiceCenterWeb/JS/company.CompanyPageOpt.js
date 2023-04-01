@@ -207,3 +207,21 @@ opt.removePosition = function () {
         }
     });
 }
+opt.addPosition2BaseCode = function () {
+    var positionName = $('#cmbPosition').combobox('getText');
+    var url = '../BaseCode/AddPositions';
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: { name: positionName },
+        success: function (data) {
+            debugger
+            $.messager.show({ title: '提示', msg: data.message, timeout: 2000, showType: 'slide' });
+            opt.query();
+        },
+        error: function () {
+            $.messager.alert('提示', '系统错误！');
+        }
+    });
+}

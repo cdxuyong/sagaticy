@@ -134,7 +134,7 @@
         <div class="form-group">
             <div class="col-sm-2">岗位名称</div>
             <div class="col-sm-4">
-                <input class="easyui-combobox" id="cmbPosition" style="width:100%;" form-field-name="PositionId" form-control-type="combobox"
+                <input class="easyui-combobox" id="cmbPosition" style="width: 100%; height: 30px;" form-field-name="PositionId" form-control-type="combobox"
                        data-options="
                 url:'../BaseCode/GetPositions',
                 method:'get',
@@ -146,10 +146,13 @@
                 },
                 panelHeight:'auto'" />
             </div>
+            <div class="col-sm-2">
+                <button class="btn" onclick="opt.addPosition2BaseCode();return false;" style="width: 150px; height: 30px;"  title="如果下拉选项未找到，请点击添加至基础编码中"> + 增加至编码库</button>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-sm-2">用工控制数</div>
-            <div class="col-sm-4"><input type="text" id="txtPositionCount" class="easyui-numberbox" form-field-name="PlanCount" value="0" data-options="min:0,precision:0"></div>
+            <div class="col-sm-4"><input type="text" id="txtPositionCount" style="width: 100%; height: 30px; " class="easyui-numberbox" form-field-name="PlanCount" value="0" data-options="min:0,precision:0"></div>
         </div>
         <div class="form-group">
             <div class="col-sm-2">用工形式</div>
