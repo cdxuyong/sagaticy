@@ -64,7 +64,8 @@ opt.import = function () {
                     self.location.reload();
             }
             else {
-                alert(result.data);
+                //alert(result.data);
+                $.messager.alert('警告', result.data);
             }
         }
     });

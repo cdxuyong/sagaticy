@@ -37,7 +37,7 @@
       <!-- 将插入数据的主键返回，返回到对象中，下列为sqlserver自增主键 -->
       select @CompanyId=@@IDENTITY
     </selectKey>
-    insert into HR_COMPANY(NAME,CompanyType,CODE,REMARK,REPRESENTATIVE,STATE) values(#{Name},#{CompanyType},#{Code},#{Representative},#{Remark},#{State})
+    insert into HR_COMPANY(NAME,CompanyType,CODE,REPRESENTATIVE,REMARK,STATE) values(#{Name},#{CompanyType},#{Code},#{Representative},#{Remark},#{State})
   </insert>
   <insert id="insertAccount">
     <selectKey keyProperty="AccountId" order="INSERTING" >

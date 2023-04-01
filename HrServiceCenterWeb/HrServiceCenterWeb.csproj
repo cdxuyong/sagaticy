@@ -360,14 +360,36 @@
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Files\2018年6月份缴存导入数据.xls" />
-    <Content Include="Files\2019年10月工资表.xls" />
-    <Content Include="Files\批量导入人员模板.xlsx" />
-    <Content Include="Files\单位结算.xlsx" />
-    <Content Include="Files\考勤月报.xlsx" />
-    <Content Include="Files\考勤表.xlsx" />
-    <Content Include="Files\导入单位账户余额.xlsx" />
-    <Content Include="Files\卓越人力资源服务系统-操作手册.docx" />
+    <Content Include="Files\2018年6月份缴存导入数据.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\2019年10月工资表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\批量导入人员模板.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\单位结算.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\考勤月报.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\考勤表.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\导入单位账户余额.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\卓越人力资源服务系统-操作手册.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\XXXX单位X年X月工资导入模板和样例数据.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="JS\jquery.validate-vsdoc.js" />
     <Content Include="JS\jquery.validate.js" />
     <Content Include="JS\jquery.validate.min.js" />

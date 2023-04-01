@@ -72,6 +72,20 @@
             </div>
 
             <div class="form-group">
+                <label class="col-sm-1 control-label">银行行号</label>
+                <div class="col-sm-4">
+                    <input class="easyui-textbox" form-field-name="BankCode" form-control-type="textbox" style="height:30px;width:100%" />
+                </div>
+                <label class="col-sm-2 control-label">档案用途</label>
+                <div class="col-sm-4">
+                    <select class="easyui-combobox" id="cmbUseType" form-field-name="UseType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="0">全部统计（保险工资档案等）</option>
+                        <option value="1">限制统计（仅档案）</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-sm-1 control-label">学历</label>
                 <div class="col-sm-4">
                     <input class="easyui-combobox" form-field-name="Degree" form-control-type="combobox" style="width:100%;height:30px;" data-options="{url:'@Url.Content("~/BaseCode/GetEduciationCodes")',valueField: 'ObjectValue',textField: 'Text',method: 'get'}">
@@ -154,17 +168,32 @@
                     <input class="easyui-datebox" id="dtRetireTime" form-field-name="RetireTime" form-control-type="datebox" style="width:100%;height:30px;" />
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">任职受雇从业类型</label>
+                <div class="col-sm-4">
+                    <select class="easyui-combobox" id="cmbEmplayType" form-field-name="EmployType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}" >
+                        <option value="雇员">雇员</option>
+                        <option value="保险营销员">保险营销员</option>
+                        <option value="证券经纪人">证券经纪人</option>
+                        <option value="实习学生（全日制学历教育）">实习学生（全日制学历教育）</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <label class="col-sm-2 control-label">任职受雇从业日期</label>
+                <div class="col-sm-4">
+                    <input class="easyui-datebox" id="dtEmployDate" form-field-name="EmployDate" form-control-type="datebox" style="width:100%;height:30px;" />
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-sm-1 control-label">服务费（元）/月</label>
                 <div class="col-sm-4">
                     <input class="easyui-numberbox" value="0" form-field-name="ServiceFee" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
                 </div>
-                <label class="col-sm-2 control-label">档案用途</label>
+                <label class="col-sm-2 control-label">/</label>
                 <div class="col-sm-4">
-                    <select class="easyui-combobox" id="cmbUseType" form-field-name="UseType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
-                        <option value="0">全部统计（保险工资档案等）</option>
-                        <option value="1">限制统计（仅档案）</option>
-                    </select>
+
                 </div>
             </div>
             <div class="form-group">

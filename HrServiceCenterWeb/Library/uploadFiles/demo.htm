@@ -31,10 +31,12 @@
                     if (result.success == true) {
                         $('#winUpload').upload('hide');
                         // add code to read result.data
-                        alert(result.data);
+                        //alert(result.data);
+                        $.messager.alert('警告', result.data);
                     }
                     else {
-                        alert('result.data');
+                        //alert('result.data');
+                        $.messager.alert('警告', result.data);
                     }
                 }
             });
@@ -62,10 +64,12 @@
                     if (result.success == true) {
                         $('#winUpload').upload('hide');
                         // add code to read result.data
-                        alert(result.data);
+                        //alert(result.data);
+                        $.messager.alert('警告', result.data);
                     }
                     else {
-                        alert(result.data);
+                        //alert(result.data);
+                        $.messager.alert('警告', result.data);
                     }
                 }
             });

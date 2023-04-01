@@ -2,8 +2,8 @@
 <root>
   <sql id="hr.payBank">
     <![CDATA[
-    select 序号=Row_Number()over(partition by e.PERSON_ID order by e.PERSON_ID) , c.name 单位名称, e.card_id 身份证号, e.BANK_CARD 转入账号, 
-    e.BANK_NAME 银行,e.PERSON_NAME 转入户名,CASE WHEN PAY_VALUE>0 then PAY_VALUE ELSE 0 END  金额 
+    select 序号=Row_Number()over(partition by e.PERSON_ID order by e.PERSON_ID) , c.name 单位名称, e.card_id 身份证号, e.BANK_NAME 收款账号开户行, '' 收款地区,e.BANK_CODE 银行行号,'' 汇款方式,
+    e.BANK_CARD 收款账号,e.PERSON_NAME 收款账号名称,CASE WHEN PAY_VALUE>0 then PAY_VALUE ELSE 0 END  实发金额,'' 汇款用途,'' 备注信息,e.PHONE 收款账户短信通知手机号码 
     from HR_EMPLOYEE e 
     inner join HR_COMPANY c on c.COMPANY_ID=e.COMPANY_ID
             inner join (

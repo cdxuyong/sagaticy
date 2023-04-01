@@ -109,7 +109,8 @@ opt.import = function () {
                 self.location.href = '../Employee/EmployeeList';
             }
             else {
-                alert(result.data);
+                //alert(result.data);
+                $.messager.alert('警告', result.data);
             }
         }
     });

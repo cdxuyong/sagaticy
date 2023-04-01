@@ -436,6 +436,9 @@ namespace HrServiceCenterWeb.Manager
                 person.Degree = int.Parse(row["eduid"].ToString());
                 person.BankName = row[bankName].ToString();
                 person.BankCard = row[bankCard].ToString();
+                person.BankCode = row["银行行号"].ToString();
+                person.EmployType = row["任职受雇从业类型"].ToString();
+                person.EmployDate = row["任职受雇从业日期"].ToString();
                 try
                 {
                     person.JoinWorkTime = DateTime.Parse(row["参工时间"].ToString()).ToString("yyyy-MM-dd");
@@ -466,7 +469,12 @@ namespace HrServiceCenterWeb.Manager
                 catch { message += $"{i + 1}行编号有误，"; pass = false; }
 
                 if (pass)
-                    SaveEmployee(person);
+                    pass = SaveEmployee(person);
+                if (!pass)
+                {
+                    message += $"{i + 1}保存失败，";
+                    return pass;
+                }
             }
             return pass;
         }

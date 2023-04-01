@@ -36,6 +36,9 @@ namespace HrServiceCenterWeb.Models
 
         public int PersonCode { get; set; }
         public string BankName { get; set; }
+        /// <summary>
+        /// 银行卡号
+        /// </summary>
         public string BankCard { get; set; }
 
         public string ContractTime { get; set; }
@@ -55,6 +58,19 @@ namespace HrServiceCenterWeb.Models
         /// 用途类型：0默认全部统计 ， 1 限制统计
         /// </summary>
         public int UseType { get; set; }
+
+        /// <summary>
+        /// 银行代码
+        /// </summary>
+        public string BankCode { get; set; }
+        /// <summary>
+        /// 受雇类型
+        /// </summary>
+        public string EmployType { get; set; }
+        /// <summary>
+        /// 受雇日期
+        /// </summary>
+        public string EmployDate { get; set; }
 
     }
 }

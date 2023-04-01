@@ -47,8 +47,8 @@
     select
     t.PERSON_NAME 姓名,t.CARD_ID 身份证,t.SEX 性别,t.BIRTHDAY 出生日期,t.POLITY 政治面貌,t.NATION 民族,
     t.PHONE 手机,t.ADDRESS 地址,t.CONTACTS_PERSON 联系人,t.CONTACTS_PHONE 联系人电话,t.SPECIALTY 专业,t.SCHOOL 学校,t.CREATOR 创建者,t.CREATE_TIME 创建时间,
-    c.NAME 单位,p.POSITION_NAME 岗位,b1.OBJECT_TEXT 学历,PERSON_CODE 编号,BANK_NAME 银行,BANK_CARD 银行卡,JOINWORK_TIME 参工时间,LEAVE_TIME 离职日期,Contract_Time 合同到期日期,Retire_Time 退休日期,
-    t.CONTRACT_NO 合同编号,t.ARGUMENT_NO 协议编号,
+    c.NAME 单位,p.POSITION_NAME 岗位,b1.OBJECT_TEXT 学历,PERSON_CODE 编号,BANK_NAME 银行,BANK_CARD 银行卡,BANK_CODE 银行行号,JOINWORK_TIME 参工时间,LEAVE_TIME 离职日期,Contract_Time 合同到期日期,Retire_Time 退休日期,
+    t.CONTRACT_NO 合同编号,t.ARGUMENT_NO 协议编号,t.EMP_TYPE 任职受雇从业类型,t.EMP_DATE 任职受雇从业日期,
     case isnull(t.state,0) when 0 then '在职'  when 1 then '离职' end 档案状态
     from HR_EMPLOYEE t
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
@@ -70,7 +70,8 @@
     select t.PERSON_ID PersonId,t.COMPANY_ID CompanyId,t.POSITION_ID PositionId,t.PERSON_NAME PersonName,t.CARD_ID CardId,t.SEX Sex,t.BIRTHDAY Birthday,t.DEGREE Degree,t.POLITY Polity,t.NATION Nation,
     t.PHONE Phone,t.ADDRESS Address,t.CONTACTS_PERSON ContactsPerson,t.CONTACTS_PHONE ContactsPhone,t.SPECIALTY,t.SCHOOL,t.CREATOR,t.CREATE_TIME CreateTime,t.STATE,
     c.NAME CompanyName,p.POSITION_NAME PositionName,b1.OBJECT_TEXT,PERSON_CODE PersonCode,BANK_NAME BankName,BANK_CARD BankCard,JOINWORK_TIME JoinWorkTime,LEAVE_TIME LeaveTime,Contract_Time ContractTime,Retire_Time RetireTime,
-    t.Service_Fee ServiceFee,Contract_FirstTime ContractFirstTime,CONTRACT_NO ContractNO,ARGUMENT_NO AgreementNO,t.UseType
+    t.Service_Fee ServiceFee,Contract_FirstTime ContractFirstTime,CONTRACT_NO ContractNO,ARGUMENT_NO AgreementNO,t.UseType,
+    t.BANK_CODE BankCode,t.EMP_TYPE EmployType,t.EMP_DATE EmployDate
     from HR_EMPLOYEE t
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     INNER JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
@@ -95,11 +96,11 @@
     </selectKey>
     insert into HR_EMPLOYEE(COMPANY_ID,POSITION_ID,PERSON_NAME,CARD_ID,SEX,BIRTHDAY,DEGREE,POLITY,NATION,PHONE,ADDRESS,CONTACTS_PERSON,CONTACTS_PHONE,SPECIALTY,SCHOOL,CREATOR,CREATE_TIME,
     PERSON_CODE,BANK_NAME,BANK_CARD,JOINWORK_TIME,Contract_Time,Retire_Time,Service_Fee,Contract_FirstTime,
-    CONTRACT_NO,ARGUMENT_NO,UseType,
+    CONTRACT_NO,ARGUMENT_NO,UseType,BANK_CODE,EMP_TYPE,EMP_DATE,
     STATE)
     values(#{CompanyId},#{PositionId},#{PersonName},#{CardId},#{Sex},#{Birthday},#{Degree},#{Polity},#{Nation},
     #{Phone},#{Address},#{ContactsPerson},#{ContactsPhone},#{Specialty},#{School},#{Creator},#{CreateTime},#{PersonCode},#{BankName},#{BankCard},#{JoinWorkTime},#{ContractTime},#{RetireTime},#{ServiceFee},#{ContractFirstTime},
-    #{ContractNO},#{AgreementNO},#{UseType},
+    #{ContractNO},#{AgreementNO},#{UseType},#{BankCode},#{EmployType},#{EmployDate},
     #{State})
   </insert>
   <update id="updateEmployee">
@@ -107,7 +108,8 @@
     ,BIRTHDAY=#{Birthday},DEGREE=#{Degree},POLITY=#{Polity},NATION=#{Nation},PHONE=#{Phone},ADDRESS=#{Address}
     ,CONTACTS_PERSON=#{ContactsPerson},CONTACTS_PHONE=#{ContactsPhone},SPECIALTY=#{Specialty},SCHOOL=#{School},JOINWORK_TIME=#{JoinWorkTime},
     PERSON_CODE=#{PersonCode},BANK_NAME=#{BankName},BANK_CARD=#{BankCard},State=#{State},LEAVE_TIME=#{LeaveTime},Contract_Time=#{ContractTime},Retire_Time=#{RetireTime},
-    Service_Fee=#{ServiceFee},Contract_FirstTime=#{ContractFirstTime},CONTRACT_NO=#{ContractNO},ARGUMENT_NO=#{AgreementNO},UseType=#{UseType}
+    Service_Fee=#{ServiceFee},Contract_FirstTime=#{ContractFirstTime},CONTRACT_NO=#{ContractNO},ARGUMENT_NO=#{AgreementNO},UseType=#{UseType},
+    BANK_CODE=#{BankCode},EMP_TYPE=#{EmployType},EMP_DATE=#{EmployDate}
     where PERSON_ID=#{PersonId}
   </update>
 
