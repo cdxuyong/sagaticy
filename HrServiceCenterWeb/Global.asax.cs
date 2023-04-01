@@ -22,7 +22,7 @@ namespace HrServiceCenterWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // refresh online users on 30s
-            BlueFramework.User.Session.Initialize(1000 * 30);
+            BlueFramework.User.Session.Initialize(1000 * 60);
             // init orm
             BlueFramework.Blood.Session.Init();
             // init hr cache

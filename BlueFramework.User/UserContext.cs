@@ -124,7 +124,6 @@ namespace BlueFramework.User
             string visitorId = UserContext.CurrentVisitor.VisitorId ;
             Session.Current.RemoveVisitor(visitorId);
             FormsAuthentication.SignOut();
-
         }
 
         public static bool Validate(string userName, string password)

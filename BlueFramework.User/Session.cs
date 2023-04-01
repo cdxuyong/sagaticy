@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,8 @@ namespace BlueFramework.User
         private static Session currentSession;
         private Timer freshTimer = null;
         private AutoResetEvent freshTimerSingle = null;
-        private Dictionary<string, Visitor> visitors;
-        private Dictionary<string, VisitorAction> lastActions;
+        private ConcurrentDictionary<string, Visitor> visitors;
+        private ConcurrentDictionary<string, VisitorAction> lastActions;
 
         public static Session Current
         {
@@ -40,8 +41,8 @@ namespace BlueFramework.User
 
         private Session(int timerSpan)
         {
-            lastActions = new Dictionary<string, VisitorAction>();
-            visitors = new Dictionary<string, Visitor>();
+            lastActions = new ConcurrentDictionary<string, VisitorAction>();
+            visitors = new ConcurrentDictionary<string, Visitor>();
             freshTimerSingle = new AutoResetEvent(true);
             freshTimer = new Timer(FreshVisitors, null, 1000, timerSpan);
         }
@@ -92,7 +93,13 @@ namespace BlueFramework.User
         {
             if (!visitors.ContainsKey(visitor.VisitorId))
             {
-                visitors.Add(visitor.VisitorId, visitor);
+                var succ = visitors.TryAdd(visitor.VisitorId, visitor);
+                int i = 0;
+                while (!succ && i < 5)
+                {
+                    i++;
+                    succ = visitors.TryAdd(visitor.VisitorId, visitor);
+                }
             }
         }
 
@@ -104,16 +111,31 @@ namespace BlueFramework.User
         {
             if (visitors.ContainsKey(visitorId))
             {
-                visitors.Remove(visitorId);
+                Visitor v = null;
+                visitors.TryRemove(visitorId,out v);
             }
         }
 
         public void PushAction(VisitorAction action)
         {
-            if (!visitors.ContainsKey(action.ActionId))
+            try
             {
-                lastActions.Add(action.ActionId, action);
+                if (!visitors.ContainsKey(action.ActionId))
+                {
+                    int i = 0;
+                    var succ = lastActions.TryAdd(action.ActionId, action);
+                    while (!succ && i<5)
+                    {
+                        i++;
+                        succ = lastActions.TryAdd(action.ActionId, action);
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Warn(ex.Message);
+            }
+
         }
 
         public VisitorAction PopAction(string actionId)
@@ -121,13 +143,20 @@ namespace BlueFramework.User
             if (string.IsNullOrEmpty(actionId))
                 return null;
             VisitorAction action;
-            if (lastActions.TryGetValue(actionId, out action))
+            try
             {
-                lastActions.Remove(actionId);
-                return action;
+                if (lastActions.TryGetValue(actionId, out action))
+                {
+                    VisitorAction a = null;
+                    lastActions.TryRemove(actionId,out a);
+                    return action;
+                }
             }
-            else
-                return null;
+            catch(Exception ex)
+            {
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Warn(ex.Message);
+            }
+            return null;
             
         }
     }

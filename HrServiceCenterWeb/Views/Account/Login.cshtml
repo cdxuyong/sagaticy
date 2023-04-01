@@ -54,9 +54,11 @@
 
 
 <div class="container login-container">
+
     <div class="login-heading">
         <img src="~/images/HR_LOGO.png" style="width:32px;" />
-        <span class="title">人力资源服务系统</span><span class="ver">@Publish2Local.Complication.Version</span>
+        <span class="title">人力资源服务系统</span>
+        <span class="ver">@Publish2Local.Complication.Version</span>
     </div>
     <form class="form-signin" action="@Url.Action("Login", "Account")" method="post" >
         <div class="input-group margin-bottom-sm">
@@ -83,8 +85,10 @@
         </div>
         @Html.ValidationSummary()
     </form>
-    <div class="login-foot">
+    <div class="login-foot" style="height:50px;">
         <p>@Publish2Local.Complication.SpotName </p>
+        <p>@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") 当前在线 @BlueFramework.User.Session.Current.CountOnlines() 人 </p>
+
     </div>
 </div>
 <div id="backContainer">

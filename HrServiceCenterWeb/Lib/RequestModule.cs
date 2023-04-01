@@ -46,7 +46,10 @@ namespace HrServiceCenterWeb.Lib
             string url = context.Request.Url.AbsolutePath;
             string actionId = context.Response.Headers["ACTION-ID"];
             VisitorAction action = BlueFramework.User.Session.Current.PopAction(actionId);
-
+            if (url.Equals("/Account/LogOff"))
+            {
+                return;
+            }
             if (UserContext.CurrentVisitor != null)
             {
                 if (action != null)
