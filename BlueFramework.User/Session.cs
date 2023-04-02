@@ -53,14 +53,31 @@ namespace BlueFramework.User
             {
                 return;
             }
-
+            // 清理登录超时的用户
             try
             {
-                
+                var removes = new List<string>();
+                foreach(var v in visitors.Values)
+                {
+                    var time = v.Actions.Max(x => x.EndTime);
+                    // 超时判断
+                    if (time == null || DateTime.Now.Subtract(time.Value).TotalMinutes > 60)
+                    {
+                        removes.Add(v.VisitorId);
+                    }
+                }
+                if(removes.Count > 0)
+                {
+                    foreach(var id in removes)
+                    {
+                        RemoveVisitor(id);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                //
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Warn(ex.Message);
+                BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Warn(ex.StackTrace);
             }
             finally
             {
@@ -158,6 +175,24 @@ namespace BlueFramework.User
             }
             return null;
             
+        }
+
+        public List<VisitVO> GetOnlines()
+        {
+            List<VisitVO> list = new List<VisitVO>();
+            foreach(var v in visitors.Values)
+            {
+                var u = v.GetUser();
+                var o = new VisitVO()
+                {
+                    name = u.UserName,
+                    caption = u.TrueName,
+                    loginTime = v.LoginTime,
+                    lastTime = v.Actions.Max(x=>x.BeginTime).Value
+                };
+                list.Add(o);
+            }
+            return list;
         }
     }
 }

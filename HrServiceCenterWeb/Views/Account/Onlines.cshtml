@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "当前在线情况";
+}
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>用户管理.<small>&nbsp;在线人员列表</small></h3>
+    </div>
+    <!-- 数据列表 -->
+    <div id="dgContainer" style="margin:20px 0;">
+        <table>
+            <thead>
+                <tr>
+                    <th width="200px">账号</th>
+                    <th width="200px">姓名</th>
+                    <th width="200px">登录时间</th>
+                    <th width="200px">最后访问时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in ViewBag.Onlines)
+                {
+                <tr>
+                    <td>@u.name</td>
+                    <td>@u.caption</td>
+                    <td>@u.loginTime</td>
+                    <td>@u.lastTime</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

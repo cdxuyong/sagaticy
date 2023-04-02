@@ -9,5 +9,6 @@ namespace BlueFramework.User.Models
     public class Guest:IUser
     {
         public string UserName { get; set; }
+        public string TrueName { get; set; }
     }
 }

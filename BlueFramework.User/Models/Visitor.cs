@@ -15,6 +15,7 @@ namespace BlueFramework.User.Models
         private string visitorId = string.Empty;
         private bool isAuthenticated;
         private DateTime lastTime;
+        private DateTime loginTime;
         private Queue<VisitorAction> actions = null;
         private IUser currentUser;
 
@@ -22,6 +23,7 @@ namespace BlueFramework.User.Models
         public bool IsAuthenticated { get => isAuthenticated; set => isAuthenticated = value; }
         public Queue<VisitorAction> Actions { get => actions;  }
         public DateTime LastTime { get => lastTime;  }
+        public DateTime LoginTime { get => loginTime; }
 
         public Visitor()
         {
@@ -29,6 +31,7 @@ namespace BlueFramework.User.Models
             isAuthenticated = false;
             currentUser = new Guest();
             currentUser.UserName = visitorId;
+            loginTime = DateTime.Now;
             actions = new Queue<VisitorAction>();
         }
 
@@ -36,6 +39,7 @@ namespace BlueFramework.User.Models
         {
             visitorId = user.UserName;
             lastTime = DateTime.Now;
+            loginTime = DateTime.Now;
             currentUser = user;
             actions = new Queue<VisitorAction>();
         }
@@ -61,5 +65,13 @@ namespace BlueFramework.User.Models
                 actions.Dequeue();
             }
         }
+    }
+
+    public class VisitVO
+    {
+        public string name { get; set; }
+        public string caption { get; set; }
+        public DateTime loginTime { get; set; }
+        public DateTime lastTime { get; set; }
     }
 }

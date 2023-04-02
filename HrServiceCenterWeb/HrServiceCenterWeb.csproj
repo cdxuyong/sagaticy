@@ -1072,6 +1072,7 @@
     <Content Include="Views\Company\AccountMonth.cshtml" />
     <Content Include="Views\Company\AccountImportDetail.cshtml" />
     <Content Include="Views\Home\CmpIndex.cshtml" />
+    <Content Include="Views\Account\Onlines.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

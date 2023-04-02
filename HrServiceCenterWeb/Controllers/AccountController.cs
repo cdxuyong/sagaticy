@@ -39,7 +39,6 @@ namespace HrServiceCenterWeb.Controllers
             return View(lgmodel);
         }
 
-        //
         // POST: /Account/Create
         [HttpPost]
         [AllowAnonymous]
@@ -113,6 +112,19 @@ namespace HrServiceCenterWeb.Controllers
                 return LogOff();
             }
 
+        }
+
+        public ActionResult Onlines()
+        {
+            try
+            {
+                var visitors = BlueFramework.User.Session.Current.GetOnlines();
+                ViewBag.Onlines = visitors;
+            }
+            catch
+            {
+            }
+            return View();
         }
     }
 }
