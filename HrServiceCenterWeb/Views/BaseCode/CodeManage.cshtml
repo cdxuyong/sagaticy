@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "基础编码维护";
+}
+
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>系统管理.<small>&nbsp;基础编码维护</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" id="ukey" style="width:180px;" class="form-control panelseach-text" placeholder="请输入分类名称...">
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="CodeManageOpt.queryCodes()"><i class="fa fa-search"></i> 快速查询</a>
+            </div>
+            <div class="col-md-1">
+
+                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="CodeManageOpt.addCode()"><i class="fa fa-address-book-o" aria-hidden="true"></i> 新建编码</a>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <table id="dg" class="easyui-datagrid">
+        <thead>
+            <tr style="background-color: #9797A0; color: white;">
+                <th data-options="field:'Id',checkbox:true,width:30" align="center" hidden="hidden">Id</th>
+                <th field="Code" width="110px" align="center">编码</th>
+                <th field="Text" width="80px" align="center">名称</th>
+                <th field="ObjectValue" width="110px" align="center">编码值</th>
+                <th field="CategoryName" width="130px" align="center">分类</th>
+                <th field="Edit" width="70" align="center" data-options="formatter:CodeManageOpt.formatActions">操作</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div id="edit" class="easyui-window" title="" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 600px; padding: 10px; display: none">
+    <table id="tb-view">
+        <tr>
+            <td>&nbsp</td>
+            <td>
+                <input id="txtId" type="hidden" form-field-name="Id" value="" />
+                <input id="txtParentId" type="hidden" form-field-name="ParentId" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">排序编码：</td>
+            <td>
+                <input id="txtName" type="text" class="easyui-validatebox" data-options="required:true" value="" form-field-name="Code" style="width: 150px;" placeholder="请继承上级编码001-002" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">中文名称：</td>
+            <td>
+                <input type="text" name="txtName" class="easyui-validatebox" data-options="required:true"  form-field-name="Text" placeholder="请输入编码名称" style="width: 150px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr style="height:40px;">
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">编码值（数字）：</td>
+            <td>
+                <input class="easyui-numberbox" id="txtObjectValue" value="0" form-field-name="ObjectValue" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:150px" />
+            </td>
+        </tr>
+        <tr id="trCompanyID" style="height:40px;">
+            <td style="font-family: 'Microsoft YaHei'; font-size: 13px; text-align: right">分类：</td>
+            <td>
+                <select class="easyui-combobox" id="cmbCategoryId" form-field-name="CategoryId" form-control-type="combobox" style="width:150px;height:30px;" data-options="{editable:false}">
+                    <option value="1">性别</option>
+                    <option value="2">学历</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:10px;color:red;text-align:center" colspan="2">请注意：每种分类下的名称和编码值不允许重复；对使用的编码，不允许修改编码值，可修改名称。</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <span style="margin-left: 25px;"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="CodeManageOpt.saveBtn()"><i class="fa fa-pencil-square-o"></i>保存</a></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+</script>
+<script src="~/JS/BaseCodeManageOpt.js"></script>

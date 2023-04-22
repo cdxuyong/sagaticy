@@ -331,5 +331,48 @@ namespace HrServiceCenterWeb.Controllers
 
 
         #endregion
+
+        #region 系统维护
+        public ActionResult UpgradeManage()
+        {
+            return View();
+        }
+        public ActionResult UpgradeFile()
+        {
+            if (!"admin".Equals(UserContext.CurrentUser.UserName))
+            {
+                return Json(new
+                {
+                    success = false,
+                    data = "禁止非管理员操作该功能"
+                }, JsonRequestBehavior.AllowGet); 
+            }
+            if (Request.Files.Count == 0)
+            {
+                Object failResult = new
+                {
+                    success = false,
+                    data = "无文件"
+                };
+                JsonResult failJsonResult = Json(failResult, JsonRequestBehavior.AllowGet);
+                return failJsonResult;
+            }
+            // 读取文件中的内容
+            var stream = Request.Files[0].InputStream;
+            System.IO.StreamReader streamReader = new System.IO.StreamReader(stream);
+            var txt = streamReader.ReadToEnd();
+            // 执行并返回结果
+            HrServiceCenterWeb.Manager.SystemManager mg = new Manager.SystemManager();
+            string message;
+            bool pass = mg.ExecCommands(txt, out message);
+            Object result = new
+            {
+                success = pass,
+                data = message
+            };
+            JsonResult jsonResult = Json(result, JsonRequestBehavior.AllowGet);
+            return jsonResult;
+        }
+        #endregion
     }
 }

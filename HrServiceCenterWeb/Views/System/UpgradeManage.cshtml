@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "系统升级维护";
+}
+
+<div class="container container-layout">
+    <div class="page-header">
+        <h3>系统管理.<small>&nbsp;系统升级维护</small></h3>
+    </div>
+    <div id="pnlSearch">
+        <div class="row" style="font-size:24px;padding:20px;color:red;">
+            警告：该功能仅限管理员账号在开发人员的指导下使用!
+        </div>
+
+    </div>
+    <div class="row" style="padding:10px;">
+        <div class="col-md-3" style="font-size:16px;">请选择开发人员提供的脚本：</div>
+        <div class="col-md-1">
+            <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.import()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true" title=""></i> 选择文件</a>
+        </div>
+    </div>
+    <div class="row" style="padding:10px;">
+        <div id="myContent" style="padding:10px;">
+
+        </div>
+    </div>
+</div>
+
+<div id="winUpload"></div>
+<script src="~/JS/UpgradeManageOpt.js"></script>
+<script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
+

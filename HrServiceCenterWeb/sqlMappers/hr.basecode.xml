@@ -13,4 +13,11 @@
   <insert id="insertPosition">
     insert into HR_POSITION(POSITION_ID,POSITION_NAME) values(#{id},#{name})
   </insert>
+  <insert id="insertBaseCode">
+    insert into T_S_BASECODE(id,PARENTID,CODE,OBJECT_TEXT,OBJECT_VALUE,CATEGORYID,ISLEAF,DISABLED)
+    values(#{Id},#{ParentId},#{Code},#{Text},#{ObjectValue},#{CategoryId},1,0)
+  </insert>
+  <update id="updateBaseCode">
+    update [T_S_BASECODE] set  CODE=#{Code},OBJECT_TEXT=#{Text} where id=#{Id}
+  </update>
 </mapper>

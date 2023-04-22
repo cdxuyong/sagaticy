@@ -19,6 +19,8 @@ namespace HrServiceCenterWeb.Models
 
         public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
         private bool isLeaf;
         public bool IsLeaf
         {

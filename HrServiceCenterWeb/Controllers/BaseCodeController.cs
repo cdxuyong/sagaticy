@@ -57,5 +57,51 @@ namespace HrServiceCenterWeb.Controllers
             return Json(data);
 
         }
+
+        public ActionResult CodeManage()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetAllCodes(string query)
+        {
+            List<BaseCodeInfo> codes = BaseCodeProvider.Current.GetCodes(query);
+            JsonResult json = Json(codes);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
+
+        [HttpGet]
+        public ActionResult GetCode(int id)
+        {
+            var code = BaseCodeProvider.Current.GetCodes().FirstOrDefault(x=>x.Id==id);
+            JsonResult json = Json(code);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
+
+        [HttpGet]
+        public ActionResult NewCode(int parentId)
+        {
+            var code = BaseCodeProvider.Current.NewCode(parentId);
+            JsonResult json = Json(code);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
+
+        [HttpPost]
+        public ActionResult SaveCode(BaseCodeInfo codeInfo)
+        {
+            var succ = BaseCodeProvider.Current.SaveBaseCode(codeInfo);
+            var data = new
+            {
+                code = 200,
+                success = succ
+            };
+            JsonResult json = Json(data);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
     }
 }

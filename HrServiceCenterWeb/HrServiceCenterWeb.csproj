@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Lib\RequestModule.cs" />
+    <Compile Include="Manager\SystemManager.cs" />
     <Compile Include="Manager\BaseCodeProvider.cs" />
     <Compile Include="Manager\CompanyManager.cs" />
     <Compile Include="Manager\EmployeeManager.cs" />
@@ -302,6 +303,7 @@
     <Content Include="JS\company.AccountImports.js" />
     <Content Include="JS\check.MonthDetailOpt.js" />
     <Content Include="JS\check.MonthListOpt.js" />
+    <Content Include="JS\UpgradeManageOpt.js" />
     <Content Include="JS\employee.employeePageOpt.js" />
     <Content Include="JS\check.ImportorDayOpt.js" />
     <Content Include="JS\pay.ImportorDetailOpt.js" />
@@ -400,6 +402,7 @@
     <Content Include="JS\RoleManageOpt.js" />
     <Content Include="JS\share.js" />
     <Content Include="JS\company.CompanyListOpt.js" />
+    <Content Include="JS\BaseCodeManageOpt.js" />
     <Content Include="JS\UserManageOpt.js" />
     <Content Include="JS\vue.min.js" />
     <Content Include="Library\blogRepeater\default.css" />
@@ -1073,6 +1076,8 @@
     <Content Include="Views\Company\AccountImportDetail.cshtml" />
     <Content Include="Views\Home\CmpIndex.cshtml" />
     <Content Include="Views\Account\Onlines.cshtml" />
+    <Content Include="Views\BaseCode\CodeManage.cshtml" />
+    <Content Include="Views\System\UpgradeManage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

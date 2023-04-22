@@ -45,5 +45,7 @@
   <Title  id="5" caption="系统管理" title="系统管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
     <Node  id="501" caption="账号管理" url="~/System/UserManage" title ="账号管理" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="502" caption="角色管理" url="~/System/RoleManage" title ="角色管理" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="503" caption="基础编码维护" url="~/BaseCode/CodeManage" title ="基础编码维护" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="504" caption="升级维护" url="~/System/UpgradeManage" title ="系统升级维护" ic_class="" ic_id="" mob_display="true"/>
   </Title>
 </Menus>
