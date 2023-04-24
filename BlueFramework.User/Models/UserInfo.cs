@@ -79,6 +79,9 @@ namespace BlueFramework.User.Models
                 return CompanyId > 0 || OrgId > 10000 ? true : false;
             }
         }
-
+        /// <summary>
+        /// 组织机构归属全称
+        /// </summary>
+        public string OrgPath { get; set; }
     }
 }

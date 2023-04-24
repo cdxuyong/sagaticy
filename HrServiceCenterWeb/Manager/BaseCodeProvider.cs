@@ -100,6 +100,29 @@ namespace HrServiceCenterWeb.Manager
             }
         }
 
+        /// <summary>
+        /// 删除编码
+        /// </summary>
+        /// <param name="codeInfo"></param>
+        /// <returns></returns>
+        public bool DeleteBaseCode(BaseCodeInfo codeInfo)
+        {
+            using (EntityContext context = Session.CreateContext())
+            {
+                var succ = true;
+                if (codeInfo.Id > 0)
+                {
+                    succ = context.Delete("hr.basecode.deleteBaseCode", codeInfo.Id);
+                }
+
+                if (succ)
+                {
+                    ReLoad();
+                }
+                return succ;
+            }
+        }
+
         public BaseCodeInfo NewCode(int parentId)
         {
             var p = baseCodes.FirstOrDefault(x => x.Id == parentId);

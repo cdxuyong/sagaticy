@@ -73,10 +73,18 @@ namespace HrServiceCenterWeb.Manager
 
             using (EntityContext context = Session.CreateContext())
             {
+                var olds = context.SelectList<CompanyInfo>("hr.company.findCompanyByName", companyInfo.Name);
+                if(olds != null && olds.Count > 0)
+                {
+                    if(companyInfo.Name.Equals(olds[0].Name) && !olds[0].CompanyId.Equals(companyInfo.CompanyId))
+                    {
+                        return null;
+                    }
+                }
                 try
                 {
                     context.BeginTransaction();
-
+                    
                     if (companyInfo.CompanyId > 0)
                         context.Save<CompanyInfo>("hr.company.updateCompany", companyInfo);
                     else
@@ -93,7 +101,7 @@ namespace HrServiceCenterWeb.Manager
                 }
                 catch (Exception ex)
                 {
-                    ex = null;
+                    BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Warn(ex.Message);
                     context.Rollback();
                     companyInfo = null;
                 }
@@ -356,9 +364,36 @@ namespace HrServiceCenterWeb.Manager
         {
             message = string.Empty;
             #region validate
-            var cmpList = GetCompanies(string.Empty).ToDictionary(o => o.Name, o=>o);
-            var posList = BaseCodeProvider.Current.GetPositions().ToDictionary(o => o.PositionName, o => o);
-            var eduList = BaseCodeProvider.Current.GetEduciationCodes().ToDictionary(o => o.Text, o=>o);
+            var cmpList = new Dictionary<string, CompanyInfo>();
+            try
+            {
+                cmpList = GetCompanies(string.Empty).ToDictionary(o => o.Name, o => o);
+            }
+            catch (Exception ex)
+            {
+                message = $"单位名称存在重复，请删除重复记录，原因详情：{ex.Message}";
+                return false;
+            }
+            var posList = new Dictionary<string,PositionInfo>();
+            try
+            {
+                posList = BaseCodeProvider.Current.GetPositions().ToDictionary(o => o.PositionName, o => o);
+            }
+            catch (Exception ex)
+            {
+                message = $"岗位名称存在重复，请删除重复记录，原因详情：{ex.Message}";
+                return false;
+            }
+            var eduList = new Dictionary<string, BaseCodeInfo>();
+            try
+            {
+                eduList = BaseCodeProvider.Current.GetEduciationCodes().ToDictionary(o => o.Text, o => o);
+            }
+            catch (Exception ex)
+            {
+                message = $"学历名称存在重复，请删除重复记录，原因详情：{ex.Message}";
+                return false;
+            }
             dataTable.Columns.Add("cmpid", Type.GetType("System.Int32"));
             dataTable.Columns.Add("posid", Type.GetType("System.Int32"));
             dataTable.Columns.Add("eduid", Type.GetType("System.Int32"));
@@ -398,6 +433,16 @@ namespace HrServiceCenterWeb.Manager
                     message += $"{i + 1}行学历有误，";
                 }
             }
+            #endregion
+            #region repleace tab
+            //foreach(DataRow row in dataTable.Rows)
+            //{
+            //    foreach(DataColumn col in dataTable.Columns)
+            //    {
+            //        if(row[col.ColumnName] != null)
+            //            row[col.ColumnName] = row[col.ColumnName].ToString().Replace("\r\n", " ");
+            //    }
+            //}
             #endregion
             if (!pass) return false;
             bool hasFee = dataTable.Columns.Contains("服务费") ? true : false ;
@@ -472,7 +517,7 @@ namespace HrServiceCenterWeb.Manager
                     pass = SaveEmployee(person);
                 if (!pass)
                 {
-                    message += $"{i + 1}保存失败，";
+                    message += $"{i + 1}行{person.PersonName}未能入库，";
                     return pass;
                 }
             }

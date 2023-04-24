@@ -9,8 +9,8 @@ GroupingOpt.loadRoleUsers = function () {
         pagination: true,
         nowrap: false,
         loadFilter: pagerFilter,
-        pageSize: 10,
-        pageList: [10, 20, 30, 50, 50],
+        pageSize: 200,
+        pageList: [10, 20, 30, 50, 100,200,1000],
         striped: true,
         method: 'post',
         onBeforeLoad: function (params) {

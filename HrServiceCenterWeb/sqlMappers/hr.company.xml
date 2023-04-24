@@ -7,6 +7,11 @@
     LEFT JOIN HR_CO_ACCOUNT a on a.COMPANY_ID=t.COMPANY_ID 
     where t.NAME like '%${value}%'  ${where}
   </select>
+  <select id="findCompanyByName" >
+    select t.COMPANY_ID CompanyId,t.NAME,t.CompanyType, t.CODE,t.REMARK,t.REPRESENTATIVE
+    from HR_COMPANY t
+    where t.NAME = '${value}' 
+  </select>
   <select id="getPayCompanys" >
     select t.COMPANY_ID CompanyId,t.NAME,t.CompanyType, t.CODE,t.REMARK,t.REPRESENTATIVE ,isnull(a.ACCOUNT_BALANCE,0) AccountBalance,isnull(a.ACCOUNT_ID,0) AccountId
     from HR_COMPANY t

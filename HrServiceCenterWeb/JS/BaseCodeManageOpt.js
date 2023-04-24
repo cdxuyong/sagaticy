@@ -96,12 +96,43 @@ CodeManageOpt.editCode = function (id) {
     });
 }
 
+CodeManageOpt.delete = function (id) {
+    $.messager.confirm('删除基础数据编码', '您确认删除吗?', function (event) {
+        if (event) {
+            debugger
+            var o = {
+                Id : id
+            };
+            $.ajax({
+                type: 'POST',
+                url: "../BaseCode/DeleteCode",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(o),
+                dataType: "json",
+                success: function (result) {
+                    if (result.success) {
+                        CodeManageOpt.queryCodes();
+                        $.messager.alert('提示', '保存成功！');
+                    }
+                    else {
+                        $.messager.alert('提示', '保存失败！');
+                    }
+                }
+            });
+        }
+        else {
+            return;
+        }
+    });
+}
+
 //动态生成操作列
 CodeManageOpt.formatActions = function (val, row) {
     var id = row.Id;
-    //var deletes = '<span title="删除" style="margin-left:20px; "><a href="javascript:void(0)" onclick="UserManageOpt.delete(' + id + ')"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span>';
+    var deletes = '<span title="删除" style="margin-left:20px; "><a href="javascript:void(0)" onclick="CodeManageOpt.delete(' + id + ')"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span>';
     var edit = '<span title="编辑" "><a href="javascript:void(0)" onclick="CodeManageOpt.editCode(' + id + ')"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></span>';
     //var key = '<span title="重置密码" style="margin-left:20px;"><a href="javascript:void(0)" onclick="UserManageOpt.resetPwd(' + id + ')"><i class="fa fa-key fa-lg" aria-hidden="true"></i></a></span>';
-    var html = '<div style="margin:0 auto; display: inline-block !important; display: inline;">' + edit + '</div>';
+    var html = '<div style="margin:0 auto; display: inline-block !important; display: inline;">' + edit + deletes + '</div>';
     return html;
 }

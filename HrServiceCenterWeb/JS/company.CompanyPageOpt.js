@@ -69,13 +69,13 @@ opt.save = function () {
         dataType: "json",
         data: JSON.stringify(o),
         success: function (result) {
-            if (result.success) {
                 HR.Loader.hide();
+            if (result.success) {
                 dataId = result.data;
                 opt.setControlState();
             }
             else {
-                $.messager.alert('提示', '保存失败！');
+                $.messager.alert('提示', '保存失败，请检查是否有重复名称！');
             }
 
         },

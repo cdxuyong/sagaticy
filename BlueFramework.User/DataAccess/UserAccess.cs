@@ -36,7 +36,9 @@ namespace BlueFramework.User.DataAccess
         {
             DatabaseProviderFactory dbFactory = new DatabaseProviderFactory();
             Database database = dbFactory.CreateDefault();
-            string sql = "select t.*,p.ORG_NAME from T_S_USER t,T_S_ORGANIZATION p where t.username<>'admin' and t.ORG_ID=p.ORG_ID";
+            string sql = @"with v as ( select t.*,p.ORG_NAME from T_S_USER t,T_S_ORGANIZATION p where t.username<>'admin' and t.ORG_ID=p.ORG_ID)
+            select v.*,c.NAME orgPath from v 
+            left join HR_COMPANY c on c.COMPANY_ID=v.COMPANYID";
             DbCommand dbCommand = database.GetSqlStringCommand(sql);
             DataSet dataSet = database.ExecuteDataSet(dbCommand);
             DataTable dt = dataSet.Tables[0];
@@ -50,6 +52,14 @@ namespace BlueFramework.User.DataAccess
                     useri.UserName = row["USERNAME"].ToString();
                     useri.TrueName = row["TRUENAME"].ToString();
                     useri.OrgName = row["ORG_NAME"].ToString();
+                    if(row["orgPath"] == null || string.IsNullOrEmpty(row["orgPath"].ToString()))
+                    {
+                        useri.OrgPath = useri.OrgName;
+                    }
+                    else
+                    {
+                        useri.OrgPath = useri.OrgName + "/" + row["orgPath"].ToString();
+                    }
                     users.Add(useri);
                 }
             }

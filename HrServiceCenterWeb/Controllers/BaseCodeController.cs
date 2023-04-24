@@ -103,5 +103,19 @@ namespace HrServiceCenterWeb.Controllers
             json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return json;
         }
+
+        [HttpPost]
+        public ActionResult DeleteCode(BaseCodeInfo codeInfo)
+        {
+            var succ = BaseCodeProvider.Current.DeleteBaseCode(codeInfo);
+            var data = new
+            {
+                code = 200,
+                success = succ
+            };
+            JsonResult json = Json(data);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
     }
 }

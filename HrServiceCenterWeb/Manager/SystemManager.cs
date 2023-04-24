@@ -24,6 +24,7 @@ namespace HrServiceCenterWeb.Manager
                 if (!isGet)
                 {
                     var rows = database.ExecuteNonQuery(System.Data.CommandType.Text, cmds);
+                    
                     message = cmds;
                     message += "\r\n请不要重复执行脚本，当前执行结果 = "+rows;
                 }

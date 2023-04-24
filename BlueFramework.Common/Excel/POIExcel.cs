@@ -182,6 +182,8 @@ namespace BlueFramework.Common.Excel
             for(int i = startRow; i <= sheet.LastRowNum; i++)
             {
                 var row = sheet.GetRow(i);
+                if (row == null) break;
+                if (row.Cells == null) break;
                 DataRow dr = dt.NewRow();
                 foreach(var cell in row.Cells)
                 {
