@@ -59,7 +59,7 @@
   </select>
   <!-- 查询发放表对象-->
   <select id="findPaymentPersons" >
-    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.CARD_ID CardID,p.POSITION_NAME Position
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.BANK_CARD CardID,p.POSITION_NAME Position
     from HR_EMPLOYEE t
     inner join HR_SALARY_PAY_OBJECT t1 on t1.PERSON_ID=t.PERSON_ID
     left join HR_POSITION p on p.POSITION_ID=t.POSITION_ID

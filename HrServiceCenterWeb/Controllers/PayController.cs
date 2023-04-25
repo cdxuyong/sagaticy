@@ -215,11 +215,24 @@ namespace HrServiceCenterWeb.Controllers
 
             string message = string.Empty;
             string fileName = System.IO.Path.GetFileNameWithoutExtension(Request.Files[0].FileName);
-            IExcel excel = ExcelFactory.CreateDefault();
-            DataSet ds = excel.Read(Request.Files[0].InputStream);
-            DataTable dt = ds.Tables[0];
+            DataTable dt = null;
+            bool pass = true;
+            try
+            {
+                IExcel excel = ExcelFactory.CreateDefault();
+                DataSet ds = excel.Read(Request.Files[0].InputStream);
+                dt = ds.Tables[0];
+            }
+            catch(Exception ex)
+            {
+                message = $"读取EXCEL错误，请检查是否存在公式单元格等问题，错误详情：{ex.Message}";
+                pass = false;
+            }
 
-            bool pass = new Manager.PayManager().ImportInsurance(dt, fileName, ref message);
+            if (pass)
+            {
+                pass = new Manager.PayManager().ImportInsurance(dt, fileName, ref message);
+            }
             Object result = new
             {
                 success = pass,
@@ -243,13 +256,26 @@ namespace HrServiceCenterWeb.Controllers
 
             }
 
-            string message = string.Empty;
             string fileName = System.IO.Path.GetFileNameWithoutExtension(Request.Files[0].FileName);
-            IExcel excel = ExcelFactory.CreateDefault();
-            DataSet ds = excel.Read(Request.Files[0].InputStream);
-            DataTable dt = ds.Tables[0];
+            string message = string.Empty;
+            DataTable dt = null;
+            bool pass = true;
+            try
+            {
+                IExcel excel = ExcelFactory.CreateDefault();
+                DataSet ds = excel.Read(Request.Files[0].InputStream);
+                dt = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                message = $"读取EXCEL错误，请检查是否存在公式单元格等问题，错误详情：{ex.Message}";
+                pass = false;
+            }
 
-            bool pass = new Manager.PayManager().ImportPaymentData(dt, fileName, ref message);
+            if (pass)
+            {
+                pass = new Manager.PayManager().ImportPaymentData(dt, fileName, ref message);
+            }
             Object result = new
             {
                 success = pass,

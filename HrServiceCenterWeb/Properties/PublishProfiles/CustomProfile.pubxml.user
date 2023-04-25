@@ -6,8 +6,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\iis\HR2</_PublishTargetUrl>
-    <History>True|2021-12-22T14:45:26.9008051Z;</History>
+    <_PublishTargetUrl>E:\wfz\publish</_PublishTargetUrl>
+    <History>True|2023-04-24T17:11:58.8689309Z;True|2023-04-25T01:07:34.0585767+08:00;True|2021-12-22T22:45:26.9008051+08:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -23,34 +23,64 @@
       <publishTime>04/08/2018 22:11:19</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.dll">
-      <publishTime>12/22/2021 22:44:54</publishTime>
+      <publishTime>04/25/2023 01:31:15</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.pdb">
-      <publishTime>12/22/2021 22:44:54</publishTime>
+      <publishTime>04/25/2023 01:31:15</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.dll">
-      <publishTime>12/22/2021 22:44:52</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.pdb">
-      <publishTime>12/22/2021 22:44:52</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
     </File>
     <File Include="bin/BlueFramework.Data.dll">
-      <publishTime>12/22/2021 22:44:52</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
     </File>
     <File Include="bin/BlueFramework.Data.pdb">
-      <publishTime>12/22/2021 22:44:52</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.dll">
-      <publishTime>12/22/2021 22:44:54</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.pdb">
-      <publishTime>12/22/2021 22:44:54</publishTime>
+      <publishTime>04/25/2023 01:07:18</publishTime>
+    </File>
+    <File Include="bin/Files/2018年6月份缴存导入数据.xls">
+      <publishTime>03/01/2020 22:38:56</publishTime>
+    </File>
+    <File Include="bin/Files/2019年10月工资表.xls">
+      <publishTime>11/17/2022 20:44:06</publishTime>
+    </File>
+    <File Include="bin/Files/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>03/12/2023 14:31:05</publishTime>
+    </File>
+    <File Include="bin/Files/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>03/12/2023 09:31:28</publishTime>
+    </File>
+    <File Include="bin/Files/卓越人力资源服务系统-操作手册.docx">
+      <publishTime>11/26/2022 23:56:04</publishTime>
+    </File>
+    <File Include="bin/Files/单位结算.xlsx">
+      <publishTime>10/11/2022 22:08:45</publishTime>
+    </File>
+    <File Include="bin/Files/导入单位账户余额.xlsx">
+      <publishTime>09/27/2022 22:43:40</publishTime>
+    </File>
+    <File Include="bin/Files/批量导入人员模板.xlsx">
+      <publishTime>03/29/2023 11:34:50</publishTime>
+    </File>
+    <File Include="bin/Files/考勤月报.xlsx">
+      <publishTime>10/12/2022 16:45:25</publishTime>
+    </File>
+    <File Include="bin/Files/考勤表.xlsx">
+      <publishTime>10/09/2022 22:10:30</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.dll">
-      <publishTime>12/22/2021 22:44:57</publishTime>
+      <publishTime>04/25/2023 01:33:18</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.pdb">
-      <publishTime>12/22/2021 22:44:57</publishTime>
+      <publishTime>04/25/2023 01:33:18</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -85,8 +115,17 @@
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>01/05/2012 11:08:46</publishTime>
     </File>
+    <File Include="bin/Microsoft.Win32.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/netstandard.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 20:33:56</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>10/26/2022 06:26:14</publishTime>
     </File>
     <File Include="bin/NPOI.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -99,6 +138,12 @@
     </File>
     <File Include="bin/NPOI.OpenXmlFormats.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
+    </File>
+    <File Include="bin/Publish2Local.dll">
+      <publishTime>04/25/2023 01:11:51</publishTime>
+    </File>
+    <File Include="bin/Publish2Local.pdb">
+      <publishTime>04/25/2023 01:11:51</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -190,8 +235,272 @@
     <File Include="bin/Setting/Reports/wxyjYear.xml">
       <publishTime>03/08/2020 11:40:07</publishTime>
     </File>
+    <File Include="bin/System.AppContext.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Collections.Concurrent.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Collections.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Collections.NonGeneric.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Collections.Specialized.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.EventBasedAsync.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.TypeConverter.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Console.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Data.Common.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Contracts.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Debug.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Process.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.StackTrace.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.TextWriterTraceListener.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Tools.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.TraceSource.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Tracing.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Drawing.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Dynamic.Runtime.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.Calendars.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.Extensions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.ZipFile.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.DriveInfo.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.Watcher.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.IsolatedStorage.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.MemoryMappedFiles.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.Pipes.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.IO.UnmanagedMemoryStream.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Linq.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Expressions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Parallel.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Queryable.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 04:02:42</publishTime>
+    </File>
+    <File Include="bin/System.Net.NameResolution.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.NetworkInformation.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Ping.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Requests.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Security.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Sockets.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebHeaderCollection.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebSockets.Client.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebSockets.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ObjectModel.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.Extensions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Resources.Reader.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Resources.ResourceManager.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Resources.Writer.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.VisualC.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Extensions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Handles.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Numerics.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Formatters.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Json.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Xml.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Claims.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Csp.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Encoding.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Primitives.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.Principal.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Security.SecureString.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encoding.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encoding.Extensions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Text.RegularExpressions.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Overlapped.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Parallel.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Thread.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.ThreadPool.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Timer.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.ValueTuple.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
@@ -220,29 +529,47 @@
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
+    <File Include="bin/System.Xml.ReaderWriter.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XDocument.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XmlDocument.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XmlSerializer.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XPath.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XPath.XDocument.dll">
+      <publishTime>04/03/2022 11:09:54</publishTime>
+    </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
-      <publishTime>01/28/2015 04:04:32</publishTime>
+      <publishTime>01/28/2015 12:04:32</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
-      <publishTime>01/28/2015 04:02:22</publishTime>
+      <publishTime>01/28/2015 12:02:22</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
-      <publishTime>02/11/2014 15:28:40</publishTime>
+      <publishTime>02/11/2014 23:28:40</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
-      <publishTime>01/28/2015 04:02:34</publishTime>
+      <publishTime>01/28/2015 12:02:34</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
-      <publishTime>01/28/2015 04:04:32</publishTime>
+      <publishTime>01/28/2015 12:04:32</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
-      <publishTime>01/28/2015 04:04:32</publishTime>
+      <publishTime>01/28/2015 12:04:32</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
-      <publishTime>01/28/2015 04:04:32</publishTime>
+      <publishTime>01/28/2015 12:04:32</publishTime>
     </File>
     <File Include="Content/themes/base/bootstrap.min.css">
       <publishTime>04/08/2018 22:45:24</publishTime>
@@ -449,7 +776,7 @@
       <publishTime>04/08/2018 22:45:25</publishTime>
     </File>
     <File Include="Content/themes/base/signin.css">
-      <publishTime>04/08/2018 22:45:26</publishTime>
+      <publishTime>04/01/2023 20:32:05</publishTime>
     </File>
     <File Include="Content/themes/base/Site.css">
       <publishTime>03/04/2020 20:14:22</publishTime>
@@ -584,10 +911,31 @@
       <publishTime>03/01/2020 22:38:56</publishTime>
     </File>
     <File Include="Files/2019年10月工资表.xls">
-      <publishTime>02/02/2021 20:22:45</publishTime>
+      <publishTime>11/17/2022 20:44:06</publishTime>
+    </File>
+    <File Include="Files/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>03/12/2023 14:31:05</publishTime>
+    </File>
+    <File Include="Files/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>03/12/2023 09:31:28</publishTime>
+    </File>
+    <File Include="Files/卓越人力资源服务系统-操作手册.docx">
+      <publishTime>11/26/2022 23:56:04</publishTime>
+    </File>
+    <File Include="Files/单位结算.xlsx">
+      <publishTime>10/11/2022 22:08:45</publishTime>
+    </File>
+    <File Include="Files/导入单位账户余额.xlsx">
+      <publishTime>09/27/2022 22:43:40</publishTime>
     </File>
     <File Include="Files/批量导入人员模板.xlsx">
-      <publishTime>03/31/2020 22:27:09</publishTime>
+      <publishTime>03/29/2023 11:34:50</publishTime>
+    </File>
+    <File Include="Files/考勤月报.xlsx">
+      <publishTime>10/12/2022 16:45:25</publishTime>
+    </File>
+    <File Include="Files/考勤表.xlsx">
+      <publishTime>10/09/2022 22:10:30</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/08/2018 22:11:08</publishTime>
@@ -607,29 +955,56 @@
     <File Include="index.html">
       <publishTime>04/07/2019 18:05:10</publishTime>
     </File>
+    <File Include="JS/BaseCodeManageOpt.js">
+      <publishTime>04/24/2023 23:52:20</publishTime>
+    </File>
     <File Include="JS/bootstrap.min.js">
       <publishTime>04/12/2018 00:04:46</publishTime>
     </File>
     <File Include="JS/chart.HomePage.js">
-      <publishTime>01/03/2019 21:24:13</publishTime>
+      <publishTime>03/06/2023 23:15:39</publishTime>
+    </File>
+    <File Include="JS/check.ChecksQueryOpt.js">
+      <publishTime>10/15/2022 22:18:16</publishTime>
+    </File>
+    <File Include="JS/check.ImportorDayOpt.js">
+      <publishTime>10/10/2022 23:35:50</publishTime>
+    </File>
+    <File Include="JS/check.ImportorListOpt.js">
+      <publishTime>03/29/2023 15:25:00</publishTime>
+    </File>
+    <File Include="JS/check.MonthDetailOpt.js">
+      <publishTime>10/12/2022 23:33:09</publishTime>
+    </File>
+    <File Include="JS/check.MonthListOpt.js">
+      <publishTime>03/29/2023 15:25:00</publishTime>
+    </File>
+    <File Include="JS/company.AccountImportDetail.js">
+      <publishTime>03/26/2023 11:35:51</publishTime>
+    </File>
+    <File Include="JS/company.AccountImports.js">
+      <publishTime>03/29/2023 15:25:00</publishTime>
+    </File>
+    <File Include="JS/company.AccountMonth.js">
+      <publishTime>03/26/2023 15:21:14</publishTime>
     </File>
     <File Include="JS/company.CompanyListOpt.js">
-      <publishTime>03/29/2020 23:20:13</publishTime>
+      <publishTime>03/29/2023 15:25:17</publishTime>
     </File>
     <File Include="JS/company.CompanyPageOpt.js">
-      <publishTime>07/13/2018 20:28:43</publishTime>
+      <publishTime>04/24/2023 23:19:23</publishTime>
     </File>
     <File Include="JS/demo.demoOpt .js">
       <publishTime>05/20/2018 18:21:18</publishTime>
     </File>
     <File Include="JS/employee.employeeListOpt.js">
-      <publishTime>03/29/2020 21:01:15</publishTime>
+      <publishTime>03/29/2023 15:23:20</publishTime>
     </File>
     <File Include="JS/employee.employeePageOpt.js">
-      <publishTime>11/27/2018 21:50:23</publishTime>
+      <publishTime>04/22/2023 11:53:33</publishTime>
     </File>
     <File Include="JS/GroupingOpt.js">
-      <publishTime>05/16/2018 20:52:28</publishTime>
+      <publishTime>04/25/2023 00:01:04</publishTime>
     </File>
     <File Include="JS/holder.min.js">
       <publishTime>04/11/2018 23:24:23</publishTime>
@@ -671,16 +1046,16 @@
       <publishTime>10/18/2018 20:42:55</publishTime>
     </File>
     <File Include="JS/pay.ImportorListOpt.js">
-      <publishTime>03/02/2020 00:01:38</publishTime>
+      <publishTime>03/12/2023 11:30:56</publishTime>
     </File>
     <File Include="JS/pay.ImportorPayDetailOpt.js">
       <publishTime>10/18/2018 21:22:09</publishTime>
     </File>
     <File Include="JS/pay.ImportorPayListOpt.js">
-      <publishTime>10/17/2018 23:11:55</publishTime>
+      <publishTime>03/12/2023 11:31:36</publishTime>
     </File>
     <File Include="JS/pay.PayEditorOpt.js">
-      <publishTime>11/22/2018 21:14:45</publishTime>
+      <publishTime>03/29/2023 14:27:44</publishTime>
     </File>
     <File Include="JS/pay.PayOpt.js">
       <publishTime>11/21/2018 22:38:36</publishTime>
@@ -698,10 +1073,13 @@
       <publishTime>05/16/2018 20:52:28</publishTime>
     </File>
     <File Include="JS/share.js">
-      <publishTime>05/19/2018 14:12:41</publishTime>
+      <publishTime>04/25/2023 01:10:32</publishTime>
+    </File>
+    <File Include="JS/UpgradeManageOpt.js">
+      <publishTime>04/22/2023 16:24:26</publishTime>
     </File>
     <File Include="JS/UserManageOpt.js">
-      <publishTime>05/14/2018 21:27:37</publishTime>
+      <publishTime>04/24/2023 23:57:41</publishTime>
     </File>
     <File Include="JS/vue.min.js">
       <publishTime>10/19/2018 22:53:19</publishTime>
@@ -2405,10 +2783,10 @@
       <publishTime>04/08/2018 22:33:50</publishTime>
     </File>
     <File Include="Library/uploadFiles/demo.htm">
-      <publishTime>06/23/2018 18:46:49</publishTime>
+      <publishTime>03/29/2023 15:26:11</publishTime>
     </File>
     <File Include="Library/uploadFiles/jquery.uploadFiles.js">
-      <publishTime>04/08/2018 22:33:50</publishTime>
+      <publishTime>11/12/2022 21:04:38</publishTime>
     </File>
     <File Include="Library/vector-master/demo1.html">
       <publishTime>04/08/2018 22:33:50</publishTime>
@@ -2438,7 +2816,7 @@
       <publishTime>08/04/2018 16:44:56</publishTime>
     </File>
     <File Include="Setting/Menu/MenuConfig.xml">
-      <publishTime>03/06/2020 21:04:31</publishTime>
+      <publishTime>04/21/2023 22:19:35</publishTime>
     </File>
     <File Include="Setting/Pay/PayTableConfig.xml">
       <publishTime>06/13/2018 22:15:17</publishTime>
@@ -2456,28 +2834,31 @@
       <publishTime>03/08/2020 11:40:07</publishTime>
     </File>
     <File Include="Setting/Sql/hr.sql.xml">
-      <publishTime>03/11/2020 20:48:32</publishTime>
+      <publishTime>03/29/2023 14:48:08</publishTime>
     </File>
     <File Include="sqlMappers/hr.basecode.xml">
-      <publishTime>07/13/2018 20:24:44</publishTime>
+      <publishTime>04/24/2023 23:51:20</publishTime>
     </File>
     <File Include="sqlMappers/hr.charts.xml">
-      <publishTime>10/23/2018 22:05:07</publishTime>
+      <publishTime>03/07/2023 23:06:44</publishTime>
+    </File>
+    <File Include="sqlMappers/hr.check.xml">
+      <publishTime>10/15/2022 22:22:03</publishTime>
     </File>
     <File Include="sqlMappers/hr.company.xml">
-      <publishTime>11/22/2018 22:05:16</publishTime>
+      <publishTime>04/24/2023 23:09:55</publishTime>
     </File>
     <File Include="sqlMappers/hr.employee.xml">
-      <publishTime>03/29/2020 22:57:26</publishTime>
+      <publishTime>03/29/2023 15:53:34</publishTime>
     </File>
     <File Include="sqlMappers/hr.insurance.xml">
-      <publishTime>10/16/2018 23:11:18</publishTime>
+      <publishTime>03/11/2023 17:46:01</publishTime>
     </File>
     <File Include="sqlMappers/hr.pay.xml">
-      <publishTime>03/01/2020 23:52:42</publishTime>
+      <publishTime>03/11/2023 19:58:01</publishTime>
     </File>
     <File Include="sqlMappers/hr.payment.xml">
-      <publishTime>03/11/2020 21:09:43</publishTime>
+      <publishTime>03/12/2023 10:24:19</publishTime>
     </File>
     <File Include="sqlMappers/hr.position.xml">
       <publishTime>05/19/2018 16:01:17</publishTime>
@@ -2492,37 +2873,55 @@
       <publishTime>04/08/2018 22:21:38</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>03/04/2020 20:07:04</publishTime>
+      <publishTime>04/01/2023 20:34:55</publishTime>
+    </File>
+    <File Include="Views/Account/Onlines.cshtml">
+      <publishTime>04/02/2023 19:42:39</publishTime>
     </File>
     <File Include="Views/Account/UserPage.cshtml">
       <publishTime>08/01/2018 22:47:27</publishTime>
     </File>
+    <File Include="Views/BaseCode/CodeManage.cshtml">
+      <publishTime>04/22/2023 14:46:54</publishTime>
+    </File>
+    <File Include="Views/Company/AccountImportDetail.cshtml">
+      <publishTime>03/26/2023 15:51:19</publishTime>
+    </File>
+    <File Include="Views/Company/AccountImports.cshtml">
+      <publishTime>03/26/2023 16:10:40</publishTime>
+    </File>
+    <File Include="Views/Company/AccountMonth.cshtml">
+      <publishTime>03/26/2023 14:56:50</publishTime>
+    </File>
     <File Include="Views/Company/CompanyList.cshtml">
-      <publishTime>08/11/2018 11:57:58</publishTime>
+      <publishTime>04/01/2023 15:36:23</publishTime>
     </File>
     <File Include="Views/Company/CompanyPage.cshtml">
-      <publishTime>03/02/2020 10:17:13</publishTime>
+      <publishTime>04/01/2023 15:06:27</publishTime>
     </File>
     <File Include="Views/Employee/EmployeeList.cshtml">
       <publishTime>03/29/2020 21:03:51</publishTime>
     </File>
     <File Include="Views/Employee/EmployeePage.cshtml">
-      <publishTime>03/11/2020 21:01:55</publishTime>
+      <publishTime>03/29/2023 11:24:43</publishTime>
+    </File>
+    <File Include="Views/Home/CmpIndex.cshtml">
+      <publishTime>04/02/2023 19:58:38</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>03/31/2020 22:28:29</publishTime>
+      <publishTime>04/25/2023 01:33:07</publishTime>
     </File>
     <File Include="Views/Pay/BankPayment.cshtml">
       <publishTime>09/13/2018 22:27:46</publishTime>
     </File>
     <File Include="Views/Pay/ImportorDetail.cshtml">
-      <publishTime>10/18/2018 20:48:33</publishTime>
+      <publishTime>03/11/2023 17:47:22</publishTime>
     </File>
     <File Include="Views/Pay/ImportorList.cshtml">
-      <publishTime>03/02/2020 10:31:42</publishTime>
+      <publishTime>03/11/2023 15:56:28</publishTime>
     </File>
     <File Include="Views/Pay/ImportorPayDetail.cshtml">
-      <publishTime>02/02/2021 20:27:19</publishTime>
+      <publishTime>03/12/2023 10:22:24</publishTime>
     </File>
     <File Include="Views/Pay/ImportorPayList.cshtml">
       <publishTime>10/16/2018 23:12:58</publishTime>
@@ -2531,7 +2930,7 @@
       <publishTime>11/21/2018 23:23:31</publishTime>
     </File>
     <File Include="Views/Pay/PayList.cshtml">
-      <publishTime>11/21/2018 20:51:26</publishTime>
+      <publishTime>03/08/2023 21:40:30</publishTime>
     </File>
     <File Include="Views/Pay/TemplateEditor.cshtml">
       <publishTime>06/13/2018 22:15:17</publishTime>
@@ -2558,7 +2957,7 @@
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Views/Shared/Menu.cshtml">
-      <publishTime>08/01/2018 22:25:28</publishTime>
+      <publishTime>04/02/2023 17:06:37</publishTime>
     </File>
     <File Include="Views/Shared/_EmpleLayout.cshtml">
       <publishTime>04/11/2018 23:54:34</publishTime>
@@ -2567,22 +2966,40 @@
       <publishTime>05/19/2018 13:13:41</publishTime>
     </File>
     <File Include="Views/System/RoleGrouping.cshtml">
-      <publishTime>05/16/2018 20:52:28</publishTime>
+      <publishTime>04/25/2023 00:15:12</publishTime>
     </File>
     <File Include="Views/System/RoleManage.cshtml">
       <publishTime>05/15/2018 21:22:51</publishTime>
     </File>
+    <File Include="Views/System/UpgradeManage.cshtml">
+      <publishTime>04/22/2023 16:13:42</publishTime>
+    </File>
     <File Include="Views/System/UserManage.cshtml">
-      <publishTime>05/14/2018 21:27:37</publishTime>
+      <publishTime>03/06/2023 22:12:19</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/08/2018 22:11:08</publishTime>
+    </File>
+    <File Include="Views/Work/Checks.cshtml">
+      <publishTime>10/08/2022 21:17:39</publishTime>
+    </File>
+    <File Include="Views/Work/ChecksQuery.cshtml">
+      <publishTime>10/15/2022 22:11:34</publishTime>
+    </File>
+    <File Include="Views/Work/DayDetail.cshtml">
+      <publishTime>10/10/2022 23:38:13</publishTime>
+    </File>
+    <File Include="Views/Work/MonthDetail.cshtml">
+      <publishTime>10/12/2022 23:27:20</publishTime>
+    </File>
+    <File Include="Views/Work/MonthReporter.cshtml">
+      <publishTime>10/18/2022 21:45:00</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/22/2021 22:44:58</publishTime>
+      <publishTime>04/25/2023 01:07:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

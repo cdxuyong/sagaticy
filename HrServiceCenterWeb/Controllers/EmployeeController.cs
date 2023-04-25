@@ -253,12 +253,22 @@ namespace HrServiceCenterWeb.Controllers
                 JsonResult failJsonResult = Json(failResult, JsonRequestBehavior.AllowGet);
                 return failJsonResult;
             }
-
-            IExcel excel = ExcelFactory.CreateDefault();
-            DataSet ds = excel.Read(Request.Files[0].InputStream);
-            DataTable dt = ds.Tables[0];
-            string message;
-            bool pass = new Manager.EmployeeManager().ImportEmployees(dt, out message);
+            string message = "";
+            bool pass = true;
+            DataTable dt = new DataTable();
+            try
+            {
+                IExcel excel = ExcelFactory.CreateDefault();
+                DataSet ds = excel.Read(Request.Files[0].InputStream);
+                dt = ds.Tables[0];
+            }
+            catch(Exception ex)
+            {
+                pass = false;
+                message = $"未能正常读取excel，原因详情：{ex.Message}";
+            }
+            if(pass)
+                pass = new Manager.EmployeeManager().ImportEmployees(dt, out message);
             Object result = new
             {
                 success = pass,
