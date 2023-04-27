@@ -105,7 +105,7 @@ left join
 	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
 	group by e.COMPANY_ID
 ) v4 on v4.COMPANY_ID=c.COMPANY_ID
-where c.STATE=0
+where c.STATE=0 and c.name is not null
 ORDER BY c.NAME
     ]]>
   </sql>
@@ -164,7 +164,7 @@ left join
 	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
 	group by e.COMPANY_ID
 ) v4 on v4.COMPANY_ID=c.COMPANY_ID
-where c.STATE=0
+where c.STATE=0 and c.name is not null
 ORDER BY c.NAME
     ]]>
   </sql>
@@ -176,7 +176,7 @@ LEFT JOIN (
 ) v1 on v1.COMPANY_ID=c.COMPANY_ID
 left JOIN(
 	select t.COMPANY_ID,count(t.person_id) zz from HR_EMPLOYEE t 
-	where SUBSTRING(t.Contract_FirstTime,1,4)=@year
+	where  ( t.Contract_FirstTime is null or SUBSTRING(t.Contract_FirstTime,1,4)<=@year ) and (t.State=0 or SUBSTRING(t.LEAVE_TIME,1,4)<@year )
 	group by t.COMPANY_ID
 )v2 on v2.COMPANY_ID=c.COMPANY_ID
 LEFT JOIN(
@@ -188,10 +188,10 @@ LEFT JOIN(
 LEFT JOIN(
 	select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
 	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
-	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206)
+	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207)
 	GROUP BY p.COMPANY_ID
 ) v4 ON v4.COMPANY_ID=c.COMPANY_ID
-where c.STATE=0
+where c.STATE=0  and c.name is not null
 order by c.NAME
 
     ]]>
@@ -200,12 +200,15 @@ order by c.NAME
   <sql id="hr.RybdMonth">
     <![CDATA[
 select c.COMPANY_ID,p.POSITION_ID, c.NAME,p.POSITION_NAME,jh,jh-zz kq,xrz,'' xrzName,lz,'' lzName,zz,yfgz,yfgz-yk sfgz from (
+	select COMPANY_ID,POSITION_ID,sum(jh) jh from (
 	SELECT s.COMPANY_ID,s.POSITION_ID,sum(s.plan_count) jh FROM HR_CO_SETTING s GROUP BY s.COMPANY_ID,s.POSITION_ID
+	union all
+	select e.COMPANY_ID,e.POSITION_ID,0 jh from HR_EMPLOYEE e 
+	) v group by COMPANY_ID,POSITION_ID
 ) v1 
 LEFT join
 (
-	select t.COMPANY_ID,t.POSITION_ID,count(t.person_id) zz from HR_EMPLOYEE t 
-	where CONVERT(datetime,t.Contract_FirstTime,101)<=CONVERT(datetime,@beginDate,101) and CONVERT(datetime,t.Contract_Time,101)>=CONVERT(datetime,@endDate,101)
+	select t.COMPANY_ID,t.POSITION_ID,count(t.person_id) zz from HR_EMPLOYEE t where state=0
 	group by t.COMPANY_ID,t.POSITION_ID
 ) v2 on v2.COMPANY_ID=v1.COMPANY_ID and v2.POSITION_ID=v1.POSITION_ID
 LEFT join
@@ -230,7 +233,7 @@ left join
 left join(
   select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
 	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
-	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206)
+	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207)
 	GROUP BY p.COMPANY_ID
 ) v6 on v6.COMPANY_ID=v1.COMPANY_ID
 inner join HR_COMPANY c on v1.COMPANY_ID=c.COMPANY_ID and c.STATE=0
@@ -252,19 +255,24 @@ order BY c.NAME
   <sql id="hr.RybdLzPesonsMonth">
     <![CDATA[
 	select t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME from HR_EMPLOYEE t 
-	where CONVERT(datetime,t.Contract_Time,101)<=CONVERT(datetime,@endDate,101) and CONVERT(datetime,t.Contract_Time,101)>=CONVERT(datetime,@beginDate,101)
+	where CONVERT(datetime,t.LEAVE_TIME,101)<=CONVERT(datetime,@endDate,101) and CONVERT(datetime,t.LEAVE_TIME,101)>=CONVERT(datetime,@beginDate,101)
 ORDER BY t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME
     ]]>
 
   </sql>
   <sql id="hr.Gwtj">
     <![CDATA[
-
-		select c.NAME,p.POSITION_NAME,v1.nums kzs, isnull(v2.nums,0) lwpq, isnull(v3.nums,0) dwgl, isnull(v.nums,0) sys,v1.nums - isnull(v.nums,0) kqs from 
+		
+		select c.NAME,p.POSITION_NAME,v1.planCount kzs, isnull(v2.nums,0) lwpq, isnull(v3.nums,0) dwgl, isnull(v1.realCount,0) sys,v1.planCount - isnull(v1.realCount,0) kqs from 
 		HR_COMPANY c 
 		left JOIN 
 		(
-			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) nums from HR_CO_SETTING s   group by s.COMPANY_ID,s.POSITION_ID
+			select COMPANY_ID,POSITION_ID,sum(planCount) planCount,sum(realCount) realCount  from (
+			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) planCount,0 realCount from HR_CO_SETTING s   group by s.COMPANY_ID,s.POSITION_ID
+			union all
+			select e.COMPANY_ID,e.POSITION_ID,0 planCount, count(*) realCount from HR_EMPLOYEE e where e.State=0 GROUP BY e.COMPANY_ID,e.POSITION_ID
+			)  vv group by COMPANY_ID,POSITION_ID
+
 		) v1 on v1.COMPANY_ID=c.COMPANY_ID
 		left JOIN 
 		(
@@ -274,13 +282,6 @@ ORDER BY t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME
 		(
 			select s.COMPANY_ID,s.POSITION_ID,sum(s.PLAN_COUNT) nums from HR_CO_SETTING s where   s.USE_TYPE='单位管理' group by s.COMPANY_ID,s.POSITION_ID
 		) v3 on v3.COMPANY_ID=c.COMPANY_ID  and v1.POSITION_ID=v3.POSITION_ID
-		left JOIN
-		(
-			select e.COMPANY_ID,e.POSITION_ID,count(*) nums 
-			from HR_EMPLOYEE e
-			where e.State=0
-			GROUP BY e.COMPANY_ID,e.POSITION_ID
-		) v on v.COMPANY_ID=v1.COMPANY_ID and v.POSITION_ID=v1.POSITION_ID
 		inner join HR_POSITION p on p.POSITION_ID=v1.POSITION_ID
 		order by c.COMPANY_ID,v1.POSITION_ID
     ]]>
