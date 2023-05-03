@@ -168,6 +168,7 @@ where c.STATE=0 and c.name is not null
 ORDER BY c.NAME
     ]]>
   </sql>
+  <!-- 人员变动（年度） -->
   <sql id="hr.RybdYear">
     <![CDATA[
 select c.COMPANY_ID,c.NAME, v1.lz,v2.zz,v3.yf,v3.yf-v4.yk sf from HR_COMPANY c
@@ -197,6 +198,7 @@ order by c.NAME
     ]]>
     
   </sql>
+  <!-- 人员变动（月度） -->
   <sql id="hr.RybdMonth">
     <![CDATA[
 select c.COMPANY_ID,p.POSITION_ID, c.NAME,p.POSITION_NAME,jh,jh-zz kq,xrz,'' xrzName,lz,'' lzName,zz,yfgz,yfgz-yk sfgz from (
@@ -284,6 +286,53 @@ ORDER BY t.COMPANY_ID,t.POSITION_ID,t.PERSON_NAME
 		) v3 on v3.COMPANY_ID=c.COMPANY_ID  and v1.POSITION_ID=v3.POSITION_ID
 		inner join HR_POSITION p on p.POSITION_ID=v1.POSITION_ID
 		order by c.COMPANY_ID,v1.POSITION_ID
+    ]]>
+
+  </sql>
+  <sql id="hr.PersonPayMonth">
+    <![CDATA[
+		
+with pv as (
+	select t.PERSON_ID,
+	sum(case t.ITEM_ID when 101 then t.PAY_VALUE else 0 end) jbgz,
+	sum(case t.ITEM_ID when 102 then t.PAY_VALUE else 0 end) jxgz,
+	sum(case t.ITEM_ID when 103 then t.PAY_VALUE else 0 end) gwgz,
+	sum(case t.ITEM_ID when 104 then t.PAY_VALUE else 0 end) other,
+	sum(case t.ITEM_ID when 201 then t.PAY_VALUE else 0 end) ylao,
+	sum(case t.ITEM_ID when 202 then t.PAY_VALUE else 0 end) sye,
+	sum(case t.ITEM_ID when 203 then t.PAY_VALUE else 0 end) yliao,
+	sum(case t.ITEM_ID when 204 then t.PAY_VALUE else 0 end) gshang,
+	sum(case t.ITEM_ID when 205 then t.PAY_VALUE else 0 end) syu,
+	sum(case t.ITEM_ID when 206 then t.PAY_VALUE else 0 end) gjj,
+	sum(case t.ITEM_ID when 207 then t.PAY_VALUE else 0 end) gs,
+	sum(case t.ITEM_ID when 6 then t.PAY_VALUE else 0 end) fwf
+	from HR_SALARY_PAY_VALUE t 
+	inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
+	where  p.PAY_MONTH='2023-04-01'   
+	GROUP BY t.PERSON_ID
+),
+cv as (
+	select t.PERSON_ID,
+	sum(case t.ITEM_ID when 201 then t.ITEM_CMP_VALUE else 0 end) cylao,
+	sum(case t.ITEM_ID when 202 then t.ITEM_CMP_VALUE else 0 end) csye,
+	sum(case t.ITEM_ID when 203 then t.ITEM_CMP_VALUE else 0 end) cyliao,
+	sum(case t.ITEM_ID when 204 then t.ITEM_CMP_VALUE else 0 end) cgshang,
+	sum(case t.ITEM_ID when 205 then t.ITEM_CMP_VALUE else 0 end) csyu,
+	sum(case t.ITEM_ID when 206 then t.ITEM_CMP_VALUE else 0 end) cgjj
+	from HR_SALARY_IMPORTOR_DATA t
+	where t.PAY_MONTH='202304' 
+	group by t.PERSON_ID
+) 
+select e.PERSON_NAME, jbgz,jxgz,jbgz+jxgz+gwgz+other yfgz,
+ylao,sye,yliao,ylao+sye+yliao grjl,
+cylao, csye,cgshang,cyliao+csyu cyliao,cylao+csye+cgshang+cyliao+csyu dwjl,
+pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao)+(cylao+csye+cgshang+cyliao+csyu) total
+from pv
+left join cv on pv.PERSON_ID=cv.PERSON_ID
+inner join HR_EMPLOYEE e on e.PERSON_ID=pv.PERSON_ID
+order by e.CMP_NAME,e.PERSON_NAME
+
+
     ]]>
 
   </sql>

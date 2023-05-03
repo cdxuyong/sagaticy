@@ -36,7 +36,10 @@ namespace HrServiceCenterWeb.Controllers
         {
             return View();
         }
-
+        public ActionResult PersonPayMonth()
+        {
+            return View();
+        }
         // GET: Reports/GetYears/
         [HttpPost]
         public ActionResult GetYears()
@@ -301,5 +304,54 @@ namespace HrServiceCenterWeb.Controllers
             }
             return null;
         }
+
+
+        [HttpGet]
+        public ActionResult GetPersonPayMonthDetail()
+        {
+            ReportManager manager = new ReportManager();
+            DataSet ds = manager.GetPersonPayMonthDetail();
+            DataTable dt = ds.Tables[0];
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            ContentResult contentResult = Content(json);
+
+            return contentResult;
+        }
+
+        public ActionResult DownPersonPayMonthDetail()
+        {
+            ReportManager manager = new ReportManager();
+            DataSet ds = manager.GetPersonPayMonthDetail();
+            ds.Tables[0].TableName = "sheet1";
+
+            POIStream stream = new POIStream();
+            IExcel excel = ExcelFactory.CreateDefault();
+            stream.AllowClose = false;
+            //excel.Write(stream, ds, ExcelExtendType.XLSX);
+            string templateName = AppDomain.CurrentDomain.BaseDirectory + @"\Setting\Reports\gwtj.xml";
+            excel.Write(stream, templateName, ds, ExcelExtendType.XLSX);
+            stream.AllowClose = true;
+            byte[] buffer = new byte[stream.Length];
+            stream.Position = 0;
+            stream.Read(buffer, 0, buffer.Length);
+            stream.Close();
+
+            HttpResponse context = System.Web.HttpContext.Current.Response;
+            try
+            {
+                context.ContentType = "application/ms-excel";
+                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode("单位五险一金统计", System.Text.Encoding.UTF8)));
+                context.BinaryWrite(buffer);
+                context.Flush();
+                context.End();
+            }
+            catch (Exception ex)
+            {
+                context.ContentType = "text/plain";
+                context.Write(ex.Message);
+            }
+            return null;
+        }
+
     }
 }

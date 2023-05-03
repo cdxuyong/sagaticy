@@ -378,5 +378,21 @@ namespace HrServiceCenterWeb.Manager
             SumDataSet(ds);
             return ds;
         }
+
+        public DataSet GetPersonPayMonthDetail()
+        {
+            string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "/Setting/sql/hr.sql.xml";
+            string sql = BlueFramework.Common.XmlUtils.GetInnerText(filePath, "hr.PersonPayMonth");
+            BlueFramework.Data.DatabaseProviderFactory factory = new BlueFramework.Data.DatabaseProviderFactory();
+            BlueFramework.Data.Database db = factory.CreateDefault();
+            DbCommand command = db.GetSqlStringCommand(sql);
+            command.CommandTimeout = BlueFramework.Data.Database.CONNECTION_TIME_OUT;
+            //DataTable dt = db.ExecuteDataSet(command).Tables[0];
+            DataSet ds = db.ExecuteDataSet(command);
+            DataTable dt = ds.Tables[0];
+            FillRowNum(ds);
+            SumDataSet(ds);
+            return ds;
+        }
     }
 }

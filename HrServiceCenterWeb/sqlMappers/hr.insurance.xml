@@ -9,7 +9,7 @@
     order by  t.IMPORT_ID desc
   </select>
   <select id="findInsuranceById" >
-    select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
+    select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime,t.CREATOR CreatorId
     from HR_SALARY_IMPORTOR t
     left join T_S_USER u on t.CREATOR=u.USERID
     where t.IMPORT_ID=#{value}

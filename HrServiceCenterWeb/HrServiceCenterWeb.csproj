@@ -1080,6 +1080,7 @@
     <Content Include="Views\BaseCode\CodeManage.cshtml" />
     <Content Include="Views\System\UpgradeManage.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
+    <Content Include="Views\Reports\PersonPayMonth.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

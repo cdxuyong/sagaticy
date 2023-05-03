@@ -55,7 +55,7 @@
     t.PAY_TITLE PayTitle,
     t.COMPANY_ID CompanyId,
     t.PAY_MONTH PayMonth,
-    t.STATUS Status
+    t.STATUS Status,t.CREATOR CreatorId 
     from HR_SALARY_PAY t
     where t.PAY_ID=${value}
   </select>
