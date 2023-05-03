@@ -8,6 +8,13 @@
     where t.TITLE like '%${value}%' and IMPORT_TYPE=1 ${where}
     order by  t.IMPORT_ID desc
   </select>
+  <select id="findInsuranceById" >
+    select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
+    from HR_SALARY_IMPORTOR t
+    left join T_S_USER u on t.CREATOR=u.USERID
+    where t.IMPORT_ID=#{value}
+    order by  t.IMPORT_ID desc
+  </select>
   <select id="findPayments" >
     select t.IMPORT_ID ImportId,t.TITLE Title,u.TRUENAME CreatorName,CONVERT(varchar,t.CREATE_TIME,120) CreateTime
     from HR_SALARY_IMPORTOR t
@@ -44,12 +51,18 @@
   </select>
   <select id="findInsuranceDetailById">
     select t.IMPORT_ID ImportId,e.PERSON_NAME PersonName,e.CARD_ID CardId,t.PAY_MONTH PayMonth,t.IMPORT_COLUMN_NAME ItemName,t.ITEM_VALUE PersonPayValue,ITEM_CMP_VALUE CompanyPayValue,
-    BASE_VALUE BaseValue,SCALE_PERSON ScalePerson,SCALE_CMP ScaleCompany,PAY_INDEX PayIndex,ACCOUNT_INDEX AccountIndex,MEMO
+    BASE_VALUE BaseValue,SCALE_PERSON ScalePerson,SCALE_CMP ScaleCompany,PAY_INDEX PayIndex,ACCOUNT_INDEX AccountIndex,MEMO,t.ITEM_ID ItemID 
     from HR_SALARY_IMPORTOR_DATA t
     left join HR_EMPLOYEE e on t.PERSON_ID=e.PERSON_ID
     where t.IMPORT_ID=#{value}
   </select>
-
+  <select id="exportInsuranceDetailById">
+    select e.PERSON_NAME 姓名,e.CARD_ID 身份证,t.PAY_MONTH 缴存日期,t.IMPORT_COLUMN_NAME 险种,t.ITEM_VALUE 个人部分,ITEM_CMP_VALUE 单位部分,
+    BASE_VALUE 缴费基数,SCALE_PERSON 个人缴费比例,SCALE_CMP 单位缴费比例,MEMO 备注
+    from HR_SALARY_IMPORTOR_DATA t
+    left join HR_EMPLOYEE e on t.PERSON_ID=e.PERSON_ID
+    where t.IMPORT_ID=#{value}
+  </select>
   <select id="findInsuranceDetailByNewMonth">
     select t.PERSON_ID PersonId,t.ITEM_ID ItemId,ITEM_VALUE PersonPayValue
     from HR_SALARY_IMPORTOR_DATA t

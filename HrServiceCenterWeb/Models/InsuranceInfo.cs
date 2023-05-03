@@ -21,5 +21,6 @@ namespace HrServiceCenterWeb.Models
         public string CreatorName{ get; set; }
 
         public string CreateTime { get; set; }
+
     }
 }

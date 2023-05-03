@@ -72,7 +72,8 @@ opt.querydetail = function () {
     }
     var id = row.ImportId;
     var url = '../Pay/ImportorDetail?importId=' + id;
-    self.location = url;
+    window.open(url);
+    //self.location = url;
 }
 
 //上传文件

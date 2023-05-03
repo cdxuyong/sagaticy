@@ -156,7 +156,17 @@ namespace HrServiceCenterWeb.Controllers
         // PAY detail
         public ActionResult ImportorPayDetail(int importorId)
         {
+            var info = new Manager.PayManager().QueryImportorInsuranceInfo(importorId);
+            if (info == null)
+            {
+                return Error("警告：非法请求");
+            }
+            if (UserContext.CurrentUser.IsCompanyUser && info.CreatorId != UserContext.CurrentUser.UserId)
+            {
+                return Error("错误提示：无访问权限");
+            }
             ViewBag.importorId = importorId;
+            ViewBag.importorTitle = info.Title;
             return View();
         }
 
@@ -337,8 +347,51 @@ namespace HrServiceCenterWeb.Controllers
 
         public ActionResult ImportorDetail(int importId)
         {
+            var info = new Manager.PayManager().QueryImportorInsuranceInfo(importId);
+            if(info == null)
+            {
+                return Error("警告：非法请求");
+            }
+            if (UserContext.CurrentUser.IsCompanyUser && info.CreatorId != UserContext.CurrentUser.UserId)
+            {
+                return Error("错误提示：无访问权限");
+            }
+
             ViewBag.ImportId = importId;
+            ViewBag.importorTitle = info.Title;
+            //HttpContext.Request.Headers[""]
             return View();
+        }
+
+        public ActionResult ExportInsuranceDetail(int importId)
+        {
+            var info = new Manager.PayManager().QueryImportorInsuranceInfo(importId);
+            IExcel excel = ExcelFactory.CreateDefault();
+            DataSet ds = new Manager.PayManager().ExportInsuranceDetail(importId);
+            POIStream stream = new POIStream();
+            stream.AllowClose = false;
+            excel.Write(stream, ds, ExcelExtendType.XLSX);
+            stream.AllowClose = true;
+            byte[] buffer = new byte[stream.Length];
+            stream.Position = 0;
+            stream.Read(buffer, 0, buffer.Length);
+            stream.Close();
+
+            HttpResponse context = System.Web.HttpContext.Current.Response;
+            try
+            {
+                context.ContentType = "application/ms-excel";
+                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode(info.Title, System.Text.Encoding.UTF8)));
+                context.BinaryWrite(buffer);
+                context.Flush();
+                context.End();
+            }
+            catch (Exception ex)
+            {
+                context.ContentType = "text/plain";
+                context.Write(ex.Message);
+            }
+            return null;
         }
 
         //详细列表
@@ -349,6 +402,8 @@ namespace HrServiceCenterWeb.Controllers
             JsonResult jsonResult = Json(list);
             return jsonResult;
         }
+
+
 
         // 发放列表
         // VIEW: /Pay/PayList
@@ -371,6 +426,18 @@ namespace HrServiceCenterWeb.Controllers
         // VIEW: /Pay/PayEditor
         public ActionResult PayEditor(int id)
         {
+            if (id != 0)
+            {
+                var info = new Manager.PayManager().GetPayDetailByPayId(id);
+                if (info == null)
+                {
+                    return Error("警告：非法请求");
+                }
+                if (UserContext.CurrentUser.IsCompanyUser && info.CreatorId != UserContext.CurrentUser.UserId)
+                {
+                    return Error("错误提示：无访问权限");
+                }
+            }
             ViewBag.PayId = id;
             ViewBag.PayDate = System.DateTime.Now.AddMonths(-1).ToString("yyyy-MM-01");
             return View();

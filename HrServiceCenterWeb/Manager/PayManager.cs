@@ -236,21 +236,38 @@ namespace HrServiceCenterWeb.Manager
             }
         }
 
+        /// <summary>
+        /// 获取保险导入信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public InsuranceInfo QueryImportorInsuranceInfo(int id)
+        {
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
+            {
+                var data = context.Selete<InsuranceInfo>("hr.insurance.findInsuranceById", id);
+                return data;
+            }
+        }
+
         public List<InsuranceInfo> QueryImportorInsuranceList(string query)
         {
-            EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            CommandParameter[] dbParms = new CommandParameter[2];
-            dbParms[0] = new CommandParameter("value", query);
-            if (UserContext.CurrentUser.IsCompanyUser)
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
-                dbParms[1] = new CommandParameter("where", $" and t.CREATOR="+UserContext.CurrentUser.UserId);
+                CommandParameter[] dbParms = new CommandParameter[2];
+                dbParms[0] = new CommandParameter("value", query);
+                if (UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[1] = new CommandParameter("where", $" and t.CREATOR=" + UserContext.CurrentUser.UserId);
+                }
+                else
+                {
+                    dbParms[1] = new CommandParameter("where", "");
+                }
+                List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findInsurance", dbParms);
+                return list;
             }
-            else
-            {
-                dbParms[1] = new CommandParameter("where", "");
-            }
-            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findInsurance", dbParms);
-            return list;
+
         }
 
         public List<InsuranceInfo> QueryImportorPaymentList(string query)
@@ -534,12 +551,30 @@ namespace HrServiceCenterWeb.Manager
             }
             return dic;
         }
-
+        /// <summary>
+        /// 查询指定id的缴存明细
+        /// </summary>
+        /// <param name="importId"></param>
+        /// <returns></returns>
         public List<InsuranceDetailInfo> QueryInsuranceDetail(int importId)
         {
             EntityContext context = BlueFramework.Blood.Session.CreateContext();
             List<InsuranceDetailInfo> list = context.SelectList<InsuranceDetailInfo>("hr.insurance.findInsuranceDetailById", importId);
             return list;
+        }
+
+        /// <summary>
+        /// 导出指定id的缴存明细
+        /// </summary>
+        /// <param name="importId"></param>
+        /// <returns></returns>
+        public DataSet ExportInsuranceDetail(int importId)
+        {
+            EntityConfig config = ConfigManagent.Configs["hr.insurance.exportInsuranceDetailById"];
+            BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
+            string sql = config.Sql.Replace("#{value}", importId.ToString());
+            DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
+            return ds;
         }
 
         public List<Payment> QueryPayList(string query)
@@ -879,5 +914,7 @@ namespace HrServiceCenterWeb.Manager
             DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
             return ds;
         }
+
+
     }
 }

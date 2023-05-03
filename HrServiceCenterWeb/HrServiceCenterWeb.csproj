@@ -1031,6 +1031,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SqlMappingConfig.xml" />
+    <Content Include="Views\Home\errors.html" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -1078,6 +1079,7 @@
     <Content Include="Views\Account\Onlines.cshtml" />
     <Content Include="Views\BaseCode\CodeManage.cshtml" />
     <Content Include="Views\System\UpgradeManage.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

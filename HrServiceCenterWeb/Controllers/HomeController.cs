@@ -33,5 +33,17 @@ namespace HrServiceCenterWeb.Controllers
 
             return View();
         }
+
+        public ActionResult Message(string id)
+        {
+            string message = "系统提示";
+            MessageInfo info = null;
+            if(_messages.TryGetValue(id, out info))
+            {
+                message = info.Message;
+            }
+            ViewBag.Message = message;
+            return View();
+        }
     }
 }

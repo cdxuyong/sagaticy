@@ -17,24 +17,29 @@
 </script>
 <div class="container container-layout">
     <div class="page-header">
-        <h3>薪酬管理.<small>&nbsp;<a href="~/Pay/ImportorPayList">工资导入管理</a> </small>.<small>&nbsp;详情</small></h3>
+        <h3>
+            <small style="font-size:24px;color:#000;">薪酬管理&nbsp;.</small>
+            <small style="font-size:18px;"><a href="~/Pay/ImportorList">工资&nbsp;.</a></small>
+            <small>@ViewBag.importorTitle</small>&nbsp;
+            <small><button type="button" class="btn btn-default btn-xs" style="width:60px;" onclick="opt.export();return false;">导出</button></small>
+        </h3>
     </div>
     @{
         if ("WT".Equals(Publish2Local.Complication.Spot))
         {
             <!-- 数据列表 -->
             <div id="dgContainer" style="margin:20px 0;">
-                <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+                <table id="dg" class="easyui-datagrid" title="" style="width:100%;"
                        data-options="idField:'a',
 			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
 			        autoRowHeight:true,filterBtnIconCls:'icon-filter',
-			        pagination:true,
+			        pagination:true,showFooter:true,
 			        pageSize:20,pageList:[10,20,30,40,50,100]">
                     <thead>
                         <tr>
                             <th data-options="field:'PERSON_NAME',width:60">姓名</th>
-                            <th data-options="field:'CARD_ID',width:120">身份证号</th>
-                            <th data-options="field:'BANK_CARD',width:120">银行卡号</th>
+                            <th data-options="field:'CARD_ID',width:200">身份证号</th>
+                            <th data-options="field:'BANK_CARD',width:200">银行卡号</th>
                             <th data-options="field:'f101',width:80">基本工资</th>
                             <th data-options="field:'f102',width:80">绩效工资</th>
                             <th data-options="field:'f103',width:80">岗位工资</th>

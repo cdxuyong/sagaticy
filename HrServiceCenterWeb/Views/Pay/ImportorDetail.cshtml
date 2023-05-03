@@ -12,15 +12,20 @@
 </style>
 <div class="container container-layout">
     <div class="page-header">
-        <h3>发放管理.<small>&nbsp;<a href="~/Pay/ImportorList">社保管理.</a></small><small>&nbsp;社保详情</small></h3>
+        <h3>
+            <small style="font-size:20px;">薪酬管理&nbsp;.</small> &nbsp;
+            <small style="font-size:18px;"><a href="~/Pay/ImportorList">社保&nbsp;.</a></small>&nbsp;
+            <small>@ViewBag.importorTitle</small>&nbsp;
+            <small><button type="button" class="btn btn-default btn-xs" style="width:60px;" onclick="opt.export();return false;">导出</button></small>
+        </h3>
     </div>
     <!-- 数据列表 -->
     <div id="dgContainer" style="margin:20px 0;">
         <input id="hideview" type="hidden" value="@ViewBag.ImportId" />
-        <table id="dg" class="easyui-datagrid" title="" style="width:100%;height:100%"
+        <table id="dg" class="easyui-datagrid" title="" style="width:100%;"
                data-options="idField:'ImportId',
 			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
-			        autoRowHeight:true,filterBtnIconCls:'icon-filter',pagination:true,
+			        autoRowHeight:true,filterBtnIconCls:'icon-filter',pagination:true,showFooter:true,
 			        pageSize:20,pageList:[10,20,30,40,50,100]">
             <thead>
                 <tr>

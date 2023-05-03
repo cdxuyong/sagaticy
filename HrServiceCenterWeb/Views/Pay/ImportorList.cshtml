@@ -42,11 +42,11 @@
 			        singleSelect:true,collapsible:false,rownumbers:true,striped:true,loadFilter:pagerFilter,
 			        autoRowHeight:true,onDblClickRow:function(rowIndex,rowData){opt.querydetail()},
 			        pagination:true,
-			        pageSize:10,pageList:[10,20,30,40,50,100]">
+			        pageSize:20,pageList:[10,20,30,40,50,100]">
             <thead>
                 <tr>
-                    <th data-options="field:'ImportId',width:100">ID</th>
-                    <th data-options="field:'Title',width:300">标题</th>
+                    <th data-options="field:'ImportId',width:0,hidden:true">ID</th>
+                    <th data-options="field:'Title',width:400">标题</th>
                     <th data-options="field:'CreateTime',width:120">创建时间</th>
                     <th data-options="field:'CreatorName',width:120">创建人</th>
                 </tr>

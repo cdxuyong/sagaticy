@@ -87,7 +87,8 @@ opt.edit = function (id) {
     }
     id = row.PayId;
     var url = '../Pay/PayEditor?id=' + id;
-    self.location = url;
+    window.open(url);
+    //self.location = url;
 };
 opt.dbClick = function (index, field, value) {
     opt.edit();
