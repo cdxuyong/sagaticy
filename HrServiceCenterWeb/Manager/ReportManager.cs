@@ -379,10 +379,21 @@ namespace HrServiceCenterWeb.Manager
             return ds;
         }
 
-        public DataSet GetPersonPayMonthDetail()
+        public DataSet GetPersonPayMonthDetail(int year,int month,int companyId)
         {
             string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "/Setting/sql/hr.sql.xml";
             string sql = BlueFramework.Common.XmlUtils.GetInnerText(filePath, "hr.PersonPayMonth");
+            DateTime date = new DateTime(year, month, 1);
+            sql = sql.Replace("#yyyy-mm-dd#", date.ToString("yyyy-MM-dd"));
+            sql = sql.Replace("#yyyymm#", date.ToString("yyyyMM"));
+            if (companyId > 0)
+            {
+                sql = sql.Replace("#where#", " and e.COMPANY_ID="+companyId);
+            }
+            else
+            {
+                sql = sql.Replace("#where#", "" );
+            }
             BlueFramework.Data.DatabaseProviderFactory factory = new BlueFramework.Data.DatabaseProviderFactory();
             BlueFramework.Data.Database db = factory.CreateDefault();
             DbCommand command = db.GetSqlStringCommand(sql);

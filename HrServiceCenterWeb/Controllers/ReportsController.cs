@@ -307,10 +307,10 @@ namespace HrServiceCenterWeb.Controllers
 
 
         [HttpGet]
-        public ActionResult GetPersonPayMonthDetail()
+        public ActionResult GetPersonPayMonthDetail(int year, int month,int companyId)
         {
             ReportManager manager = new ReportManager();
-            DataSet ds = manager.GetPersonPayMonthDetail();
+            DataSet ds = manager.GetPersonPayMonthDetail(year,month,companyId);
             DataTable dt = ds.Tables[0];
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
             ContentResult contentResult = Content(json);
@@ -318,17 +318,17 @@ namespace HrServiceCenterWeb.Controllers
             return contentResult;
         }
 
-        public ActionResult DownPersonPayMonthDetail()
+        public ActionResult DownPersonPayMonthDetail(int year, int month, int companyId)
         {
             ReportManager manager = new ReportManager();
-            DataSet ds = manager.GetPersonPayMonthDetail();
+            DataSet ds = manager.GetPersonPayMonthDetail(year, month, companyId);
             ds.Tables[0].TableName = "sheet1";
 
             POIStream stream = new POIStream();
             IExcel excel = ExcelFactory.CreateDefault();
             stream.AllowClose = false;
             //excel.Write(stream, ds, ExcelExtendType.XLSX);
-            string templateName = AppDomain.CurrentDomain.BaseDirectory + @"\Setting\Reports\gwtj.xml";
+            string templateName = AppDomain.CurrentDomain.BaseDirectory + @"\Setting\Reports\personMonth.xml";
             excel.Write(stream, templateName, ds, ExcelExtendType.XLSX);
             stream.AllowClose = true;
             byte[] buffer = new byte[stream.Length];
@@ -340,7 +340,7 @@ namespace HrServiceCenterWeb.Controllers
             try
             {
                 context.ContentType = "application/ms-excel";
-                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode("单位五险一金统计", System.Text.Encoding.UTF8)));
+                context.AddHeader("Content-Disposition", string.Format("attachment; filename={0}.xlsx", HttpUtility.UrlEncode("员工五险一金和工资月度汇总表", System.Text.Encoding.UTF8)));
                 context.BinaryWrite(buffer);
                 context.Flush();
                 context.End();

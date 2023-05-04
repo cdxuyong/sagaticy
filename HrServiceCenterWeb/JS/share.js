@@ -8,7 +8,7 @@ window.HR = {
     __ispostback:false,
     __return: null,
     lastQueryPageURL:"",
-    getVersion: function () { return "2.5.2"; },
+    getVersion: function () { return "2.6.0"; },
     getVirtualPath:function(){
         var virPath = self.location.pathname;
         var end = virPath.indexOf('/',1);

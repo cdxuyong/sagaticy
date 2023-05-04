@@ -987,6 +987,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Setting\Pay\PayTableConfig.xml" />
+    <Content Include="Setting\Reports\personMonth.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Setting\Reports\rybdYear.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -15,7 +15,9 @@
         $('#dgContainer').height('auto');
         var year = $('#cmbYears').combobox('getValue');
         var month = $('#cmbMonth').combobox('getValue');
-        var params = { year: year, month: month };
+        var cmpid = $('#cmbCompany').combobox('getValue');
+        if (cmpid == '') cmpid = 0;
+        var params = { year: year, month: month, companyId: cmpid };
         $('#dg').datagrid('loading');
         $.ajax({
             url: url,
@@ -36,7 +38,9 @@
         var url = '../Reports/DownPersonPayMonthDetail';
         var year = $('#cmbYears').combobox('getValue');
         var month = $('#cmbMonth').combobox('getValue');
-        var params = { year: year, month: month };
+        var cmpid = $('#cmbCompany').combobox('getValue');
+        if (cmpid == '') cmpid = 0;
+        var params = { year: year, month: month, companyId: cmpid };
         HR.DownFile(url, params);
     };
     function init() {
@@ -44,16 +48,15 @@
 </script>
 <div class="container container-background">
     <div class="page-header">
-        <h3>统计报表.<small>&nbsp;员工五险一金和工资月度汇总表（导入统计）</small><small style="color:#ff6a00">&nbsp;该统计表直接使用导入数据汇总，可能存在发放表创建后再导入的情况；如果和发放表数据不一致，请删除发放表重新创建。</small></h3>
+        <h3>统计报表.<small>&nbsp;员工五险一金和工资月度汇总表（导入统计）</small><small style="color:#ff6a00">&nbsp;</small></h3>
     </div>
     <div id="pnlSearch">
         <div class="row">
             <div class="col-md-2">
-                <select id="cmbYears" class="easyui-combobox" style="width:100%;height:30px;" data-options="valueField:'id',textField:'text',url:'../Reports/GetYears'"></select>
-
+                <select id="cmbYears" class="easyui-combobox" style="width:90%;height:30px;" data-options="valueField:'id',textField:'text',url:'../Reports/GetYears'"></select>
             </div>
             <div class="col-md-1">
-                <select id="cmbMonth" class="easyui-combobox" style="width:100%;height:30px;" title="请输入年度">
+                <select id="cmbMonth" class="easyui-combobox" style="width:90%;height:30px;" title="请输入年度">
                     <option value="1">1月</option>
                     <option value="2">2月</option>
                     <option value="3">3月</option>
@@ -69,7 +72,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <input id="cmbCompany" class="easyui-combobox" style="width:100%;height:30px;" data-options="
+                <input id="cmbCompany" class="easyui-combobox" style="width:90%;height:30px;" data-options="
 				url:'@Url.Action("QueryCompanyList","Company")',
 				prompt:'输入单位名称...',
 				mode: 'remote',

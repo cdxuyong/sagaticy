@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataSet>
+  <table>
+    <thead>
+      <tr>
+        <th field="rownum" rowspan="2">序号</th>
+        <th field="PERSON_NAME" rowspan="2">姓名</th>
+        <th colspan="3">应发工资</th>
+        <th colspan="4">个人应扣</th>
+        <th colspan="5">单位缴纳部分</th>
+        <th field="fwf" rowspan="2">服务费</th>
+        <th field="total" rowspan="2">费用合计</th>
+      </tr>
+      <tr>
+        <th field="jbgz">基本工资</th>
+        <th field="jxgz" >绩效工资</th>
+        <th field="yfgz" >应发工资</th>
+
+        <th field="ylao" >养老8%</th>
+        <th field="sye" >失业0.4%</th>
+        <th field="yliao" >医疗2%</th>
+        <th field="grjl" >小计</th>
+
+        <th field="cylao">养老16%</th>
+        <th field="csye" >失业0.6%</th>
+        <th field="cgshang" >工伤0.9%</th>
+        <th field="cyliao">医疗（含生育）6.5%</th>
+        <th field="dwjl">小计</th>
+       
+      </tr>
+    </thead>
+  </table>
+</dataSet>

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\wfz\publish</_PublishTargetUrl>
-    <History>True|2023-04-27T15:17:22.1111293Z;True|2023-04-02T19:59:58.5879324+08:00;True|2023-03-29T11:29:55.1801809+08:00;True|2023-03-26T16:15:35.0166049+08:00;True|2023-03-12T14:03:25.9251683+08:00;True|2023-03-08T22:24:15.6102874+08:00;True|2022-11-17T21:47:29.8808849+08:00;</History>
+    <History>True|2023-05-04T16:41:35.2740112Z;True|2023-05-03T23:05:56.3711897+08:00;True|2023-04-27T23:17:22.1111293+08:00;True|2023-04-02T19:59:58.5879324+08:00;True|2023-03-29T11:29:55.1801809+08:00;True|2023-03-26T16:15:35.0166049+08:00;True|2023-03-12T14:03:25.9251683+08:00;True|2023-03-08T22:24:15.6102874+08:00;True|2022-11-17T21:47:29.8808849+08:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -21,10 +21,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:19</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.dll">
-      <publishTime>04/27/2023 23:17:04</publishTime>
+      <publishTime>05/05/2023 00:41:20</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.pdb">
-      <publishTime>04/27/2023 23:17:04</publishTime>
+      <publishTime>05/05/2023 00:41:20</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.dll">
       <publishTime>04/25/2023 01:07:18</publishTime>
@@ -75,10 +75,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2022 22:10:30</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.dll">
-      <publishTime>04/27/2023 23:19:29</publishTime>
+      <publishTime>05/05/2023 00:41:25</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.pdb">
-      <publishTime>04/27/2023 23:19:29</publishTime>
+      <publishTime>05/05/2023 00:41:25</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -138,10 +138,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/11/2017 15:00:06</publishTime>
     </File>
     <File Include="bin/Publish2Local.dll">
-      <publishTime>04/27/2023 23:19:26</publishTime>
+      <publishTime>05/03/2023 23:05:42</publishTime>
     </File>
     <File Include="bin/Publish2Local.pdb">
-      <publishTime>04/27/2023 23:19:26</publishTime>
+      <publishTime>05/03/2023 23:05:42</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -223,6 +223,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Setting/Reports/gwtj.xml">
       <publishTime>03/11/2020 20:50:19</publishTime>
+    </File>
+    <File Include="bin/Setting/Reports/personMonth.xml">
+      <publishTime>05/05/2023 00:37:21</publishTime>
     </File>
     <File Include="bin/Setting/Reports/rybdMonth.xml">
       <publishTime>01/22/2019 21:27:40</publishTime>
@@ -1041,22 +1044,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/11/2018 18:05:00</publishTime>
     </File>
     <File Include="JS/pay.ImportorDetailOpt.js">
-      <publishTime>10/18/2018 20:42:55</publishTime>
+      <publishTime>05/03/2023 11:39:47</publishTime>
     </File>
     <File Include="JS/pay.ImportorListOpt.js">
-      <publishTime>03/12/2023 11:30:56</publishTime>
+      <publishTime>05/02/2023 11:25:03</publishTime>
     </File>
     <File Include="JS/pay.ImportorPayDetailOpt.js">
-      <publishTime>10/18/2018 21:22:09</publishTime>
+      <publishTime>05/03/2023 11:48:46</publishTime>
     </File>
     <File Include="JS/pay.ImportorPayListOpt.js">
-      <publishTime>03/12/2023 11:31:36</publishTime>
+      <publishTime>05/03/2023 11:52:30</publishTime>
     </File>
     <File Include="JS/pay.PayEditorOpt.js">
       <publishTime>03/29/2023 14:27:44</publishTime>
     </File>
     <File Include="JS/pay.PayOpt.js">
-      <publishTime>11/21/2018 22:38:36</publishTime>
+      <publishTime>05/02/2023 23:09:07</publishTime>
     </File>
     <File Include="JS/pay.PaySendOpt.js">
       <publishTime>06/14/2018 22:27:48</publishTime>
@@ -1071,7 +1074,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/16/2018 20:52:28</publishTime>
     </File>
     <File Include="JS/share.js">
-      <publishTime>04/27/2023 23:18:56</publishTime>
+      <publishTime>05/03/2023 23:04:11</publishTime>
     </File>
     <File Include="JS/UpgradeManageOpt.js">
       <publishTime>04/22/2023 16:24:26</publishTime>
@@ -2814,13 +2817,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/04/2018 16:44:56</publishTime>
     </File>
     <File Include="Setting/Menu/MenuConfig.xml">
-      <publishTime>04/21/2023 22:19:35</publishTime>
+      <publishTime>05/04/2023 23:27:49</publishTime>
     </File>
     <File Include="Setting/Pay/PayTableConfig.xml">
       <publishTime>06/13/2018 22:15:17</publishTime>
     </File>
     <File Include="Setting/Reports/gwtj.xml">
       <publishTime>03/11/2020 20:50:19</publishTime>
+    </File>
+    <File Include="Setting/Reports/personMonth.xml">
+      <publishTime>05/05/2023 00:37:21</publishTime>
     </File>
     <File Include="Setting/Reports/rybdMonth.xml">
       <publishTime>01/22/2019 21:27:40</publishTime>
@@ -2832,7 +2838,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2020 11:40:07</publishTime>
     </File>
     <File Include="Setting/Sql/hr.sql.xml">
-      <publishTime>04/27/2023 22:37:44</publishTime>
+      <publishTime>05/05/2023 00:05:25</publishTime>
     </File>
     <File Include="sqlMappers/hr.basecode.xml">
       <publishTime>04/24/2023 23:51:20</publishTime>
@@ -2850,10 +2856,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/29/2023 15:53:34</publishTime>
     </File>
     <File Include="sqlMappers/hr.insurance.xml">
-      <publishTime>03/11/2023 17:46:01</publishTime>
+      <publishTime>05/03/2023 22:13:33</publishTime>
     </File>
     <File Include="sqlMappers/hr.pay.xml">
-      <publishTime>03/11/2023 19:58:01</publishTime>
+      <publishTime>05/03/2023 22:15:55</publishTime>
     </File>
     <File Include="sqlMappers/hr.payment.xml">
       <publishTime>04/25/2023 22:14:25</publishTime>
@@ -2906,29 +2912,35 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Home/CmpIndex.cshtml">
       <publishTime>04/27/2023 23:18:40</publishTime>
     </File>
+    <File Include="Views/Home/errors.html">
+      <publishTime>05/02/2023 19:35:31</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>04/25/2023 23:31:29</publishTime>
+    </File>
+    <File Include="Views/Home/Message.cshtml">
+      <publishTime>05/02/2023 20:08:55</publishTime>
     </File>
     <File Include="Views/Pay/BankPayment.cshtml">
       <publishTime>09/13/2018 22:27:46</publishTime>
     </File>
     <File Include="Views/Pay/ImportorDetail.cshtml">
-      <publishTime>03/11/2023 17:47:22</publishTime>
+      <publishTime>05/03/2023 11:22:05</publishTime>
     </File>
     <File Include="Views/Pay/ImportorList.cshtml">
-      <publishTime>03/11/2023 15:56:28</publishTime>
+      <publishTime>05/03/2023 12:03:20</publishTime>
     </File>
     <File Include="Views/Pay/ImportorPayDetail.cshtml">
-      <publishTime>03/12/2023 10:22:24</publishTime>
+      <publishTime>05/03/2023 11:51:39</publishTime>
     </File>
     <File Include="Views/Pay/ImportorPayList.cshtml">
-      <publishTime>10/16/2018 23:12:58</publishTime>
+      <publishTime>05/03/2023 11:53:33</publishTime>
     </File>
     <File Include="Views/Pay/PayEditor.cshtml">
       <publishTime>11/21/2018 23:23:31</publishTime>
     </File>
     <File Include="Views/Pay/PayList.cshtml">
-      <publishTime>04/27/2023 21:36:02</publishTime>
+      <publishTime>05/02/2023 23:10:18</publishTime>
     </File>
     <File Include="Views/Pay/TemplateEditor.cshtml">
       <publishTime>06/13/2018 22:15:17</publishTime>
@@ -2938,6 +2950,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Views/Reports/Gwtj.cshtml">
       <publishTime>03/11/2020 20:50:21</publishTime>
+    </File>
+    <File Include="Views/Reports/PersonPayMonth.cshtml">
+      <publishTime>05/05/2023 00:31:36</publishTime>
     </File>
     <File Include="Views/Reports/RybdMonth.cshtml">
       <publishTime>01/21/2019 23:23:33</publishTime>
@@ -2997,7 +3012,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/27/2023 23:17:12</publishTime>
+      <publishTime>05/03/2023 23:05:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -52,8 +52,10 @@
   
   <sql id="hr.WxyjYear">
     <![CDATA[
-select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
-isnull(v4.yfgz,0) yfgz,isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(_gjj,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
+select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,
+isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
+isnull(v4.yfgz,0) yfgz,
+isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(gjj,0)-isnull(gshui,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
 from HR_COMPANY c 
 left JOIN
 (
@@ -64,13 +66,14 @@ left JOIN
 		sum(case v.ITEM_ID when 204 then v.PAY_VALUE else 0 end) gs,
 		sum(case v.ITEM_ID when 205 then v.PAY_VALUE else 0 end) shy,
 		sum(case v.ITEM_ID when 206 then v.PAY_VALUE else 0 end) gjj,
+    sum(case v.ITEM_ID when 207 then v.PAY_VALUE else 0 end) gshui,
 		sum(case v.ITEM_ID when 4 then v.PAY_VALUE else 0 end) _bx,
 		sum(case v.ITEM_ID when 5 then v.PAY_VALUE else 0 end) _gjj,
 		sum(case v.ITEM_ID when 6 then v.PAY_VALUE else 0 end) pqf
 		from (
 			select t.PERSON_ID,t.ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
 			inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
-			where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID in (201,202,203,204,205,206,4,5,6)
+			where  SUBSTRING(p.PAY_MONTH,1,4)=@payYear  and t.ITEM_ID in (201,202,203,204,205,206,207,4,5,6)
 			GROUP BY t.PERSON_ID,t.ITEM_ID
 	) v inner join HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
 	group by e.COMPANY_ID
@@ -111,8 +114,10 @@ ORDER BY c.NAME
   </sql>
   <sql id="hr.WxyjMonth">
     <![CDATA[
-select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
-isnull(v4.yfgz,0) yfgz,isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(_gjj,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
+select c.NAME,isnull(yl,0) yl,isnull(sy,0) sy,isnull(yil,0) yil,isnull(gs,0) gs,isnull(shy,0) shy,isnull(gjj,0) gjj,
+isnull(_bx,0) _bx,isnull(_gjj,0) _gjj,isnull(bx_hj,0) bx_hj,isnull(bx_count,0) bx_count,isnull(gjj_hj,0) gjj_hj,isnull(gjj_count,0) gjj_count,
+isnull(v4.yfgz,0) yfgz,
+isnull(v4.yfgz,0)-isnull(yl,0)-isnull(sy,0)-isnull(yil,0)-isnull(gs,0)-isnull(shy,0)-isnull(gjj,0)-isnull(gshui,0)+isnull(_gjj,0)+isnull(_bx,0)+pqf fyxj
 from HR_COMPANY c 
 left JOIN
 (
@@ -123,13 +128,14 @@ left JOIN
 		sum(case v.ITEM_ID when 204 then v.PAY_VALUE else 0 end) gs,
 		sum(case v.ITEM_ID when 205 then v.PAY_VALUE else 0 end) shy,
 		sum(case v.ITEM_ID when 206 then v.PAY_VALUE else 0 end) gjj,
+		sum(case v.ITEM_ID when 207 then v.PAY_VALUE else 0 end) gshui,
 		sum(case v.ITEM_ID when 4 then v.PAY_VALUE else 0 end) _bx,
 		sum(case v.ITEM_ID when 5 then v.PAY_VALUE else 0 end) _gjj,
 		sum(case v.ITEM_ID when 6 then v.PAY_VALUE else 0 end) pqf
 		from (
 			select t.PERSON_ID,t.ITEM_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
 			inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
-			where  p.PAY_MONTH=@payDate  and t.ITEM_ID in (201,202,203,204,205,206,4,5)
+			where  p.PAY_MONTH=@payDate  and t.ITEM_ID in (201,202,203,204,205,206,207,4,5,6)
 			GROUP BY t.PERSON_ID,t.ITEM_ID
 	) v inner join HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
 	group by e.COMPANY_ID
@@ -159,7 +165,7 @@ left join
 	select e.COMPANY_ID,sum(v.pay_value) yfgz from (		
 		select t.PERSON_ID,sum(t.pay_value) PAY_VALUE from HR_SALARY_PAY_VALUE t 
 		inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
-		where  SUBSTRING(p.PAY_MONTH,1,4)=@payDate  and t.ITEM_ID>=101 and t.ITEM_ID<=111
+		where  p.PAY_MONTH=@payDate  and t.ITEM_ID>=101 and t.ITEM_ID<=111
 		GROUP BY t.PERSON_ID
 	) v INNER JOIN HR_EMPLOYEE e on e.PERSON_ID=v.PERSON_ID
 	group by e.COMPANY_ID
@@ -308,7 +314,7 @@ with pv as (
 	sum(case t.ITEM_ID when 6 then t.PAY_VALUE else 0 end) fwf
 	from HR_SALARY_PAY_VALUE t 
 	inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
-	where  p.PAY_MONTH='2023-04-01'   
+	where  p.PAY_MONTH='#yyyy-mm-dd#'   
 	GROUP BY t.PERSON_ID
 ),
 cv as (
@@ -320,7 +326,7 @@ cv as (
 	sum(case t.ITEM_ID when 205 then t.ITEM_CMP_VALUE else 0 end) csyu,
 	sum(case t.ITEM_ID when 206 then t.ITEM_CMP_VALUE else 0 end) cgjj
 	from HR_SALARY_IMPORTOR_DATA t
-	where t.PAY_MONTH='202304' 
+	where t.PAY_MONTH='#yyyymm#' 
 	group by t.PERSON_ID
 ) 
 select e.PERSON_NAME, jbgz,jxgz,jbgz+jxgz+gwgz+other yfgz,
@@ -330,6 +336,7 @@ pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao)+(cylao+csye+cgshang+cyliao+csyu) 
 from pv
 left join cv on pv.PERSON_ID=cv.PERSON_ID
 inner join HR_EMPLOYEE e on e.PERSON_ID=pv.PERSON_ID
+where 1=1 #where# 
 order by e.CMP_NAME,e.PERSON_NAME
 
 

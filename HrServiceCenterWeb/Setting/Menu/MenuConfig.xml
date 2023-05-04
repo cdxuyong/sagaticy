@@ -30,11 +30,12 @@
     <Node  id="702" caption="结算汇总" url="~/Company/AccountMonth" title ="结算汇总" ic_class="" ic_id="" mob_display="true"/>
   </Title>
   <Title  id="4" caption="统计报表" title="统计报表" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
-    <Node  id="401" caption="单位五险一金统计（年度）" url="~/Reports/WxyjYear" title ="单位五险一金统计（年度）" ic_class="" ic_id="" mob_display="true"/>
-    <Node  id="402" caption="单位五险一金统计（月度）" url="~/Reports/WxyjMonth" title ="单位五险一金统计（月度）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="401" caption="单位五险一金统计（年度）" url="~/Reports/WxyjYear" title ="单位五险一金统计（包括服务费）" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="402" caption="单位五险一金统计（月度）" url="~/Reports/WxyjMonth" title ="单位五险一金统计（包括服务费）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="403" caption="岗位人员变动、工资统计表（年度）" url="~/Reports/RybdYear" title ="岗位人员变动、工资统计表（年度）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="404" caption="岗位人员变动、工资统计表（月度）" url="~/Reports/RybdMonth" title ="岗位人员变动、工资统计表（月度）" ic_class="" ic_id="" mob_display="true"/>
     <Node  id="405" caption="各单位控制数和实有数情况统计表" url="~/Reports/Gwtj" title ="各单位控制数和实有数情况统计表" ic_class="" ic_id="" mob_display="true"/>
+    <Node  id="406" caption="员工五险一金和工资月度汇总表" url="~/Reports/PersonPayMonth" title ="人员五险一金和工资统计表" ic_class="" ic_id="" mob_display="true"/>
   </Title>
   <Title  id="6" caption="考勤管理" title="考勤管理" isroot="false" ic_class="icon icon-pin" ul_class="" ic_id="" mob_display="true">
     <Node  id="601" caption="考勤明细" url="~/Work/Checks" title ="考勤明细" ic_class="" ic_id="" mob_display="true"/>
