@@ -28,6 +28,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{92536721-BB04-400B-8293-D5740C42A338}"
 	ProjectSection(SolutionItems) = preProject
 		setup_sql.txt = setup_sql.txt
+		db\sg_2.7.0_升级脚本.ups = db\sg_2.7.0_升级脚本.ups
+		db\sg_2.7.0_升级脚本_索引.ups = db\sg_2.7.0_升级脚本_索引.ups
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publish2Local", "Publish2Local\Publish2Local.csproj", "{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}"

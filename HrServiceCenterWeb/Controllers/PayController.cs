@@ -197,13 +197,13 @@ namespace HrServiceCenterWeb.Controllers
         public ActionResult DeleteInsurance(int id)
         {
             string msg = string.Empty;
-            if (new Manager.PayManager().DeleteInsurance(id))
+            if (new Manager.PayManager().DeleteInsurance(id,out msg))
             {
                 msg = "删除成功";
             }
             else
             {
-                msg = "删除失败";
+                msg = string.IsNullOrEmpty(msg) ? "删除失败" : msg;
             }
             return Json(msg);
         }

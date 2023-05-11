@@ -157,6 +157,9 @@ opt.createGrid = function (items, table) {
         { field: 'CardID', title: '工资卡号', rowspan: 2, width: 100 },
         { field: 'Position', title: '岗位', rowspan: 2, width: 80 }
     ];
+    var head3 = [
+        { field: 'Memo', title: '备注', rowspan: 2, width: 50 }
+    ];
     var head2 = [];
     for (var i = 0; i < items.length; i++) {
         var item = items[i];
@@ -181,9 +184,11 @@ opt.createGrid = function (items, table) {
         }
 
     }
-    var fixColumns = head1;
+    
+    //var fixColumns = head1;
+    head1 = head1.concat(head3);
     var columns = [head1, head2];
-
+    debugger
     $('#dg').datagrid({
         frozenColumns: [],
         columns: columns,

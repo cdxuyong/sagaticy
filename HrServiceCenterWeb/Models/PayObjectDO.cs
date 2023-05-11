@@ -16,6 +16,7 @@ namespace HrServiceCenterWeb.Models
         /// </summary>
         public string ObjectCode { get; set; }
         public int ServiceFee { get; set; } = 100;
+        public string Memo { get; set; } = "";
         // 20230311 add
         /// <summary>
         /// 银行卡号

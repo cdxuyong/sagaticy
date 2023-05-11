@@ -20,6 +20,14 @@ alter table HR_EMPLOYEE add UseType int;
 UPDATE HR_EMPLOYEE set UseType=0;
 ```
 
+### version 2.7.0
+
+```sql
+alter table HR_SALARY_PAY_OBJECT add memo varchar(255);
+insert into HR_SALARY_ITEM(item_id,PARENT_ID,ITEM_TYPE,ITEM_NAME,ITEM_TITLE,ISLEAF,ITEM_CODE,STATE) values(208,2,2,'个人应扣.意外险','意外险',1,'002-008',0);
+insert into HR_SALARY_TEMPLATE_ITEM(TEMPLATE_ID,ITEM_ID,ITEM_EIDTABLE) values(1,208,0);
+```
+
 ### version 2.3.0
 
 ```sql

@@ -465,7 +465,12 @@ namespace HrServiceCenterWeb.Manager
                 person.Sex = row["性别"].ToString()=="男"? "男" : "女";
                 try
                 {
-                    person.Birthday = DateTime.Parse(row["出生日期"].ToString()).ToString("yyyy-MM-dd");
+                    var birtyday = DateTime.Parse(row["出生日期"].ToString());
+                    person.Birthday = birtyday.ToString("yyyy-MM-dd");
+                    if ("男".Equals(person.Sex))
+                        person.RetireTime = birtyday.AddYears(60).ToString("yyyy-MM-dd");
+                    else
+                        person.RetireTime = birtyday.AddYears(50).ToString("yyyy-MM-dd");
                 }
                 catch { message += $"{i + 1}行日期有误，";pass = false; }
                 person.Polity = row["政治面貌"].ToString();

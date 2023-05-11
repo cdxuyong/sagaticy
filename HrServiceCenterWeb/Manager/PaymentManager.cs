@@ -129,12 +129,13 @@ namespace HrServiceCenterWeb.Manager
             EntityContext context = Session.CreateContext();
             TemplateInfo template = context.Selete<TemplateInfo>("hr.payment.findDefaultTemplate", 0);
             List<PayItemDO> items = context.SelectList<PayItemDO>("hr.payment.findTemplateItems", template.TemplateId);
-            List<PayObjectDO> objects = context.SelectList<PayObjectDO>("hr.payment.findCompanyPersons", payment.CompanyId);
+            //List<PayObjectDO> objects = context.SelectList<PayObjectDO>("hr.payment.findCompanyPersons", payment.CompanyId);
             CommandParameter[] parameters =
             {
                 new CommandParameter("CompanyId",payment.CompanyId),
                 new CommandParameter("PayMonth",DateTime.Parse(payment.PayMonth).ToString("yyyyMM") )
             };
+            List<PayObjectDO> objects = context.SelectList<PayObjectDO>("hr.payment.findCompanyPersons", parameters);
             List<PayValueInfo> payValues = context.SelectList<PayValueInfo>("hr.payment.findCompanyPersonsValue", parameters);
             #region 派遣服务费
             foreach (PayObjectDO o in objects)
@@ -198,6 +199,7 @@ namespace HrServiceCenterWeb.Manager
             dt.Columns.Add("PersonCode");
             dt.Columns.Add("CardID");
             dt.Columns.Add("Position");
+            dt.Columns.Add("Memo");
             foreach (PayItemDO item in items)
             {
                 if (item.IsLeaf == false) continue;
@@ -217,6 +219,7 @@ namespace HrServiceCenterWeb.Manager
                 dr["PersonCode"] = o.ObjectCode;
                 dr["CardID"] = o.CardID;
                 dr["Position"] = o.Position;
+                dr["Memo"] = o.Memo;
                 dt.Rows.Add(dr);
                 rows.Add(o.ObjectId, dr);
             }
@@ -278,8 +281,9 @@ namespace HrServiceCenterWeb.Manager
             JObject joSum = new JObject();
             joSum.Add("PersonCode", "合计");
             payment.Sheet.footer.Add(joSum);
-            for(int i = 5; i < dt.Columns.Count; i++)
+            for(int i = 6; i < dt.Columns.Count; i++)
             {
+                if ("System.String".Equals(dt.Columns[i].DataType.ToString())) continue;
                 string columnName = dt.Columns[i].ColumnName;
                 string exp = string.Format("sum({0})", columnName);
                 object sum = dt.Compute(exp, "");

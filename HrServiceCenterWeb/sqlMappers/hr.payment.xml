@@ -17,9 +17,15 @@
   </select>
   <!-- 查询公司人员 -->
   <select id="findCompanyPersons" >
-    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.Service_Fee ServiceFee
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.Service_Fee ServiceFee,v.memo
     from HR_EMPLOYEE t
-    where t.COMPANY_ID=#{value} and ISNULL(t.State, 0)=0 and t.UseType=0
+    left join (
+      select t1.PERSON_ID, max( t1.MEMO) memo
+      from  HR_SALARY_IMPORTOR_DATA t1
+      where   t1.PAY_MONTH='${PayMonth}' and t1.MEMO is not null and t1.MEMO!=''
+      GROUP BY t1.PERSON_ID
+    ) v  on v.PERSON_ID=t.PERSON_ID 
+    where t.COMPANY_ID=${CompanyId} and ISNULL(t.State, 0)=0 and t.UseType=0
   </select>
   <!-- 查询发放对象保险值 -->
   <select id="findCompanyPersonsValue" >
@@ -32,7 +38,7 @@
     select t1.PERSON_ID PersonId,4 ItemId,sum(t1.ITEM_CMP_VALUE) PayValue
     from HR_EMPLOYEE t
     INNER JOIN HR_SALARY_IMPORTOR_DATA t1 on t1.PERSON_ID=t.PERSON_ID
-    where t.COMPANY_ID=${CompanyId} and t1.PAY_MONTH='${PayMonth}' and t1.ITEM_ID in (201,202,203,204,205) and t.State=0
+    where t.COMPANY_ID=${CompanyId} and t1.PAY_MONTH='${PayMonth}' and t1.ITEM_ID in (201,202,203,204,205,208) and t.State=0
     GROUP BY t1.PERSON_ID
     union
     select t1.PERSON_ID PersonId,5 ItemId,sum(t1.ITEM_CMP_VALUE) PayValue
@@ -59,7 +65,7 @@
   </select>
   <!-- 查询发放表对象-->
   <select id="findPaymentPersons" >
-    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.BANK_CARD CardID,p.POSITION_NAME Position
+    select t.PERSON_ID objectId,t.CARD_ID ObjectCode,t.PERSON_NAME ObjectName,t.BANK_CARD CardID,p.POSITION_NAME Position,t1.memo 
     from HR_EMPLOYEE t
     inner join HR_SALARY_PAY_OBJECT t1 on t1.PERSON_ID=t.PERSON_ID
     left join HR_POSITION p on p.POSITION_ID=t.POSITION_ID
@@ -93,7 +99,7 @@
     insert into HR_SALARY_PAY_ITEM(PAY_ID,ITEM_ID,ITEM_EIDTABLE) values(#{PaymentId},#{ItemId},#{Editable})
   </insert>
   <insert id="insertPayment.object" parameterType="PayObjectDO">
-    insert into HR_SALARY_PAY_OBJECT(PAY_ID,PERSON_ID) values(#{PaymentId},#{ObjectId})
+    insert into HR_SALARY_PAY_OBJECT(PAY_ID,PERSON_ID,memo) values(#{PaymentId},#{ObjectId},#{Memo})
   </insert>
   <!--删除发放表-->
   <delete id="deletePay">

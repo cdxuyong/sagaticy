@@ -8,10 +8,9 @@
     inner join HR_COMPANY c on c.COMPANY_ID=e.COMPANY_ID
             inner join (
 	            select t.PERSON_ID,
-                sum( case t.ITEM_ID 
-								when 201 then t.PAY_VALUE*-1 when 202 then t.PAY_VALUE*-1 when 203 then t.PAY_VALUE*-1 when 206 then t.PAY_VALUE*-1 
-								ELSE t.PAY_VALUE end ) PAY_VALUE  from HR_SALARY_PAY p
-	            inner join HR_SALARY_PAY_VALUE t on t.PAY_ID=p.PAY_ID
+              sum( case t.ITEM_ID when 201 then t.PAY_VALUE*-1 when 202 then t.PAY_VALUE*-1 when 203 then t.PAY_VALUE*-1 when 206 then t.PAY_VALUE*-1 ELSE t.PAY_VALUE end ) PAY_VALUE  
+              from HR_SALARY_PAY p
+							inner join HR_SALARY_PAY_VALUE t on t.PAY_ID=p.PAY_ID
 	            where p.STATUS=2 and p.PAY_MONTH=@payMonth and t.ITEM_ID in  (101,102,103,104,105,106,107,108,109,110,111,201,202,203,206)
 	            group by t.PERSON_ID
             ) v on v.PERSON_ID=e.PERSON_ID
@@ -195,7 +194,7 @@ LEFT JOIN(
 LEFT JOIN(
 	select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
 	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
-	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207)
+	where SUBSTRING(p.PAY_MONTH,1,4)=@year and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207,208)
 	GROUP BY p.COMPANY_ID
 ) v4 ON v4.COMPANY_ID=c.COMPANY_ID
 where c.STATE=0  and c.name is not null
@@ -241,7 +240,7 @@ left join
 left join(
   select p.COMPANY_ID,sum(pv.pay_value) yk from HR_SALARY_PAY p 
 	inner join HR_SALARY_PAY_VALUE pv on pv.PAY_ID=p.PAY_ID
-	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207)
+	where p.PAY_MONTH=@queryDate and p.STATUS=2 and pv.ITEM_ID in (201,202,203,204,205,206,207,208)
 	GROUP BY p.COMPANY_ID
 ) v6 on v6.COMPANY_ID=v1.COMPANY_ID
 inner join HR_COMPANY c on v1.COMPANY_ID=c.COMPANY_ID and c.STATE=0
@@ -311,6 +310,7 @@ with pv as (
 	sum(case t.ITEM_ID when 205 then t.PAY_VALUE else 0 end) syu,
 	sum(case t.ITEM_ID when 206 then t.PAY_VALUE else 0 end) gjj,
 	sum(case t.ITEM_ID when 207 then t.PAY_VALUE else 0 end) gs,
+	sum(case t.ITEM_ID when 208 then t.PAY_VALUE else 0 end) ywx,
 	sum(case t.ITEM_ID when 6 then t.PAY_VALUE else 0 end) fwf
 	from HR_SALARY_PAY_VALUE t 
 	inner join HR_SALARY_PAY p on p.PAY_ID=t.PAY_ID
@@ -324,20 +324,22 @@ cv as (
 	sum(case t.ITEM_ID when 203 then t.ITEM_CMP_VALUE else 0 end) cyliao,
 	sum(case t.ITEM_ID when 204 then t.ITEM_CMP_VALUE else 0 end) cgshang,
 	sum(case t.ITEM_ID when 205 then t.ITEM_CMP_VALUE else 0 end) csyu,
-	sum(case t.ITEM_ID when 206 then t.ITEM_CMP_VALUE else 0 end) cgjj
+	sum(case t.ITEM_ID when 206 then t.ITEM_CMP_VALUE else 0 end) cgjj,
+	sum(case t.ITEM_ID when 208 then t.ITEM_CMP_VALUE else 0 end) cywx
 	from HR_SALARY_IMPORTOR_DATA t
 	where t.PAY_MONTH='#yyyymm#' 
 	group by t.PERSON_ID
 ) 
-select e.PERSON_NAME, jbgz,jxgz,jbgz+jxgz+gwgz+other yfgz,
+select c.NAME orgname,e.PERSON_NAME, jbgz,jxgz,jbgz+jxgz+gwgz+other yfgz,
 ylao,sye,yliao,ylao+sye+yliao grjl,
-cylao, csye,cgshang,cyliao+csyu cyliao,cylao+csye+cgshang+cyliao+csyu dwjl,
-pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao)+(cylao+csye+cgshang+cyliao+csyu) total
+cylao, csye,cgshang,cyliao+csyu cyliao,cylao+csye+cgshang+cyliao+csyu+cywx dwjl,
+pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao+ywx)+(cylao+csye+cgshang+cyliao) total
 from pv
 left join cv on pv.PERSON_ID=cv.PERSON_ID
 inner join HR_EMPLOYEE e on e.PERSON_ID=pv.PERSON_ID
+inner join HR_COMPANY c on c.COMPANY_ID=e.COMPANY_ID 
 where 1=1 #where# 
-order by e.CMP_NAME,e.PERSON_NAME
+order by c.NAME,e.PERSON_NAME
 
 
     ]]>

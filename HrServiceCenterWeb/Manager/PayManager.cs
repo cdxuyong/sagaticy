@@ -183,6 +183,7 @@ namespace HrServiceCenterWeb.Manager
                 catch (Exception ex)
                 {
                     context.Rollback();
+                    LogHelper.Warn("payment.SaveTemplateForTable", ex);
                     return false;
                 }
             }
@@ -217,6 +218,7 @@ namespace HrServiceCenterWeb.Manager
                 catch (Exception ex)
                 {
                     context.Rollback();
+                    LogHelper.Warn("payment.SaveTemplateMsg", ex);
                     return false;
                 }
             }
@@ -232,6 +234,7 @@ namespace HrServiceCenterWeb.Manager
             }
             catch (Exception ex)
             {
+                LogHelper.Warn("payment.DeleteTemplate", ex);
                 return false;
             }
         }
@@ -272,25 +275,37 @@ namespace HrServiceCenterWeb.Manager
 
         public List<InsuranceInfo> QueryImportorPaymentList(string query)
         {
-            EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            CommandParameter[] dbParms = new CommandParameter[2];
-            dbParms[0] = new CommandParameter("value", query);
-            if (UserContext.CurrentUser.IsCompanyUser)
-            {
-                dbParms[1] = new CommandParameter("where", $" and t.CREATOR=" + UserContext.CurrentUser.UserId);
-            }
-            else
-            {
-                dbParms[1] = new CommandParameter("where", "");
-            }
-            List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findPayments", dbParms);
-            return list;
-        }
-
-        public bool DeleteInsurance(int id)
-        {
             using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
+                CommandParameter[] dbParms = new CommandParameter[2];
+                dbParms[0] = new CommandParameter("value", query);
+                if (UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[1] = new CommandParameter("where", $" and t.CREATOR=" + UserContext.CurrentUser.UserId);
+                }
+                else
+                {
+                    dbParms[1] = new CommandParameter("where", "");
+                }
+                List<InsuranceInfo> list = context.SelectList<InsuranceInfo>("hr.insurance.findPayments", dbParms);
+                return list;
+            }
+        }
+
+        public bool DeleteInsurance(int id,out string message)
+        {
+            message = string.Empty;
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
+            {
+                // 判断是否已经被引用
+                var refCount = context.Selete<int>("hr.insurance.isRefrecedByPayment", id);
+                if(refCount > 0)
+                {
+                    message = "当前数据已经被引用，如果要删除请联系管理员删除工资发放表！";
+                    return false;
+                }
+
+                // 删除缴存表和明细表
                 try
                 {
                     context.BeginTransaction();
@@ -300,9 +315,11 @@ namespace HrServiceCenterWeb.Manager
                     context.Commit();
                     return true;
                 }
-                catch
+                catch(Exception ex)
                 {
+                    LogHelper.Warn("payment.DeleteInsurance", ex);
                     context.Rollback();
+                    message = "系统错误";
                     return false;
                 }
             }

@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th field="rownum" rowspan="2">序号</th>
+        <th field="orgname" rowspan="2">单位</th>
         <th field="PERSON_NAME" rowspan="2">姓名</th>
         <th colspan="3">应发工资</th>
         <th colspan="4">个人应扣</th>
