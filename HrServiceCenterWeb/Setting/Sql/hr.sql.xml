@@ -331,9 +331,9 @@ cv as (
 	group by t.PERSON_ID
 ) 
 select c.NAME orgname,e.PERSON_NAME, jbgz,jxgz,jbgz+jxgz+gwgz+other yfgz,
-ylao,sye,yliao,ylao+sye+yliao grjl,
-cylao, csye,cgshang,cyliao+csyu cyliao,cylao+csye+cgshang+cyliao+csyu+cywx dwjl,
-pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao+ywx)+(cylao+csye+cgshang+cyliao) total
+ylao,sye,yliao,gjj,ywx, ylao+sye+yliao+gjj+ywx grjl,
+cylao, csye,cgshang,cyliao+csyu cyliao,cgjj,cywx,cylao+csye+cgshang+cyliao+csyu+cgjj+cywx dwjl,
+pv.fwf,(jbgz+jxgz+gwgz+other)-(ylao+sye+yliao+ywx)+(cylao+csye+cgshang+cyliao+csyu+cgjj+cywx) total
 from pv
 left join cv on pv.PERSON_ID=cv.PERSON_ID
 inner join HR_EMPLOYEE e on e.PERSON_ID=pv.PERSON_ID

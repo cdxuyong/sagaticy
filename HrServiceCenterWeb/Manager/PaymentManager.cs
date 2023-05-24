@@ -200,6 +200,8 @@ namespace HrServiceCenterWeb.Manager
             dt.Columns.Add("CardID");
             dt.Columns.Add("Position");
             dt.Columns.Add("Memo");
+            dt.Columns.Add("Bank");
+            int fixColumn = 7; //固定列，如果增加列，手动增加fixColumn
             foreach (PayItemDO item in items)
             {
                 if (item.IsLeaf == false) continue;
@@ -220,6 +222,7 @@ namespace HrServiceCenterWeb.Manager
                 dr["CardID"] = o.CardID;
                 dr["Position"] = o.Position;
                 dr["Memo"] = o.Memo;
+                dr["Bank"] = o.Bank;
                 dt.Rows.Add(dr);
                 rows.Add(o.ObjectId, dr);
             }
@@ -281,7 +284,7 @@ namespace HrServiceCenterWeb.Manager
             JObject joSum = new JObject();
             joSum.Add("PersonCode", "合计");
             payment.Sheet.footer.Add(joSum);
-            for(int i = 6; i < dt.Columns.Count; i++)
+            for(int i = fixColumn; i < dt.Columns.Count; i++)
             {
                 if ("System.String".Equals(dt.Columns[i].DataType.ToString())) continue;
                 string columnName = dt.Columns[i].ColumnName;

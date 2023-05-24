@@ -26,5 +26,9 @@ namespace HrServiceCenterWeb.Models
         /// 岗位
         /// </summary>
         public string Position { get; set; }
+        /// <summary>
+        /// 银行
+        /// </summary>
+        public string Bank { get; set; }
     }
 }

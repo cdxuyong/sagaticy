@@ -153,8 +153,9 @@ opt.createGrid = function (items, table) {
     var head1 = [
         { field: 'PersonId', title: 'ID', rowspan: 2, width: 0 },
         { field: 'PersonName', title: '员工姓名', rowspan: 2, width: 60 },
-        { field: 'PersonCode', title: '身份证号码', rowspan: 2, width: 100 },
-        { field: 'CardID', title: '工资卡号', rowspan: 2, width: 100 },
+        { field: 'PersonCode', title: '身份证号码', rowspan: 2, width: 80 },
+        { field: 'Bank', title: '银行名称', rowspan: 2, width: 80 },
+        { field: 'CardID', title: '工资卡号', rowspan: 2, width: 80 },
         { field: 'Position', title: '岗位', rowspan: 2, width: 80 }
     ];
     var head3 = [
