@@ -30,7 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{925367
 		setup_sql.txt = setup_sql.txt
 		db\sg_2.7.0_升级脚本.ups = db\sg_2.7.0_升级脚本.ups
 		db\sg_2.7.0_升级脚本_索引.ups = db\sg_2.7.0_升级脚本_索引.ups
-		db\sg_2.7.2_升级脚本.ups = db\sg_2.7.2_升级脚本.ups
+		db\sg_2.8.0_升级脚本_修改薪酬项目.ups = db\sg_2.8.0_升级脚本_修改薪酬项目.ups
+		db\sg_2.8.0_升级脚本_调整基数小数.ups = db\sg_2.8.0_升级脚本_调整基数小数.ups
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publish2Local", "Publish2Local\Publish2Local.csproj", "{1B7F970E-DC5D-4466-98D1-2A3E6BDF9943}"
