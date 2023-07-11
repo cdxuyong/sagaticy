@@ -27,10 +27,12 @@
     with v as (
     select i.PERSON_ID from HR_SALARY_IMPORTOR_DATA i where i.IMPORT_ID=#{value} group by i.PERSON_ID
     )
-    select count(*) from HR_SALARY_PAY p
+    select p.PAY_TITLE S1,STRING_AGG(e.PERSON_NAME, ',')  S2,count(1) D1  from HR_SALARY_PAY p
     inner join HR_SALARY_PAY_OBJECT po on po.PAY_ID=p.PAY_ID
     inner join v on v.PERSON_ID=po.PERSON_ID
+    inner join HR_EMPLOYEE e on v.PERSON_ID=e.PERSON_ID
     where p.PAY_MONTH= (select convert(date, max(i.pay_month)+'01') from HR_SALARY_IMPORTOR_DATA i where i.IMPORT_ID=#{value} )
+    group by p.PAY_TITLE
   </delete>
   <!-- 删除保险列表-->
   <delete id="deleteInsurance">

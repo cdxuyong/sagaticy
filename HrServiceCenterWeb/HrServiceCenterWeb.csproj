@@ -195,6 +195,7 @@
     <Compile Include="Models\CounterBO.cs" />
     <Compile Include="Models\CountetBase.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\GenericBO.cs" />
     <Compile Include="Models\InsuranceDetailInfo.cs" />
     <Compile Include="Models\CheckInfo.cs" />
     <Compile Include="Models\InsuranceInfo.cs" />

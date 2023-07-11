@@ -22,13 +22,21 @@ namespace HrServiceCenterWeb.Controllers
             payment.CreateTime = DateTime.Now;
             payment.CreatorId = UserContext.CurrentUser.UserId;
             payment.PayMonth = DateTime.Parse(payment.PayMonth).ToString("yyyy-MM-01");
-
-            PaymentManager pm = new PaymentManager();
-            pm.CreatePayment(payment);
+            string msg = "";
+            if (!string.IsNullOrEmpty(payment.PayTitle))
+            {
+                PaymentManager pm = new PaymentManager();
+                pm.CreatePayment(payment,out msg);
+            }
+            else
+            {
+                msg = "名称不能为空！";
+            }
             Object result = new
             {
                 success = payment.PayId>0?true:false,
-                data = payment.PayId
+                data = payment.PayId,
+                message = msg
             };
             JsonResult jsonResult = Json(result, JsonRequestBehavior.AllowGet);
             return jsonResult;
@@ -63,8 +71,12 @@ namespace HrServiceCenterWeb.Controllers
                 };
                 try
                 {
-                    pm.CreatePayment(payment);
-                    successCount++;
+                    string msg = "";
+                    pm.CreatePayment(payment, out msg);
+                    if(string.IsNullOrEmpty(msg))
+                    {
+                        successCount++;
+                    }
                 }
                 catch
                 {

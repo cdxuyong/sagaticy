@@ -77,7 +77,7 @@ namespace HrServiceCenterWeb.Controllers
             catch (Exception ex)
             {
                 // 如果我们进行到这一步时某个地方出错，则重新显示表单
-                ModelState.AddModelError("ERROR", "服务器内部出错，请联系管理员");
+                ModelState.AddModelError("ERROR", "服务器内部出错，请联系管理员，详细："+ex.Message);
                 return View(model);
             }
         }

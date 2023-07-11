@@ -124,9 +124,17 @@ namespace HrServiceCenterWeb.Manager
             }
         }
 
-        public void CreatePayment(Payment payment)
+        public void CreatePayment(Payment payment,out string msg)
         {
             EntityContext context = Session.CreateContext();
+            msg = "";
+            // 检查发放表名称是否重复
+            if(context.Selete<int>("hr.payment.findSamePayment", payment.PayTitle) > 0)
+            {
+                msg = $"名称不能重复，{payment.PayTitle}已经存在！";
+                return;
+            }
+
             TemplateInfo template = context.Selete<TemplateInfo>("hr.payment.findDefaultTemplate", 0);
             List<PayItemDO> items = context.SelectList<PayItemDO>("hr.payment.findTemplateItems", template.TemplateId);
             //List<PayObjectDO> objects = context.SelectList<PayObjectDO>("hr.payment.findCompanyPersons", payment.CompanyId);
@@ -178,6 +186,7 @@ namespace HrServiceCenterWeb.Manager
                 {
                     BlueFramework.Common.Logger.LoggerFactory.CreateDefault().Info(ex.Message);
                     context.Rollback();
+                    msg = ex.Message;
                 }
             }
 

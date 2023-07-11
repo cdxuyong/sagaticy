@@ -15,11 +15,13 @@ opt.init_Buttons = function () {
         $('#btnSubmit').attr('disabled', true);
     }
     else {
+        debugger
         $('#btnCreate').attr('disabled', true);
+        $('#datebox').datebox('readonly', true);
     }
 };
 opt.disable = function () {
-    $('#btnSave').attr('disabled', true);
+    //$('#btnSave').attr('disabled', true);
     // $('#btnExport').attr('disabled', true);
     $('#btnImport').attr('disabled', true);
     $('#btnSubmit').attr('disabled', true);
@@ -108,7 +110,7 @@ opt.createPayment = function () {
                 self.location = "../Pay/PayEditor?id=" + dataId;
             }
             else {
-                $.messager.alert('提示', '保存失败！');
+                $.messager.alert('提示', result.message);
             }
 
         },

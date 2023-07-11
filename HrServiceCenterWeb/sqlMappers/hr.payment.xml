@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <mapper namespace="hr.payment">
+  <!-- 检查同名发放表  -->
+  <select id="findSamePayment" >
+    select count(*) d1 from HR_SALARY_PAY t where t.PAY_TITLE='${value}'
+  </select>
   <!-- 查询默认模板  -->
   <select id="findDefaultTemplate" >
     select

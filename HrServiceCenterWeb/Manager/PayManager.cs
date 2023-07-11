@@ -298,10 +298,18 @@ namespace HrServiceCenterWeb.Manager
             using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
                 // 判断是否已经被引用
-                var refCount = context.Selete<int>("hr.insurance.isRefrecedByPayment", id);
-                if(refCount > 0)
+                var lst = context.SelectList<GenericBO>("hr.insurance.isRefrecedByPayment", id);
+                var refCount = lst.Count;
+
+                //var refCount = context.Selete<int>("hr.insurance.isRefrecedByPayment", id);
+                if (refCount > 0)
                 {
-                    message = "当前数据已经被引用，如果要删除请联系管理员删除工资发放表！";
+                    message = $"当前数据已经被引用：";
+                    foreach(var x in lst)
+                    {
+                        message += $"{x.S1}({x.S2}) ";
+                    }
+                    message += "，如果要删除请联系管理员删除工资发放表！";
                     return false;
                 }
 
