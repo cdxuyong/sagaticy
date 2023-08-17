@@ -14,6 +14,7 @@ using System.Xml;
 using BlueFramework.Data;
 using BlueFramework.Blood.Config;
 using BlueFramework.Blood.DataAccess;
+using System.Globalization;
 
 namespace HrServiceCenterWeb.Manager
 {
@@ -298,20 +299,51 @@ namespace HrServiceCenterWeb.Manager
             using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
                 // 判断是否已经被引用
-                var lst = context.SelectList<GenericBO>("hr.insurance.isRefrecedByPayment", id);
-                var refCount = lst.Count;
-
-                //var refCount = context.Selete<int>("hr.insurance.isRefrecedByPayment", id);
-                if (refCount > 0)
+                var dateList = context.SelectList<GenericBO>("hr.insurance.getDateOfImport", id);
+                if(dateList.Count > 0)
                 {
-                    message = $"当前数据已经被引用：";
-                    foreach(var x in lst)
+                    var date = DateTime.MinValue;
+                    var dateString = dateList[0].S1;
+                    bool datePass = false;
+
+                    if (DateTime.TryParseExact(dateString, "yyyyMM", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                     {
-                        message += $"{x.S1}({x.S2}) ";
+                        datePass = true;
                     }
-                    message += "，如果要删除请联系管理员删除工资发放表！";
-                    return false;
+                    else if (DateTime.TryParseExact(dateString, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                    {
+                        datePass = true;
+                    }
+                    else if (DateTime.TryParse(dateString,out date))
+                    {
+                        datePass = true;
+                    }
+                    if(!datePass)
+                    {
+                        Console.WriteLine("无法解析日期字符串");
+                        LogHelper.Warn("DeleteInsurance", new Exception("无法解析日期字符串"));
+                    }
+
+                    var cmds = new CommandParameter[2];
+                    cmds[0] = new CommandParameter("value", id);
+                    cmds[1] = new CommandParameter("paymonth", date.ToString("yyyy-MM-01"));
+                    var lst = context.SelectList<GenericBO>("hr.insurance.isRefrecedByPayment",cmds);
+                    var refCount = lst.Count;
+
+                    //var refCount = context.Selete<int>("hr.insurance.isRefrecedByPayment", id);
+                    if (refCount > 0)
+                    {
+                        message = $"当前数据已经被引用：";
+                        foreach (var x in lst)
+                        {
+                            message += $"{x.S1}({x.S2}) ";
+                        }
+                        message += "，如果要删除请联系管理员删除工资发放表！";
+                        return false;
+                    }
                 }
+
+
 
                 // 删除缴存表和明细表
                 try
