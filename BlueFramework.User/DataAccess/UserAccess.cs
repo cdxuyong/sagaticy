@@ -267,11 +267,11 @@ namespace BlueFramework.User.DataAccess
         {
             DatabaseProviderFactory dbFactory = new DatabaseProviderFactory();
             Database database = dbFactory.CreateDefault();
-            string sql = @"SELECT T.*, A.ORG_NAME
-                          FROM T_S_USER T
-                           LEFT JOIN T_S_ORGANIZATION A
-                           ON T.ORG_ID = A.ORG_ID
-                           WHERE T.USERNAME <> 'ADMIN' ";
+            string sql = @"SELECT T.*, A.ORG_NAME,c.name companyName
+            FROM T_S_USER T
+            LEFT JOIN T_S_ORGANIZATION A ON T.ORG_ID = A.ORG_ID
+            left join HR_COMPANY c on c.COMPANY_ID=t.COMPANYID
+            WHERE T.USERNAME <> 'ADMIN' ";
             string whereStr = "";
             if (!string.IsNullOrEmpty(user.UserName) && !string.IsNullOrEmpty(user.TrueName))
             {
@@ -293,6 +293,7 @@ namespace BlueFramework.User.DataAccess
                 ui.CreateTime = DateTime.Parse(row["CREATE_TIME"].ToString()).ToShortDateString();
                 ui.OrgId = int.Parse(row["ORG_ID"].ToString());
                 ui.OrgName = row["ORG_NAME"].ToString();
+                ui.CompanyName = row["companyName"].ToString();
                 users.Add(ui);
             }
             return users;

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\wfz\publish</_PublishTargetUrl>
-    <History>True|2023-08-15T15:59:31.1824664Z;True|2023-07-11T21:37:04.8729497+08:00;True|2023-07-10T21:57:59.4700865+08:00;True|2023-05-24T23:46:45.3521010+08:00;True|2023-05-16T23:02:39.0186161+08:00;True|2023-05-11T17:24:13.5217800+08:00;True|2023-05-05T00:41:35.2740112+08:00;True|2023-05-03T23:05:56.3711897+08:00;True|2023-04-27T23:17:22.1111293+08:00;True|2023-04-02T19:59:58.5879324+08:00;True|2023-03-29T11:29:55.1801809+08:00;True|2023-03-26T16:15:35.0166049+08:00;True|2023-03-12T14:03:25.9251683+08:00;True|2023-03-08T22:24:15.6102874+08:00;True|2022-11-17T21:47:29.8808849+08:00;</History>
+    <History>True|2023-09-24T07:25:49.7895521Z;True|2023-08-15T23:59:31.1824664+08:00;True|2023-07-11T21:37:04.8729497+08:00;True|2023-07-10T21:57:59.4700865+08:00;True|2023-05-24T23:46:45.3521010+08:00;True|2023-05-16T23:02:39.0186161+08:00;True|2023-05-11T17:24:13.5217800+08:00;True|2023-05-05T00:41:35.2740112+08:00;True|2023-05-03T23:05:56.3711897+08:00;True|2023-04-27T23:17:22.1111293+08:00;True|2023-04-02T19:59:58.5879324+08:00;True|2023-03-29T11:29:55.1801809+08:00;True|2023-03-26T16:15:35.0166049+08:00;True|2023-03-12T14:03:25.9251683+08:00;True|2023-03-08T22:24:15.6102874+08:00;True|2022-11-17T21:47:29.8808849+08:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -22,10 +22,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:19</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.dll">
-      <publishTime>08/15/2023 23:59:15</publishTime>
+      <publishTime>09/24/2023 15:25:31</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.pdb">
-      <publishTime>08/15/2023 23:59:15</publishTime>
+      <publishTime>09/24/2023 15:25:31</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.dll">
       <publishTime>05/16/2023 23:02:22</publishTime>
@@ -40,10 +40,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/16/2023 23:02:22</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.dll">
-      <publishTime>05/28/2023 21:56:26</publishTime>
+      <publishTime>09/24/2023 15:25:31</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.pdb">
-      <publishTime>05/28/2023 21:56:26</publishTime>
+      <publishTime>09/24/2023 15:25:31</publishTime>
     </File>
     <File Include="bin/Files/2018年6月份缴存导入数据.xls">
       <publishTime>03/01/2020 22:38:56</publishTime>
@@ -76,10 +76,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2022 22:10:30</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.dll">
-      <publishTime>08/15/2023 23:59:19</publishTime>
+      <publishTime>09/24/2023 15:25:38</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.pdb">
-      <publishTime>08/15/2023 23:59:19</publishTime>
+      <publishTime>09/24/2023 15:25:38</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -2854,7 +2854,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/24/2023 23:09:55</publishTime>
     </File>
     <File Include="sqlMappers/hr.employee.xml">
-      <publishTime>03/29/2023 15:53:34</publishTime>
+      <publishTime>09/23/2023 16:20:36</publishTime>
     </File>
     <File Include="sqlMappers/hr.insurance.xml">
       <publishTime>08/15/2023 23:42:04</publishTime>
@@ -2911,13 +2911,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/29/2023 11:24:43</publishTime>
     </File>
     <File Include="Views/Home/CmpIndex.cshtml">
-      <publishTime>05/10/2023 21:50:48</publishTime>
+      <publishTime>09/24/2023 14:50:32</publishTime>
     </File>
     <File Include="Views/Home/errors.html">
       <publishTime>05/02/2023 19:35:31</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/10/2023 21:43:49</publishTime>
+      <publishTime>09/24/2023 14:50:16</publishTime>
     </File>
     <File Include="Views/Home/Message.cshtml">
       <publishTime>05/02/2023 20:08:55</publishTime>
@@ -2989,7 +2989,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/22/2023 16:13:42</publishTime>
     </File>
     <File Include="Views/System/UserManage.cshtml">
-      <publishTime>03/06/2023 22:12:19</publishTime>
+      <publishTime>09/23/2023 16:53:33</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/08/2018 22:11:08</publishTime>

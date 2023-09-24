@@ -22,7 +22,7 @@
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     left JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
     INNER JOIN T_S_BASECODE b1 on b1.OBJECT_VALUE=t.DEGREE and b1.CATEGORYID=2
-    where t.Contract_Time<'${value}' and t.State=0
+    where t.Contract_Time<'${value}' and t.State=0 ${where}
     order by t.Contract_Time
     ]]>
 
@@ -37,7 +37,7 @@
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     left JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
     INNER JOIN T_S_BASECODE b1 on b1.OBJECT_VALUE=t.DEGREE and b1.CATEGORYID=2
-    where t.Retire_Time<'${value}' and t.State=0
+    where t.Retire_Time<'${value}' and t.State=0  ${where}
     order by t.Retire_Time
     ]]>
 

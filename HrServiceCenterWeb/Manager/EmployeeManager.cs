@@ -279,9 +279,20 @@ namespace HrServiceCenterWeb.Manager
             List<EmployeeInfo> list = null;
             using (EntityContext context = new EntityContext())
             {
+                CommandParameter[] dbParms = new CommandParameter[2];
+                if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[0] = new CommandParameter("where", $" and t.COMPANY_ID={BlueFramework.User.UserContext.CurrentUser.CompanyId} ");
+                }
+                else
+                {
+                    dbParms[0] = new CommandParameter("where", "");
+                }
 
                 string value = System.DateTime.Now.AddDays(ContractWarnningDays).ToString("yyyy-MM-dd");
-                list = context.SelectList<EmployeeInfo>("hr.employee.findContractBeEndingEmployees", value);
+                dbParms[1] = new CommandParameter("value", value);
+
+                list = context.SelectList<EmployeeInfo>("hr.employee.findContractBeEndingEmployees",dbParms);
             }
             foreach(EmployeeInfo employee in list)
             {
@@ -296,9 +307,18 @@ namespace HrServiceCenterWeb.Manager
             List<EmployeeInfo> list = null;
             using (EntityContext context = new EntityContext())
             {
-
+                CommandParameter[] dbParms = new CommandParameter[2];
+                if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[0] = new CommandParameter("where", $" and t.COMPANY_ID={BlueFramework.User.UserContext.CurrentUser.CompanyId} ");
+                }
+                else
+                {
+                    dbParms[0] = new CommandParameter("where", "");
+                }
                 string value = System.DateTime.Now.AddDays(RetireWarnningDays).ToString("yyyy-MM-dd");
-                list = context.SelectList<EmployeeInfo>("hr.employee.findRetireBeEndingEmployees", value);
+                dbParms[1] = new CommandParameter("value", value);
+                list = context.SelectList<EmployeeInfo>("hr.employee.findRetireBeEndingEmployees", dbParms);
             }
             foreach (EmployeeInfo employee in list)
             {

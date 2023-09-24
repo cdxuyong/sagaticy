@@ -19,18 +19,20 @@ namespace HrServiceCenterWeb.Manager
         /// <returns></returns>
         public List<Models.CountetBase> GetPositionCounts()
         {
-            EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            CommandParameter[] dbParms = new CommandParameter[1];
-            if (UserContext.CurrentUser.IsCompanyUser)
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
-                dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+                CommandParameter[] dbParms = new CommandParameter[1];
+                if (UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+                }
+                else
+                {
+                    dbParms[0] = new CommandParameter("where", "");
+                }
+                List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.positionCount", dbParms);
+                return list;
             }
-            else
-            {
-                dbParms[0] = new CommandParameter("where", "");
-            }
-            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.positionCount", dbParms);
-            return list;
         }
 
         /// <summary>
@@ -39,18 +41,21 @@ namespace HrServiceCenterWeb.Manager
         /// <returns></returns>
         public List<Models.CountetBase> GetDegreeCounts()
         {
-            EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            CommandParameter[] dbParms = new CommandParameter[1];
-            if (UserContext.CurrentUser.IsCompanyUser)
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
-                dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+                CommandParameter[] dbParms = new CommandParameter[1];
+                if (UserContext.CurrentUser.IsCompanyUser)
+                {
+                    dbParms[0] = new CommandParameter("where", $" and e.COMPANY_ID={UserContext.CurrentUser.CompanyId} ");
+                }
+                else
+                {
+                    dbParms[0] = new CommandParameter("where", "");
+                }
+                List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.degreeCount", dbParms);
+                return list;
             }
-            else
-            {
-                dbParms[0] = new CommandParameter("where", "");
-            }
-            List<Models.CountetBase> list = context.SelectList<Models.CountetBase>("hr.chart.degreeCount", dbParms);
-            return list;
+
         }
 
         /// <summary>
@@ -58,9 +63,12 @@ namespace HrServiceCenterWeb.Manager
         /// </summary>
         public List<Models.CounterBO> GetBarChartData()
         {
-            EntityContext context = BlueFramework.Blood.Session.CreateContext();
-            List<Models.CounterBO> list = context.SelectList<Models.CounterBO>("hr.chart.employeeCount", null);
-            return list;
+            using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
+            {
+                List<Models.CounterBO> list = context.SelectList<Models.CounterBO>("hr.chart.employeeCount", null);
+                return list;
+            }
+
         }
 
         /// <summary>

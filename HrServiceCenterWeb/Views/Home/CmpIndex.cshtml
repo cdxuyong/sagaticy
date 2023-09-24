@@ -37,6 +37,56 @@
 
     </script>
 
+    <!-- 合同预警-->
+    <div class="row" id="rcorners1">
+        <div id="app" class="home_panel_o">
+            <div class="alert alert-danger" role="alert">合同即将到期人员名单：</div>
+            <div class="row">
+                <div class="col-md-1">姓名</div>
+                <div class="col-sm-2">合同到期日期</div>
+                <div class="col-sm-1">距离到期天数</div>
+                <div class="col-md-3">所属单位</div>
+                <div class="col-md-2">岗位</div>
+                <div class="col-md-1">联系方式</div>
+            </div>
+            <div class="row" v-for="p in persons">
+                <div class="col-md-1">{{ p.PersonName }}</div>
+                <div class="col-sm-2">{{ p.ContractTime }}</div>
+                <div class="col-sm-1">{{ p.ContractDays }}天</div>
+                <div class="col-md-3">{{ p.CompanyName }}</div>
+                <div class="col-md-2">{{ p.PositionName }}</div>
+                <div class="col-md-1">{{ p.Phone }}</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 离退休预警 -->
+    <div style="height:5px;"></div>
+    <div class="row" id="rcorners2">
+        <div id="app2" class="home_panel_o">
+            <div class="alert alert-danger" role="alert">即将退休人员名单：</div>
+            <div class="row">
+                <div class="col-md-1">姓名</div>
+                <div class="col-sm-2">退休日期</div>
+                <div class="col-sm-1">距离退休天数</div>
+                <div class="col-md-3">所属单位</div>
+                <div class="col-md-2">岗位</div>
+                <div class="col-md-1">联系方式</div>
+            </div>
+            <div class="row" v-for="p in persons">
+                <div class="col-md-1">{{ p.PersonName }}</div>
+                <div class="col-sm-2">{{ p.RetireTime }}</div>
+                <div class="col-sm-1">{{ p.RetireDays }}天</div>
+                <div class="col-md-3">{{ p.CompanyName }}</div>
+                <div class="col-md-2">{{ p.PositionName }}</div>
+                <div class="col-md-1">{{ p.Phone }}</div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- 工资发放统计 -->
     <div style="height:5px;"></div>

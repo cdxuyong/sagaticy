@@ -59,7 +59,7 @@ namespace BlueFramework.User
                 var removes = new List<string>();
                 foreach(var v in visitors.Values)
                 {
-                    var time = v.Actions.Max(x => x.EndTime);
+                    var time = v.Actions.Where(x=>x.EndTime!=null).Max(x => x.EndTime);
                     // 超时判断
                     if (time == null || DateTime.Now.Subtract(time.Value).TotalMinutes > 60)
                     {

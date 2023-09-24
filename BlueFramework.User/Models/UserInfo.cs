@@ -38,6 +38,8 @@ namespace BlueFramework.User.Models
         /// </summary>
         public int CompanyId { get; set; }
 
+        public string CompanyName { get; set; }
+
         /// <summary>
         /// user orgnization
         /// </summary>
