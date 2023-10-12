@@ -4,13 +4,18 @@ function init() {
     var height = $('.container-layout').height() - 180;
     $('#dgContainer').height(height);
     $('#dg').datagrid('resize');
-
     $('#dg').datagrid('enableFilter');
-
+    // disable buttons when company' user
+    debugger
+    if ("true" == _readonly) {
+        opt.disable();
+    }
     opt.query();
 }
 
-
+opt.disable = function () {
+    $('.only4admin').css('display', 'none');
+};
 //查询用户列表
 opt.selectCompanyId = 0;
 opt.query = function () {

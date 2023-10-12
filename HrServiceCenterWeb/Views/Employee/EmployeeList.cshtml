@@ -7,6 +7,7 @@
 <script src="~/Library/uploadFiles/jquery.uploadFiles.js"></script>
 <script>
     var dataId = '@ViewBag.CompanyId';
+    var _readonly = '@ViewBag.ReadOnly';
 </script>
 <style>
     .icon-filter {
@@ -32,13 +33,13 @@
 				delay:2000">
             </div>
             <div class="col-md-6">
-                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.add()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 新建</a>
-                <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.edit()" style="width:80px;"><i class="fa fa-circle-o" aria-hidden="true"></i> 编辑</a>
-                <a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
+                <a class="btn btn-primary btn-sm only4admin" href="javascript:void(0)" onclick="opt.add()" style="width:80px;"><i class="fa fa-file-o" aria-hidden="true"></i> 新建</a>
+                <a class="btn btn-primary btn-sm only4admin" href="javascript:void(0)" onclick="opt.edit()" style="width:80px;"><i class="fa fa-circle-o" aria-hidden="true"></i> 编辑</a>
+                <a class="btn btn-danger btn-sm only4admin" href="javascript:void(0)" onclick="opt.delete()" style="width:80px;"><i class="fa fa-trash-o" aria-hidden="true"></i> 删除</a>
                 <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="opt.disabled()" style="width:80px;display:none;"><i class="fa fa-stop" aria-hidden="true"></i> 停用</a>
                 <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.export()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出</a>
                 <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.exportSimple()" style="width:100px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> 导出花名册</a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="opt.import()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true" title="按模板填写，如果导入失败请按提示修改"></i> 批量导入</a>
+                <a class="btn btn-success btn-sm only4admin" href="javascript:void(0)" onclick="opt.import()" style="width:80px;"><i class="fa fa-file-excel-o" aria-hidden="true" title="按模板填写，如果导入失败请按提示修改"></i> 批量导入</a>
             </div>
         </div>
 

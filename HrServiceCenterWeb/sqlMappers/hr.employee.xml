@@ -54,6 +54,7 @@
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     INNER JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
     INNER JOIN T_S_BASECODE b1 on b1.OBJECT_VALUE=t.DEGREE and b1.CATEGORYID=2
+    where 1=1 
     order by t.COMPANY_ID,t.PERSON_NAME
   </select>
   <!-- 导出人员清单  -->
@@ -64,6 +65,7 @@
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     INNER JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
     INNER JOIN T_S_BASECODE b1 on b1.OBJECT_VALUE=t.DEGREE and b1.CATEGORYID=2
+    where 1=1
     order by t.COMPANY_ID,t.PERSON_NAME
   </select>
   <select id="findEmployee" >

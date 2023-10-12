@@ -1,6 +1,9 @@
 ﻿var opt = window.NameSpace || {};
 
 function init() {
+    if ("true" == _readonly) {
+        opt.disable();
+    }
     if (dataId > 0) {
         opt.query();
     }
@@ -9,7 +12,9 @@ function init() {
             $('#cmbCompany').combobox('setValue', CompanyId);
     }
 }
-
+opt.disable = function () {
+    $('.only4admin').css('display', 'none');
+};
 opt.positions = new Array();
 //查询信息
 opt.query = function () {

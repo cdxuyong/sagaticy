@@ -21,17 +21,34 @@ namespace HrServiceCenterWeb.Controllers
                 ViewBag.CompanyId = 0;
             else
                 ViewBag.CompanyId = int.Parse(this.HttpContext.Request.QueryString["id"]);
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                ViewBag.ReadOnly = "true";
+            }
             return View();
         }
 
         public ActionResult EmployeePage()
         {
-            ViewBag.EmployeeId = int.Parse(this.HttpContext.Request.QueryString["id"]);
+            var pid = int.Parse(this.HttpContext.Request.QueryString["id"]);
+            ViewBag.EmployeeId = pid;
             if (this.HttpContext.Request.QueryString["companyId"] == null)
                 ViewBag.CompanyId = 0;
             else
                 ViewBag.CompanyId = int.Parse(this.HttpContext.Request.QueryString["companyId"]); 
             ViewBag.PersonCode = new Manager.EmployeeManager().GetMaxPersonCode();
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                ViewBag.ReadOnly = "true";
+            }
+
+            if (UserContext.CurrentUser.IsCompanyUser && pid>0)
+            {
+                var info = new Manager.EmployeeManager().GetEmployee(pid);
+                if(info == null || info.CompanyId != BlueFramework.User.UserContext.CurrentUser.CompanyId)
+                    return Error("错误提示：无访问权限");
+            }
+
             return View();
         }
 
@@ -66,6 +83,7 @@ namespace HrServiceCenterWeb.Controllers
             {
                 employeeInfo = new Manager.EmployeeManager().GetEmployee(personId);
             }
+
             JsonResult jsonResult = Json(employeeInfo, JsonRequestBehavior.AllowGet);
             return jsonResult;
         }

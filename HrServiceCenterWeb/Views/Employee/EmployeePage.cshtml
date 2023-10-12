@@ -7,6 +7,7 @@
     var dataId = @ViewBag.EmployeeId;
     var CompanyId = @ViewBag.CompanyId;
     var idss=@ViewBag.PersonCode;
+    var _readonly = '@ViewBag.ReadOnly';
 </script>
 <div class="container container-background">
     <div class="page-header">
@@ -198,8 +199,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-4">
-                    <button class="btn btn-primary" onclick="opt.save();return false;" style="width:110px;">保存人员信息</button>
-                    <button class="btn btn-info" onclick="opt.add();return false;" style="width:110px;">+继续新建</button>
+                    <button class="btn btn-primary only4admin" onclick="opt.save();return false;" style="width:110px;">保存人员信息</button>
+                    <button class="btn btn-info only4admin" onclick="opt.add();return false;" style="width:110px;">+继续新建</button>
                     <button class="btn btn-success" onclick="opt.exit();return false;" style="width:110px;">退出编辑</button>
                 </div>
 

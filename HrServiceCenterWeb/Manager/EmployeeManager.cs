@@ -271,6 +271,10 @@ namespace HrServiceCenterWeb.Manager
             {
                 list = context.SelectListByTemplate<EmployeeInfo>("hr.employee.findEmployees", employee);
             }
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                list = list.Where(x=>x.CompanyId== BlueFramework.User.UserContext.CurrentUser.CompanyId).ToList();
+            }
             return list;
         }
 
@@ -333,6 +337,11 @@ namespace HrServiceCenterWeb.Manager
             EntityConfig config = ConfigManagent.Configs["hr.employee.exportPersons"];
             BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
             string sql = config.Sql;
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                var where = $" t.COMPANY_ID={BlueFramework.User.UserContext.CurrentUser.CompanyId} ";
+                sql = sql.Replace("1=1", where);
+            }
             DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
             return ds;
         }
@@ -342,6 +351,11 @@ namespace HrServiceCenterWeb.Manager
             EntityConfig config = ConfigManagent.Configs["hr.employee.exportSimplePersons"];
             BlueFramework.Data.Database database = new BlueFramework.Data.DatabaseProviderFactory().CreateDefault();
             string sql = config.Sql;
+            if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
+            {
+                var where = $" t.COMPANY_ID={BlueFramework.User.UserContext.CurrentUser.CompanyId} ";
+                sql = sql.Replace("1=1", where);
+            }
             DataSet ds = database.ExecuteDataSet(CommandType.Text, sql);
             return ds;
         }
