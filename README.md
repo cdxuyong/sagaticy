@@ -15,6 +15,12 @@ modifys:
 1. 增加UseType字段，区分发放和档案统计
 2. 人员管理批量导入功能
 
+### version 2.9.1
+
+增加是否退役军人字段
+
+## 记录
+
 ```sql
 alter table HR_EMPLOYEE add UseType int;
 UPDATE HR_EMPLOYEE set UseType=0;

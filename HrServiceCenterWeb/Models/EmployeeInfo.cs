@@ -72,5 +72,9 @@ namespace HrServiceCenterWeb.Models
         /// </summary>
         public string EmployDate { get; set; }
 
+        /// <summary>
+        /// 是否退役军人
+        /// </summary>
+        public int IsVeterans { get; set; }
     }
 }
