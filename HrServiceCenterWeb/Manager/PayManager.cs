@@ -15,6 +15,7 @@ using BlueFramework.Data;
 using BlueFramework.Blood.Config;
 using BlueFramework.Blood.DataAccess;
 using System.Globalization;
+using Publish2Local;
 
 namespace HrServiceCenterWeb.Manager
 {
@@ -378,17 +379,26 @@ namespace HrServiceCenterWeb.Manager
             Dictionary<string, int> titles = getItemTitle();
 
             string colPayMonth = "计划月度";
-            string colAccountIndex = "做账期号";
-            string colPayIndex = "费款所属期";
+            string colAccountIndex = dt.Columns.Contains("做账期号") ? "做账期号" : "计划月度";
+            string colPayIndex = dt.Columns.Contains("费款所属期") ? "费款所属期" : "计划月度";
             string colPersonName = dt.Columns.Contains("个人姓名")?"个人姓名": "姓名";
             string colIdCard = dt.Columns.Contains("身份证号码") ? "身份证号码" : "证件号";
             string colPayType = dt.Columns.Contains("险种") ? "险种" : "应缴类型";
+            string colPayCmp = dt.Columns.Contains("单位缴费金额") ? "单位缴费金额" : "单位缴费";
+            string colPayPerson = dt.Columns.Contains("个人缴费金额") ? "个人缴费金额" : "个人缴费";
             string colBase = "缴费基数";
             string colScalCmp = "单位缴费比例";
             string colScalPerson = "个人缴费比例";
-            string colPayCmp = dt.Columns.Contains("单位缴费金额") ? "单位缴费金额" : "单位缴费";
-            string colPayPerson = dt.Columns.Contains("个人缴费金额") ? "个人缴费金额" : "个人缴费";
             string colMemo = "备注";
+            if ("EM".Equals(Complication.Spot))
+            {
+                colBase = dt.Columns.Contains(colBase) ? colBase : "";
+                colScalCmp = dt.Columns.Contains(colScalCmp) ? colScalCmp : "";
+                colScalPerson = dt.Columns.Contains(colScalPerson) ? colScalPerson : "";
+                colMemo = dt.Columns.Contains(colMemo) ? colMemo : "";
+                colPayCmp = dt.Columns.Contains(colPayCmp) ? colPayCmp : "单位缴存";
+                colPayPerson = dt.Columns.Contains(colPayPerson) ? colPayPerson : "个人缴存";
+            }
 
             using (EntityContext context = BlueFramework.Blood.Session.CreateContext())
             {
@@ -421,13 +431,13 @@ namespace HrServiceCenterWeb.Manager
                         idi.PayIndex = row[colPayIndex].ToString();
                         idi.AccountIndex = row[colAccountIndex].ToString();
                         idi.PersonName = row[colPersonName].ToString().Trim();
-                        idi.BaseValue = decimal.Parse(row[colBase].ToString());
-                        idi.ScaleCompany = decimal.Parse(row[colScalCmp].ToString());
-                        idi.ScalePerson = decimal.Parse(row[colScalPerson].ToString());
+                        idi.BaseValue = string.IsNullOrEmpty(colBase) ? 0: decimal.Parse(row[colBase].ToString());
+                        idi.ScaleCompany = string.IsNullOrEmpty(colScalCmp) ? 0 : decimal.Parse(row[colScalCmp].ToString());
+                        idi.ScalePerson = string.IsNullOrEmpty(colScalPerson) ? 0 : decimal.Parse(row[colScalPerson].ToString());
                         idi.PersonPayValue = decimal.Parse(row[colPayPerson].ToString());
                         idi.CompanyPayValue= decimal.Parse(row[colPayCmp].ToString());
                         idi.ImportColumnName = row[colPayType].ToString();
-                        idi.Memo = row[colMemo].ToString();
+                        idi.Memo = string.IsNullOrEmpty(colMemo) ? "" : row[colMemo].ToString();
                         string cardId = row[colIdCard].ToString().ToLower()+"."+idi.PersonName;
                         if (cardIds.ContainsKey(cardId))
                         {

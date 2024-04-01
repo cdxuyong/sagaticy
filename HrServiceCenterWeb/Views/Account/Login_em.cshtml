@@ -1,0 +1,113 @@
+﻿@model HrServiceCenterWeb.Models.LoginModel
+
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_EmpleLayout.cshtml";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #4800ff;
+        -webkit-transition: background-color 400ms ease-in-out;
+        -ms-transition: background-color 400ms ease-in-out;
+        -o-transition: background-color 400ms ease-in-out;
+        -moz-transition: background-color 400ms ease-in-out;
+        transition: background-color 400ms ease-in-out;
+    }
+
+    #backContainer {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+    }
+
+    #output {
+        opacity: 0.3;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all 400ms ease-in-out;
+        -ms-transition: all 400ms ease-in-out;
+        -o-transition: all 400ms ease-in-out;
+        -moz-transition: all 400ms ease-in-out;
+        transition: all 400ms ease-in-out;
+    }
+
+    .validation-summary-errors {
+        margin-top: 10px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        color: #FF4040;
+    }
+
+        .validation-summary-errors ul li {
+            list-style: none;
+        }
+</style>
+
+<link href="~/Content/themes/base/signin.css" rel="stylesheet" />
+
+
+<div class="container login-container">
+    <div class="login-heading">
+        <span class="title"> @Publish2Local.Complication.SpotName</span>
+    </div>
+    <div class="login-heading">
+        <img src="~/images/HR_LOGO.png" style="width:32px;" />
+        <span class="title">人力资源服务系统</span>
+    </div>
+    <form class="form-signin" action="@Url.Action("Login", "Account")" method="post" >
+        <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-user-circle fa-fw"></i></span>
+            <input type="text" id="inputAccount" name="UserName" class="form-control" placeholder="请输入用户账号" required autofocus>
+        </div>
+        <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+            <input type="password" id="inputPassword" name="Password" class="form-control" placeholder="请输入用户密码" required>
+@*            @Html.PasswordFor(m => m.Password, new { @id = "inputPassword", @class = "form-control", @name = "Password", @placeholder = "请输入用户密码", @required = true })*@
+        </div>
+        <div class="input-group">
+            <label>
+                @*<input type="checkbox" value="remember-me" name="RememberMe">*@
+                @Html.CheckBoxFor(m => m.RememberMe)
+                &nbsp;<span class="login-text">记住密码</span>
+            </label>
+        </div>
+        <div>
+            <button class="btn btn-lg btn-pill btn-primary-outline wfull login-button" type="submit">
+                <i class="fa fa-rocket"></i>
+                <span>登录</span>
+            </button>
+        </div>
+        @Html.ValidationSummary()
+    </form>
+    <div class="login-foot" style="height:50px;">
+        <p>
+            <span class="ver">当前版本号：@Publish2Local.Complication.Version</span>
+        </p>
+        <p>@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") 当前在线 @BlueFramework.User.Session.Current.CountOnlines() 人 </p>
+
+    </div>
+</div>
+<div id="backContainer">
+    <div id="output"></div>
+</div>
+
+<script src="~/Library/vector-master/js/vector.js"></script>
+<script src="~/Library/vector-master/js/fss.js"></script>
+<script>
+    $(function () {
+        $("#inputAccount").val('@Model.UserName');
+        $("#inputPassword").val('@Model.Password');
+        FSS("backContainer", "output");
+    });
+    //捕获输入框的变化
+    $("#inputAccount,#inputPassword").bind("input propertychange change", function (event) {
+
+    });
+</script>

@@ -125,6 +125,9 @@ body {
     height: 16px;
 }
 /* dropdown menu*/
+.menu-backgroup {
+    background-color: #162436;
+}
 .holderbar .submenu {
     border-style: none !important;
     background-color: #162436;

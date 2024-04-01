@@ -242,7 +242,6 @@ opt.loadPayChart = function (series) {
 
 
 function init() {
-        debugger
     if (_myVersion != _uVersion) {
         $("#rcorners0").show();
     }

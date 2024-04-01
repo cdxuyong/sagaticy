@@ -8,12 +8,13 @@
                     data-target="#example-navbar-collapse">
                 <span class="sr-only">切换导航</span>
                 <span class="icon-bar"></span>
+
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
-            <ul class="nav navbar-nav navbar-left" style="background-color: rgb(41,60,85);">
+            <ul class="nav navbar-nav navbar-left menu-backgroup">
                 @foreach (var module in ViewBag.MenuList)
                 {
                     if (module.MobDisplay == true)

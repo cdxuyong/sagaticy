@@ -19,6 +19,18 @@ namespace HrServiceCenterWeb.Controllers
 
         LoginModel lgmodel = new LoginModel();
 
+        private string GetLoginAction
+        {
+            get
+            {
+                if ("EM".Equals(Publish2Local.Complication.Spot))
+                {
+                    return "Login_em";
+                }
+                return "Login";
+            }
+        }
+
         // GET: /Account/
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -36,7 +48,27 @@ namespace HrServiceCenterWeb.Controllers
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(lgmodel);
+            return View(GetLoginAction,lgmodel);
+        }
+
+        // GET: /Account/
+        [AllowAnonymous]
+        public ActionResult Login_em(string returnUrl)
+        {
+            bool remember = (BlueFramework.Common.Http.Cookie.GetCookie(cookie_remember) == "1") ? true : false;
+            string userName = string.Empty;
+            string password = string.Empty;
+            if (remember)
+            {
+                userName = BlueFramework.Common.Http.Cookie.GetCookie(cookie_name);
+                password = BlueFramework.Common.Http.Cookie.GetCookie(cookie_password);
+                lgmodel.UserName = userName;
+                lgmodel.Password = password;
+                lgmodel.RememberMe = true;
+            }
+
+            ViewBag.ReturnUrl = returnUrl;
+            return View(GetLoginAction, lgmodel);
         }
 
         // POST: /Account/Create
@@ -66,19 +98,19 @@ namespace HrServiceCenterWeb.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                     ModelState.AddModelError("ERROR", "账号和密码不匹配");
-                    return View(lgmodel);
+                    return View(GetLoginAction, lgmodel);
                 }
                 else
                 {
                     ModelState.AddModelError("ERROR", "服务器内部出错，请联系管理员");
-                    return View(lgmodel);
+                    return View(GetLoginAction, lgmodel);
                 }
             }
             catch (Exception ex)
             {
                 // 如果我们进行到这一步时某个地方出错，则重新显示表单
                 ModelState.AddModelError("ERROR", "服务器内部出错，请联系管理员，详细："+ex.Message);
-                return View(model);
+                return View(GetLoginAction, model);
             }
         }
 
