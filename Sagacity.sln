@@ -27,6 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueFramework.ReportView", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{92536721-BB04-400B-8293-D5740C42A338}"
 	ProjectSection(SolutionItems) = preProject
+		db\1.0升级至2.9.1脚本.txt = db\1.0升级至2.9.1脚本.txt
 		setup_sql.txt = setup_sql.txt
 		db\sg_2.7.0_升级脚本.ups = db\sg_2.7.0_升级脚本.ups
 		db\sg_2.7.0_升级脚本_索引.ups = db\sg_2.7.0_升级脚本_索引.ups
