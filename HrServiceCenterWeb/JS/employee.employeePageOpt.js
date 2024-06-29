@@ -4,6 +4,10 @@ function init() {
     if ("true" == _readonly) {
         opt.disable();
     }
+    debugger
+    if ("true" == _diasbleAdd) {
+        opt.disable();
+    }
     if (dataId > 0) {
         opt.query();
     }
@@ -13,6 +17,7 @@ function init() {
     }
 }
 opt.disable = function () {
+    $('#txtPersonCode').textbox('readonly');
     $('.only4admin').css('display', 'none');
 };
 opt.positions = new Array();

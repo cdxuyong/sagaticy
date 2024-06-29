@@ -76,5 +76,30 @@ namespace HrServiceCenterWeb.Models
         /// 是否退役军人
         /// </summary>
         public int IsVeterans { get; set; }
+
+        // EmployFroms=#{EmployFroms},EnterChannels=#{EnterChannels},Approval=#{Approval},Insurances=#{Insurances},JoinPartyDate=#{JoinPartyDate},MaritalStatus=#{MaritalStatus},PersonTitle=#{PersonTitle},IdCardAddress=#{IdCardAddress},ContractCount=#{ContractCount},ContactsInfosys=#{ContactsInfosys},ContactsPerson1=#{ContactsPerson1},ContactsPhone1=#{ContactsPhone1},ContactsInfosys1=#{ContactsInfosys1},ContactsPerson2=#{ContactsPerson2},ContactsPhone2=#{ContactsPhone2},ContactsInfosys2=#{ContactsInfosys2},ContactsPerson3=#{ContactsPerson3},ContactsPhone3=#{ContactsPhone3},ContactsInfosys3=#{ContactsInfosys3},ContactsPerson4=#{ContactsPerson4},ContactsPhone4=#{ContactsPhone4},ContactsInfosys4=#{ContactsInfosys4}
+
+        public string EmployFroms { get; set; }
+        public string EnterChannels { get; set; }
+        public string Approval { get; set; }
+        public string Insurances { get; set; }
+        public string JoinPartyDate { get; set; }
+        public string MaritalStatus { get; set; }
+        public string PersonTitle { get; set; }
+        public string IdCardAddress { get; set; }
+        public int ContractCount { get; set; }
+        public string ContactsInfosys { get; set; }
+        public string ContactsPerson1 { get; set; }
+        public string ContactsPhone1 { get; set; }
+        public string ContactsInfosys1 { get; set; }
+        public string ContactsPerson2 { get; set; }
+        public string ContactsPhone2 { get; set; }
+        public string ContactsInfosys2 { get; set; }
+        public string ContactsPerson3 { get; set; }
+        public string ContactsPhone3 { get; set; }
+        public string ContactsInfosys3 { get; set; }
+        public string ContactsPerson4 { get; set; }
+        public string ContactsPhone4 { get; set; }
+        public string ContactsInfosys4 { get; set; }
     }
 }

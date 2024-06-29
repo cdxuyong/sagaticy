@@ -45,9 +45,15 @@
   <!-- 导出人员清单  -->
   <select id="exportPersons" >
     select
-    t.PERSON_NAME 姓名,t.CARD_ID 身份证,t.SEX 性别,t.BIRTHDAY 出生日期,t.POLITY 政治面貌,t.NATION 民族,
-    t.PHONE 手机,t.ADDRESS 地址,t.CONTACTS_PERSON 联系人,t.CONTACTS_PHONE 联系人电话,t.SPECIALTY 专业,t.SCHOOL 学校,t.CREATOR 创建者,t.CREATE_TIME 创建时间,
-    c.NAME 单位,p.POSITION_NAME 岗位,b1.OBJECT_TEXT 学历,PERSON_CODE 编号,BANK_NAME 银行,BANK_CARD 银行卡,BANK_CODE 银行行号,JOINWORK_TIME 参工时间,LEAVE_TIME 离职日期,Contract_Time 合同到期日期,Retire_Time 退休日期,
+    t.PERSON_NAME 姓名,t.EmployFroms 用工形式,t.CARD_ID 身份证,t.SEX 性别,t.BIRTHDAY 出生日期,t.EnterChannels 进入渠道,t.Approval 审批程序,t.Insurances 已购险种,t.POLITY 政治面貌,t.JoinPartyDate 入党时间,t.MaritalStatus 婚姻状况,t.PersonTitle 职称,t.NATION 民族,
+    t.PHONE 手机,t.ADDRESS 家庭住址,t.IdCardAddress 身份证住址,
+    t.CONTACTS_PERSON 父亲姓名,t.CONTACTS_PHONE 父亲电话,t.ContactsInfosys "父亲（退休）工作单位及职务" ,
+    t.CONTACTSPERSON1 母亲姓名,t.CONTACTSPHONE1 母亲电话,t.ContactsInfosys1 "母亲（退休）工作单位及职务" ,
+    t.CONTACTSPERSON2 配偶姓名,t.CONTACTSPHONE2 配偶电话,t.ContactsInfosys2 "配偶（退休）工作单位及职务" ,
+    t.CONTACTSPERSON3 子女1姓名,t.CONTACTSPHONE3 子女1电话,t.ContactsInfosys3 子女1情况 ,
+    t.CONTACTSPERSON4 子女2姓名,t.CONTACTSPHONE4 子女2电话,t.ContactsInfosys4 子女2情况,
+    t.SPECIALTY 专业,t.SCHOOL 学校,t.CREATOR 创建者,t.CREATE_TIME 创建时间,
+    c.NAME 单位,p.POSITION_NAME 岗位,b1.OBJECT_TEXT 学历,PERSON_CODE 编号,BANK_NAME 银行,BANK_CARD 银行卡,BANK_CODE 银行行号,JOINWORK_TIME 参工时间,LEAVE_TIME 离职日期,t.Contract_FirstTime 签定合同日期,Contract_Time 合同到期日期,t.ContractCount 劳动合同签定次数, Retire_Time 退休日期,
     t.CONTRACT_NO 合同编号,t.ARGUMENT_NO 协议编号,t.EMP_TYPE 任职受雇从业类型,t.EMP_DATE 任职受雇从业日期,
     case isnull(t.state,0) when 0 then '在职'  when 1 then '离职' when 2 then '内退' when 3 then '病休' when 4 then '其他' end 档案状态,
     case isnull(t.isveterans,0) when 0 then '否'  when 1 then '是' end 是否为退役军人
@@ -61,7 +67,7 @@
   <!-- 导出人员清单  -->
   <select id="exportSimplePersons" >
     select
-    c.NAME 单位,t.PERSON_NAME 姓名,t.CARD_ID 身份证,t.CONTACTS_PHONE 电话,t.ADDRESS 地址,p.POSITION_NAME 岗位,t.Contract_Time 合同签订日期,Contract_Time 到期日期
+    c.NAME 单位,t.PERSON_NAME 姓名,t.CARD_ID 身份证,t.CONTACTS_PHONE 电话,t.ADDRESS 地址,p.POSITION_NAME 岗位,t.Contract_FirstTime 合同签订日期,Contract_Time 到期日期
     from HR_EMPLOYEE t
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     INNER JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
@@ -74,7 +80,7 @@
     t.PHONE Phone,t.ADDRESS Address,t.CONTACTS_PERSON ContactsPerson,t.CONTACTS_PHONE ContactsPhone,t.SPECIALTY,t.SCHOOL,t.CREATOR,t.CREATE_TIME CreateTime,t.STATE,
     c.NAME CompanyName,p.POSITION_NAME PositionName,b1.OBJECT_TEXT,PERSON_CODE PersonCode,BANK_NAME BankName,BANK_CARD BankCard,JOINWORK_TIME JoinWorkTime,LEAVE_TIME LeaveTime,Contract_Time ContractTime,Retire_Time RetireTime,
     t.Service_Fee ServiceFee,Contract_FirstTime ContractFirstTime,CONTRACT_NO ContractNO,ARGUMENT_NO AgreementNO,t.UseType,
-    t.BANK_CODE BankCode,t.EMP_TYPE EmployType,t.EMP_DATE EmployDate,IsVeterans
+    t.BANK_CODE BankCode,t.EMP_TYPE EmployType,t.EMP_DATE EmployDate,IsVeterans,t.EmployFroms,t.EnterChannels,t.Approval,t.Insurances,t.JoinPartyDate,t.MaritalStatus,t.PersonTitle,t.IdCardAddress,t.ContractCount,t.ContactsInfosys,t.ContactsPerson1,t.ContactsPhone1,t.ContactsInfosys1,t.ContactsPerson2,t.ContactsPhone2,t.ContactsInfosys2,t.ContactsPerson3,t.ContactsPhone3,t.ContactsInfosys3,t.ContactsPerson4,t.ContactsPhone4,t.ContactsInfosys4
     from HR_EMPLOYEE t
     INNER join HR_COMPANY c on c.COMPANY_ID=t.COMPANY_ID
     INNER JOIN HR_POSITION p on p.POSITION_ID=t.POSITION_ID
@@ -99,12 +105,14 @@
     </selectKey>
     insert into HR_EMPLOYEE(COMPANY_ID,POSITION_ID,PERSON_NAME,CARD_ID,SEX,BIRTHDAY,DEGREE,POLITY,NATION,PHONE,ADDRESS,CONTACTS_PERSON,CONTACTS_PHONE,SPECIALTY,SCHOOL,CREATOR,CREATE_TIME,
     PERSON_CODE,BANK_NAME,BANK_CARD,JOINWORK_TIME,Contract_Time,Retire_Time,Service_Fee,Contract_FirstTime,
-    CONTRACT_NO,ARGUMENT_NO,UseType,BANK_CODE,EMP_TYPE,EMP_DATE,IsVeterans,
-    STATE)
+    CONTRACT_NO,ARGUMENT_NO,UseType,BANK_CODE,EMP_TYPE,EMP_DATE,IsVeterans, STATE,
+    EmployFroms,EnterChannels,Approval,Insurances,JoinPartyDate,MaritalStatus,PersonTitle,IdCardAddress,ContractCount,ContactsInfosys,ContactsPerson1,ContactsPhone1,ContactsInfosys1,ContactsPerson2,ContactsPhone2,ContactsInfosys2,ContactsPerson3,ContactsPhone3,ContactsInfosys3,ContactsPerson4,ContactsPhone4,ContactsInfosys4)
     values(#{CompanyId},#{PositionId},#{PersonName},#{CardId},#{Sex},#{Birthday},#{Degree},#{Polity},#{Nation},
     #{Phone},#{Address},#{ContactsPerson},#{ContactsPhone},#{Specialty},#{School},#{Creator},#{CreateTime},#{PersonCode},#{BankName},#{BankCard},#{JoinWorkTime},#{ContractTime},#{RetireTime},#{ServiceFee},#{ContractFirstTime},
-    #{ContractNO},#{AgreementNO},#{UseType},#{BankCode},#{EmployType},#{EmployDate},#{IsVeterans},
-    #{State})
+    #{ContractNO},#{AgreementNO},#{UseType},#{BankCode},#{EmployType},#{EmployDate},#{IsVeterans},#{State},
+    #{EmployFroms},#{EnterChannels},#{Approval},#{Insurances},#{JoinPartyDate},#{MaritalStatus},#{PersonTitle},#{IdCardAddress},#{ContractCount},#{ContactsInfosys},#{ContactsPerson1},#{ContactsPhone1},#{ContactsInfosys1},#{ContactsPerson2},#{ContactsPhone2},#{ContactsInfosys2},#{ContactsPerson3},#{ContactsPhone3},#{ContactsInfosys3},#{ContactsPerson4},#{ContactsPhone4},#{ContactsInfosys4}
+
+    )
   </insert>
   <update id="updateEmployee">
     update HR_EMPLOYEE set COMPANY_ID=#{CompanyId},POSITION_ID=#{PositionId},PERSON_NAME=#{PersonName},CARD_ID=#{CardId},SEX=#{Sex}
@@ -112,7 +120,8 @@
     ,CONTACTS_PERSON=#{ContactsPerson},CONTACTS_PHONE=#{ContactsPhone},SPECIALTY=#{Specialty},SCHOOL=#{School},JOINWORK_TIME=#{JoinWorkTime},
     PERSON_CODE=#{PersonCode},BANK_NAME=#{BankName},BANK_CARD=#{BankCard},State=#{State},LEAVE_TIME=#{LeaveTime},Contract_Time=#{ContractTime},Retire_Time=#{RetireTime},
     Service_Fee=#{ServiceFee},Contract_FirstTime=#{ContractFirstTime},CONTRACT_NO=#{ContractNO},ARGUMENT_NO=#{AgreementNO},UseType=#{UseType},
-    BANK_CODE=#{BankCode},EMP_TYPE=#{EmployType},EMP_DATE=#{EmployDate},IsVeterans=#{IsVeterans}
+    BANK_CODE=#{BankCode},EMP_TYPE=#{EmployType},EMP_DATE=#{EmployDate},IsVeterans=#{IsVeterans},
+    EmployFroms=#{EmployFroms},EnterChannels=#{EnterChannels},Approval=#{Approval},Insurances=#{Insurances},JoinPartyDate=#{JoinPartyDate},MaritalStatus=#{MaritalStatus},PersonTitle=#{PersonTitle},IdCardAddress=#{IdCardAddress},ContractCount=#{ContractCount},ContactsInfosys=#{ContactsInfosys},ContactsPerson1=#{ContactsPerson1},ContactsPhone1=#{ContactsPhone1},ContactsInfosys1=#{ContactsInfosys1},ContactsPerson2=#{ContactsPerson2},ContactsPhone2=#{ContactsPhone2},ContactsInfosys2=#{ContactsInfosys2},ContactsPerson3=#{ContactsPerson3},ContactsPhone3=#{ContactsPhone3},ContactsInfosys3=#{ContactsInfosys3},ContactsPerson4=#{ContactsPerson4},ContactsPhone4=#{ContactsPhone4},ContactsInfosys4=#{ContactsInfosys4}
     where PERSON_ID=#{PersonId}
   </update>
 

@@ -8,6 +8,7 @@
     var CompanyId = @ViewBag.CompanyId;
     var idss=@ViewBag.PersonCode;
     var _readonly = '@ViewBag.ReadOnly';
+    var _diasbleAdd = '@ViewBag.DisableAdd';
 </script>
 <div class="container container-background">
     <div class="page-header">
@@ -21,7 +22,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label">编号</label>
                 <div class="col-sm-4">
-                    <input class="easyui-textbox" form-field-name="PersonCode" value="@ViewBag.PersonCode" form-control-type="textbox" data-options="prompt:'输入人员编号.',required:true,validType:'length[1,50]'" style="height:30px;width:100%" />
+                    <input class="easyui-textbox" form-field-name="PersonCode" value="@ViewBag.PersonCode" id="txtPersonCode" form-control-type="textbox" data-options="prompt:'输入人员编号.',required:true,validType:'length[1,50]'" style="height:30px;width:100%" />
                 </div>
                 <label class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-4">
@@ -107,6 +108,21 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-1 control-label">入党时间</label>
+                <div class="col-sm-4">
+                    <input class="easyui-datebox" form-field-name="JoinPartyDate" form-control-type="datebox" style="width:100%;height:30px;" />
+                </div>
+                <label class="col-sm-2 control-label">婚姻状况</label>
+                <div class="col-sm-4">
+                    <select class="easyui-combobox" id="cmbMaritalStatus" form-field-name="MaritalStatus" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="未婚">未婚</option>
+                        <option value="已婚">已婚</option>
+                        <option value="离异">离异</option>
+                        <option value="丧偶">丧偶</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-1 control-label">民族</label>
                 <div class="col-sm-4">
                     <input class="easyui-textbox" form-field-name="Nation" form-control-type="textbox" style="height:30px;width:100%" />
@@ -117,29 +133,54 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">地址</label>
+                <label class="col-sm-1 control-label">家庭住址</label>
                 <div class="col-sm-4">
                     <input class="easyui-textbox" form-field-name="Address" form-control-type="textbox" style="height:30px;width:100%" />
                 </div>
-                <label class="col-sm-2 control-label">紧急联系人</label>
+                <label class="col-sm-2 control-label">身份证地址</label>
                 <div class="col-sm-4">
-                    <input class="easyui-textbox" form-field-name="ContactsPerson" form-control-type="textbox" style="height:30px;width:100%" />
+                    <input class="easyui-textbox" form-field-name="IdCardAddress" form-control-type="textbox" style="height:30px;width:100%" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">紧急联系人电话</label>
+                <label class="col-sm-1 control-label">用工性质</label>
                 <div class="col-sm-4">
-                    <input class="easyui-textbox" form-field-name="ContactsPhone" form-control-type="textbox" style="height:30px;width:100%" />
-                </div>
-                <label class="col-sm-2 control-label">在职状态</label>
-                <div class="col-sm-4">
-                    <select class="easyui-combobox" form-field-name="State" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
-                        <option value="0">在职</option>
-                        <option value="1">离职</option>
-                        <option value="2">内退</option>
-                        <option value="3">病休</option>
-                        <option value="4">其他</option>
+                    <select class="easyui-combobox" id="cmbEmployFroms" form-field-name="EmployFroms" form-control-type="combobox"  style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="公司员工">公司员工</option>
+                        <option value="劳务派遣">劳务派遣</option>
+                        <option value="劳务外包">劳务外包</option>
+                        <option value="其他">其他</option>
                     </select>
+                </div>
+                <label class="col-sm-2 control-label">进入渠道</label>
+                <div class="col-sm-4">
+                    <input class="easyui-textbox" form-field-name="EnterChannels" form-control-type="textbox" style="height:30px;width:100%" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">审批流程</label>
+                <div class="col-sm-4">
+                    <input class="easyui-textbox" form-field-name="Approval" form-control-type="textbox" style="height:30px;width:100%" />
+                </div>
+                <label class="col-sm-2 control-label">已购险种</label>
+                <div class="col-sm-4">
+                    <select class="easyui-combobox" id="cmbInsurances" form-field-name="Insurances" form-control-type="combobox" multiple="true" multiline="true" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="五险">五险</option>
+                        <option value="住房公积金">住房公积金</option>
+                        <option value="工伤">工伤</option>
+                        <option value="意外险">意外险</option>
+                        <option value="雇主责任险">雇主责任险</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">职称</label>
+                <div class="col-sm-4">
+                    <input class="easyui-textbox" form-field-name="PersonTitle" form-control-type="textbox" style="height:30px;width:100%" />
+                </div>
+                <label class="col-sm-2 control-label">合同签定次数</label>
+                <div class="col-sm-4">
+                    <input class="easyui-numberbox" value="0" form-field-name="ContractCount" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
                 </div>
             </div>
             <div class="form-group">
@@ -167,16 +208,9 @@
                 <div class="col-sm-4">
                     <input class="easyui-datebox" form-field-name="LeaveTime" form-control-type="datebox" style="width:100%;height:30px;" />
                 </div>
-                <label class="col-sm-2 control-label">退休日期</label>
+                <label class="col-sm-2 control-label">任职受雇从业类型</label>
                 <div class="col-sm-4">
-                    <input class="easyui-datebox" id="dtRetireTime" form-field-name="RetireTime" form-control-type="datebox" style="width:100%;height:30px;" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-1 control-label">任职受雇从业类型</label>
-                <div class="col-sm-4">
-                    <select class="easyui-combobox" id="cmbEmplayType" form-field-name="EmployType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}" >
+                    <select class="easyui-combobox" id="cmbEmplayType" form-field-name="EmployType" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
                         <option value="雇员">雇员</option>
                         <option value="保险营销员">保险营销员</option>
                         <option value="证券经纪人">证券经纪人</option>
@@ -184,6 +218,14 @@
                         <option value="其他">其他</option>
                     </select>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">退休日期</label>
+                <div class="col-sm-4">
+                    <input class="easyui-datebox" id="dtRetireTime" form-field-name="RetireTime" form-control-type="datebox" style="width:100%;height:30px;" />
+                </div>
+
                 <label class="col-sm-2 control-label">任职受雇从业日期</label>
                 <div class="col-sm-4">
                     <input class="easyui-datebox" id="dtEmployDate" form-field-name="EmployDate" form-control-type="datebox" style="width:100%;height:30px;" />
@@ -191,9 +233,16 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-1 control-label">服务费（元）/月</label>
+                <label class="col-sm-1 control-label">在职状态</label>
+
                 <div class="col-sm-4">
-                    <input class="easyui-numberbox" value="0" form-field-name="ServiceFee" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
+                    <select class="easyui-combobox" form-field-name="State" form-control-type="combobox" style="width:100%;height:30px;" data-options="{editable:false}">
+                        <option value="0">在职</option>
+                        <option value="1">离职</option>
+                        <option value="2">内退</option>
+                        <option value="3">病休</option>
+                        <option value="4">其他</option>
+                    </select>
                 </div>
                 <label class="col-sm-2 control-label">是否为退役军人</label>
                 <div class="col-sm-4">
@@ -204,8 +253,67 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-1 control-label">服务费（元）/月</label>
+                <div class="col-sm-4">
+                    <input class="easyui-numberbox" value="0" form-field-name="ServiceFee" form-control-type="numberbox" data-options="precision:0,groupSeparator:','" style="height:30px;width:100px" />
+                </div>
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-4">
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">家庭成员情况</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th width="60px">关系</th>
+                                <th width="100px">姓名</th>
+                                <th width="200px">电话</th>
+                                <th>备注（父母配偶填工作单位及职务，子女填写情况说明）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>父亲</td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPerson" form-control-type="textbox" style="height:30px;width:100px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPhone" form-control-type="textbox" style="height:30px;width:200px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsInfosys" form-control-type="textbox" style="height:30px;width:400px" /></td>
+                            </tr>
+                            <tr>
+                                <td>母亲</td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPerson1" form-control-type="textbox" style="height:30px;width:100px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPhone1" form-control-type="textbox" style="height:30px;width:200px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsInfosys1" form-control-type="textbox" style="height:30px;width:400px" /></td>
+                            </tr>
+                            <tr>
+                                <td>配偶</td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPerson2" form-control-type="textbox" style="height:30px;width:100px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPhone2" form-control-type="textbox" style="height:30px;width:200px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsInfosys2" form-control-type="textbox" style="height:30px;width:400px" /></td>
+                            </tr>
+                            <tr>
+                                <td>子女1</td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPerson3" form-control-type="textbox" style="height:30px;width:100px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPhone3" form-control-type="textbox" style="height:30px;width:200px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsInfosys3" form-control-type="textbox" style="height:30px;width:400px" /></td>
+                            </tr>
+                            <tr>
+                                <td>子女2</td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPerson4" form-control-type="textbox" style="height:30px;width:100px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsPhone4" form-control-type="textbox" style="height:30px;width:200px" /></td>
+                                <td><input class="easyui-textbox" form-field-name="ContactsInfosys4" form-control-type="textbox" style="height:30px;width:400px" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         
+
+            <div class="form-group" style="padding-top:10px;">
                 <div class="col-sm-offset-1 col-sm-4">
-                    <button class="btn btn-primary only4admin" onclick="opt.save();return false;" style="width:110px;">保存人员信息</button>
+                    <button class="btn btn-primary" onclick="opt.save();return false;" style="width:110px;">保存人员信息</button>
                     <button class="btn btn-info only4admin" onclick="opt.add();return false;" style="width:110px;">+继续新建</button>
                     <button class="btn btn-success" onclick="opt.exit();return false;" style="width:110px;">退出编辑</button>
                 </div>

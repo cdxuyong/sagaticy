@@ -4,7 +4,7 @@ namespace Publish2Local
 {
     public  class Complication
     {
-        public const string Spot = "EM";
+        public const string Spot = "WT";
         public static string SpotName = "";
         public static string Version = "2.9.2";
         public static string Theme = "base";

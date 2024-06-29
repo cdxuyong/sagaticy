@@ -39,7 +39,8 @@ namespace HrServiceCenterWeb.Controllers
             ViewBag.PersonCode = new Manager.EmployeeManager().GetMaxPersonCode();
             if (BlueFramework.User.UserContext.CurrentUser.IsCompanyUser)
             {
-                ViewBag.ReadOnly = "true";
+                //ViewBag.ReadOnly = "true";
+                ViewBag.DisableAdd = "true";
             }
 
             if (UserContext.CurrentUser.IsCompanyUser && pid>0)
