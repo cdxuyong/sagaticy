@@ -12,16 +12,20 @@ publish: 2020/3/28
 
 modifys:  
 
-1. 增加UseType字段，区分发放和档案统计
-2. 人员管理批量导入功能
+1. add UseType
+2. import employee from excel
 
 ### version 2.9.1
 
-增加是否退役军人字段
+add hr.employee.tuiyijunren
 
 ### version 2.9.2
 
-适配峨眉人才服务中心需求
+em hr
+
+### version 2.9.3
+
+update hr.employee more fields 4 wt
 
 ## 记录
 

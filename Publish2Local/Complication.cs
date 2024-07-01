@@ -6,7 +6,7 @@ namespace Publish2Local
     {
         public const string Spot = "WT";
         public static string SpotName = "";
-        public static string Version = "2.9.2";
+        public static string Version = "2.9.3";
         public static string Theme = "base";
 
         static Complication()
