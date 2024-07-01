@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\wfz\publish</_PublishTargetUrl>
-    <History>True|2024-03-16T04:30:25.1533879Z;True|2023-09-24T15:25:49.7895521+08:00;True|2023-08-15T23:59:31.1824664+08:00;True|2023-07-11T21:37:04.8729497+08:00;True|2023-07-10T21:57:59.4700865+08:00;True|2023-05-24T23:46:45.3521010+08:00;True|2023-05-16T23:02:39.0186161+08:00;True|2023-05-11T17:24:13.5217800+08:00;True|2023-05-05T00:41:35.2740112+08:00;True|2023-05-03T23:05:56.3711897+08:00;True|2023-04-27T23:17:22.1111293+08:00;True|2023-04-02T19:59:58.5879324+08:00;True|2023-03-29T11:29:55.1801809+08:00;True|2023-03-26T16:15:35.0166049+08:00;True|2023-03-12T14:03:25.9251683+08:00;True|2023-03-08T22:24:15.6102874+08:00;True|2022-11-17T21:47:29.8808849+08:00;</History>
+    <History>True|2024-06-29T16:04:22.3162747Z||;True|2024-03-16T12:30:25.1533879+08:00||;True|2023-09-24T15:25:49.7895521+08:00||;True|2023-08-15T23:59:31.1824664+08:00||;True|2023-07-11T21:37:04.8729497+08:00||;True|2023-07-10T21:57:59.4700865+08:00||;True|2023-05-24T23:46:45.3521010+08:00||;True|2023-05-16T23:02:39.0186161+08:00||;True|2023-05-11T17:24:13.5217800+08:00||;True|2023-05-05T00:41:35.2740112+08:00||;True|2023-05-03T23:05:56.3711897+08:00||;True|2023-04-27T23:17:22.1111293+08:00||;True|2023-04-02T19:59:58.5879324+08:00||;True|2023-03-29T11:29:55.1801809+08:00||;True|2023-03-26T16:15:35.0166049+08:00||;True|2023-03-12T14:03:25.9251683+08:00||;True|2023-03-08T22:24:15.6102874+08:00||;True|2022-11-17T21:47:29.8808849+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -22,34 +22,79 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:19</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.dll">
-      <publishTime>03/16/2024 12:30:08</publishTime>
+      <publishTime>06/30/2024 00:04:00</publishTime>
     </File>
     <File Include="bin/BlueFramework.Blood.pdb">
-      <publishTime>03/16/2024 12:30:08</publishTime>
+      <publishTime>06/30/2024 00:04:00</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.dll">
-      <publishTime>05/16/2023 23:02:22</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/BlueFramework.Common.pdb">
-      <publishTime>05/16/2023 23:02:22</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/BlueFramework.Data.dll">
-      <publishTime>05/16/2023 23:02:22</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/BlueFramework.Data.pdb">
-      <publishTime>05/16/2023 23:02:22</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.dll">
-      <publishTime>03/16/2024 12:30:08</publishTime>
+      <publishTime>06/30/2024 00:04:00</publishTime>
     </File>
     <File Include="bin/BlueFramework.User.pdb">
-      <publishTime>03/16/2024 12:30:08</publishTime>
+      <publishTime>06/30/2024 00:04:00</publishTime>
     </File>
     <File Include="bin/Files/2018年6月份缴存导入数据.xls">
       <publishTime>03/01/2020 22:38:56</publishTime>
     </File>
     <File Include="bin/Files/2019年10月工资表.xls">
       <publishTime>11/17/2022 20:44:06</publishTime>
+    </File>
+    <File Include="bin/Files/base/2018年6月份缴存导入数据.xls">
+      <publishTime>03/01/2020 22:38:56</publishTime>
+    </File>
+    <File Include="bin/Files/base/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>03/12/2023 14:31:05</publishTime>
+    </File>
+    <File Include="bin/Files/base/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>05/24/2023 22:07:20</publishTime>
+    </File>
+    <File Include="bin/Files/base/单位结算.xlsx">
+      <publishTime>10/11/2022 22:08:45</publishTime>
+    </File>
+    <File Include="bin/Files/base/导入单位账户余额.xlsx">
+      <publishTime>09/27/2022 22:43:40</publishTime>
+    </File>
+    <File Include="bin/Files/base/批量导入人员模板.xlsx">
+      <publishTime>03/29/2023 11:34:50</publishTime>
+    </File>
+    <File Include="bin/Files/base/考勤月报.xlsx">
+      <publishTime>10/12/2022 16:45:25</publishTime>
+    </File>
+    <File Include="bin/Files/base/考勤表.xlsx">
+      <publishTime>10/09/2022 22:10:30</publishTime>
+    </File>
+    <File Include="bin/Files/em/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>04/01/2024 21:24:40</publishTime>
+    </File>
+    <File Include="bin/Files/em/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>04/01/2024 21:00:41</publishTime>
+    </File>
+    <File Include="bin/Files/em/单位结算.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="bin/Files/em/导入单位账户余额.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="bin/Files/em/批量导入人员模板.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="bin/Files/em/考勤月报.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="bin/Files/em/考勤表.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
     </File>
     <File Include="bin/Files/XXXX单位X年X月五险一金导入模板和样例数据.xls">
       <publishTime>03/12/2023 14:31:05</publishTime>
@@ -58,7 +103,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/24/2023 22:07:20</publishTime>
     </File>
     <File Include="bin/Files/卓越人力资源服务系统-操作手册.docx">
-      <publishTime>11/26/2022 23:56:04</publishTime>
+      <publishTime>04/02/2024 22:26:38</publishTime>
     </File>
     <File Include="bin/Files/单位结算.xlsx">
       <publishTime>10/11/2022 22:08:45</publishTime>
@@ -76,10 +121,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2022 22:10:30</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.dll">
-      <publishTime>03/16/2024 12:30:13</publishTime>
+      <publishTime>06/30/2024 00:04:08</publishTime>
     </File>
     <File Include="bin/HrServiceCenterWeb.pdb">
-      <publishTime>03/16/2024 12:30:13</publishTime>
+      <publishTime>06/30/2024 00:04:08</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>07/11/2017 15:00:06</publishTime>
@@ -115,10 +160,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2012 11:08:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Win32.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:40:59</publishTime>
     </File>
     <File Include="bin/netstandard.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 20:33:56</publishTime>
@@ -139,10 +184,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/11/2017 15:00:06</publishTime>
     </File>
     <File Include="bin/Publish2Local.dll">
-      <publishTime>03/16/2024 12:30:09</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/Publish2Local.pdb">
-      <publishTime>03/16/2024 12:30:09</publishTime>
+      <publishTime>06/30/2024 00:03:59</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -238,271 +283,271 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2020 11:40:07</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Collections.Concurrent.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Collections.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Collections.NonGeneric.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Collections.Specialized.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.EventBasedAsync.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.TypeConverter.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Console.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Data.Common.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.Contracts.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.Debug.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.FileVersionInfo.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.Process.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.StackTrace.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.TextWriterTraceListener.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.Tools.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.TraceSource.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.Tracing.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Drawing.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Dynamic.Runtime.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Globalization.Calendars.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Globalization.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Globalization.Extensions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.Compression.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.Compression.ZipFile.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.DriveInfo.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.Watcher.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.IsolatedStorage.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.MemoryMappedFiles.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.Pipes.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.IO.UnmanagedMemoryStream.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Linq.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Linq.Expressions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Linq.Parallel.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Linq.Queryable.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 04:02:42</publishTime>
     </File>
     <File Include="bin/System.Net.NameResolution.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.NetworkInformation.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Ping.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Requests.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Security.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.Sockets.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.WebHeaderCollection.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.WebSockets.Client.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Net.WebSockets.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ObjectModel.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Reflection.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Reflection.Extensions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Reflection.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Resources.Reader.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Resources.ResourceManager.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Resources.Writer.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.CompilerServices.VisualC.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Extensions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Handles.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.InteropServices.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.InteropServices.RuntimeInformation.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Numerics.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Serialization.Formatters.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Serialization.Json.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Serialization.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Runtime.Serialization.Xml.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Claims.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Cryptography.Algorithms.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Cryptography.Csp.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Cryptography.Encoding.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Cryptography.Primitives.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Cryptography.X509Certificates.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.Principal.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Security.SecureString.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Text.Encoding.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Text.Encoding.Extensions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Text.RegularExpressions.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.Overlapped.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.Tasks.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.Tasks.Parallel.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.Thread.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.ThreadPool.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Threading.Timer.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.ValueTuple.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
@@ -532,22 +577,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/System.Xml.ReaderWriter.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Xml.XDocument.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Xml.XmlDocument.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Xml.XmlSerializer.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Xml.XPath.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/System.Xml.XPath.XDocument.dll">
-      <publishTime>12/12/2023 23:51:35</publishTime>
+      <publishTime>06/22/2024 18:41:00</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
@@ -781,7 +826,217 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/01/2023 20:32:05</publishTime>
     </File>
     <File Include="Content/themes/base/Site.css">
-      <publishTime>03/04/2020 20:14:22</publishTime>
+      <publishTime>04/02/2024 22:39:42</publishTime>
+    </File>
+    <File Include="Content/themes/em/bootstrap.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/dashboard.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/ie10-viewport-bug-workaround.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/right.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-icons_222222_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-icons_454545_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-icons_888888_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery-ui.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.accordion.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.all.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.autocomplete.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.base.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.button.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.core.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.datepicker.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.dialog.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.progressbar.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.resizable.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.selectable.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.slider.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.tabs.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/jquery.ui.theme.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/calendar.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/comment.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/communication.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/home.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/mail.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/office.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/pin.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/poi.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/signoff.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/menus/user.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-icons_222222_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-icons_454545_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-icons_888888_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>04/01/2024 20:04:26</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery-ui.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.accordion.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.autocomplete.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.button.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.core.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.datepicker.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.dialog.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.progressbar.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.resizable.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.selectable.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.slider.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.tabs.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/minified/jquery.ui.theme.min.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/signin.css">
+      <publishTime>04/01/2024 20:04:27</publishTime>
+    </File>
+    <File Include="Content/themes/em/Site.css">
+      <publishTime>04/01/2024 20:45:08</publishTime>
     </File>
     <File Include="Content/themes/font-awesome/css/font-awesome.css">
       <publishTime>04/08/2018 22:45:26</publishTime>
@@ -915,6 +1170,51 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Files/2019年10月工资表.xls">
       <publishTime>11/17/2022 20:44:06</publishTime>
     </File>
+    <File Include="Files/base/2018年6月份缴存导入数据.xls">
+      <publishTime>03/01/2020 22:38:56</publishTime>
+    </File>
+    <File Include="Files/base/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>03/12/2023 14:31:05</publishTime>
+    </File>
+    <File Include="Files/base/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>05/24/2023 22:07:20</publishTime>
+    </File>
+    <File Include="Files/base/单位结算.xlsx">
+      <publishTime>10/11/2022 22:08:45</publishTime>
+    </File>
+    <File Include="Files/base/导入单位账户余额.xlsx">
+      <publishTime>09/27/2022 22:43:40</publishTime>
+    </File>
+    <File Include="Files/base/批量导入人员模板.xlsx">
+      <publishTime>03/29/2023 11:34:50</publishTime>
+    </File>
+    <File Include="Files/base/考勤月报.xlsx">
+      <publishTime>10/12/2022 16:45:25</publishTime>
+    </File>
+    <File Include="Files/base/考勤表.xlsx">
+      <publishTime>10/09/2022 22:10:30</publishTime>
+    </File>
+    <File Include="Files/em/XXXX单位X年X月五险一金导入模板和样例数据.xls">
+      <publishTime>04/01/2024 21:24:40</publishTime>
+    </File>
+    <File Include="Files/em/XXXX单位X年X月工资导入模板和样例数据.xls">
+      <publishTime>04/01/2024 21:00:41</publishTime>
+    </File>
+    <File Include="Files/em/单位结算.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="Files/em/导入单位账户余额.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="Files/em/批量导入人员模板.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="Files/em/考勤月报.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
+    <File Include="Files/em/考勤表.xlsx">
+      <publishTime>04/01/2024 21:15:09</publishTime>
+    </File>
     <File Include="Files/XXXX单位X年X月五险一金导入模板和样例数据.xls">
       <publishTime>03/12/2023 14:31:05</publishTime>
     </File>
@@ -922,7 +1222,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/24/2023 22:07:20</publishTime>
     </File>
     <File Include="Files/卓越人力资源服务系统-操作手册.docx">
-      <publishTime>11/26/2022 23:56:04</publishTime>
+      <publishTime>04/02/2024 22:26:38</publishTime>
     </File>
     <File Include="Files/单位结算.xlsx">
       <publishTime>10/11/2022 22:08:45</publishTime>
@@ -964,7 +1264,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/12/2018 00:04:46</publishTime>
     </File>
     <File Include="JS/chart.HomePage.js">
-      <publishTime>03/06/2023 23:15:39</publishTime>
+      <publishTime>03/30/2024 16:44:58</publishTime>
     </File>
     <File Include="JS/check.ChecksQueryOpt.js">
       <publishTime>10/15/2022 22:18:16</publishTime>
@@ -1003,7 +1303,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/12/2023 22:47:11</publishTime>
     </File>
     <File Include="JS/employee.employeePageOpt.js">
-      <publishTime>10/12/2023 23:04:02</publishTime>
+      <publishTime>06/29/2024 13:02:01</publishTime>
     </File>
     <File Include="JS/GroupingOpt.js">
       <publishTime>04/25/2023 00:01:04</publishTime>
@@ -1075,7 +1375,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/16/2018 20:52:28</publishTime>
     </File>
     <File Include="JS/share.js">
-      <publishTime>05/11/2023 21:25:53</publishTime>
+      <publishTime>04/02/2024 22:42:34</publishTime>
     </File>
     <File Include="JS/UpgradeManageOpt.js">
       <publishTime>04/22/2023 16:24:26</publishTime>
@@ -2854,7 +3154,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/24/2023 23:09:55</publishTime>
     </File>
     <File Include="sqlMappers/hr.employee.xml">
-      <publishTime>03/16/2024 12:24:11</publishTime>
+      <publishTime>06/29/2024 23:05:33</publishTime>
     </File>
     <File Include="sqlMappers/hr.insurance.xml">
       <publishTime>08/15/2023 23:42:04</publishTime>
@@ -2879,6 +3179,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>04/01/2023 20:34:55</publishTime>
+    </File>
+    <File Include="Views/Account/Login_em.cshtml">
+      <publishTime>03/28/2024 22:31:21</publishTime>
     </File>
     <File Include="Views/Account/Onlines.cshtml">
       <publishTime>04/02/2023 19:42:39</publishTime>
@@ -2908,16 +3211,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/12/2023 22:40:01</publishTime>
     </File>
     <File Include="Views/Employee/EmployeePage.cshtml">
-      <publishTime>03/16/2024 11:55:04</publishTime>
+      <publishTime>06/29/2024 13:01:40</publishTime>
     </File>
     <File Include="Views/Home/CmpIndex.cshtml">
-      <publishTime>09/24/2023 14:50:32</publishTime>
+      <publishTime>04/01/2024 21:17:23</publishTime>
     </File>
     <File Include="Views/Home/errors.html">
       <publishTime>05/02/2023 19:35:31</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/24/2023 14:50:16</publishTime>
+      <publishTime>04/01/2024 21:16:53</publishTime>
     </File>
     <File Include="Views/Home/Message.cshtml">
       <publishTime>05/02/2023 20:08:55</publishTime>
@@ -2971,13 +3274,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Views/Shared/Menu.cshtml">
-      <publishTime>04/02/2023 17:06:37</publishTime>
+      <publishTime>04/02/2024 22:39:13</publishTime>
     </File>
     <File Include="Views/Shared/_EmpleLayout.cshtml">
       <publishTime>04/11/2018 23:54:34</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/19/2018 13:13:41</publishTime>
+      <publishTime>04/01/2024 20:09:13</publishTime>
     </File>
     <File Include="Views/System/RoleGrouping.cshtml">
       <publishTime>04/25/2023 00:15:12</publishTime>
@@ -3013,7 +3316,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2018 22:11:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/16/2024 12:30:14</publishTime>
+      <publishTime>06/30/2024 00:04:11</publishTime>
     </File>
   </ItemGroup>
 </Project>
